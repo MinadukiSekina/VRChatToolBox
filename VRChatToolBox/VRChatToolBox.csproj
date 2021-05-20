@@ -73,6 +73,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="LogEditor.cs" />
+    <Compile Include="PicturesOrganizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSettings_Method.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

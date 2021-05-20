@@ -17,6 +17,7 @@ namespace VRChatToolBox
             string LogMovedPath = ProgramSettings.GetVRChatLogMovedPath();
             string EditedLogPath = ProgramSettings.GetEditedLogPath();
             string DateString = "";
+            string TimeString = "";
             string DirPath = "";
             string FilePath = "";
             string FileName = "";
@@ -31,6 +32,7 @@ namespace VRChatToolBox
                 // 元のログをexeと同一階層にある保管用フォルダ内にコピーする
                 FileName = Path.GetFileName(item);
                 DateString = File.GetCreationTime(item).ToString("yyyyMMdd");
+                TimeString = File.GetCreationTime(item).ToString("HHmmss");
                 DirPath = $"{LogMovedPath}\\{DateString}";
                 FilePath = $"{DirPath}\\{FileName}";
 
@@ -47,7 +49,7 @@ namespace VRChatToolBox
                 DirPath = $"{EditedLogPath}\\{DateString}";
 
                 // コピーしたログを元に編集
-                CreatePath = $"{DirPath}\\Edited_{FileName}";
+                CreatePath = $"{DirPath}\\EditedLog_{DateString}_{TimeString}.txt";
                 SearchStr = "Entering Room|OnPlayerJoined|Unregistering";
                 WriteStr = "";
 

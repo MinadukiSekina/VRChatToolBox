@@ -30,6 +30,20 @@ namespace VRChatToolBox
             try
             {
                 LogEditor.CopyAndEdit();
+                MessageBox.Show("ログの複製と編集が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}\r\n{ex.StackTrace}", "処理時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BT_PicturesMove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PicturesOrganizer.OrganizePictures();
+                MessageBox.Show("写真の整理が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

@@ -40,6 +40,7 @@ namespace VRChatToolBox
         }
 
         // VRChatのログのパス：ユーザー名の前まで
+        // 写真取得でも使う
         internal const string LogPath1 = "C:\\Users\\";
 
         // VRChatのログのパス：ユーザー名から後
@@ -76,6 +77,27 @@ namespace VRChatToolBox
         {
             get { return _designatedEditedLogPath; }
             set { _designatedEditedLogPath = value; }
+        }
+
+        // VRChatの写真のデフォルトフォルダ
+        internal const string PicturesSavedFolder = "\\Pictures\\VRChat";
+
+        // VRChatの写真のフォルダ：ユーザーが指定する場合
+        private string _designatedPicturesSavedFolder;
+        [DataMember(Name = "写真の保存フォルダ", Order = 3)]
+        internal string DesignatedPicturesSavedFolder
+        {
+            get { return _designatedPicturesSavedFolder; }
+            set { _designatedPicturesSavedFolder = value; }
+        }
+
+        // 整理後の写真の保存先：ユーザーが指定する場合
+        private string _designatedPicturesMovedFolder;
+        [DataMember(Name = "写真の整理先フォルダ", Order = 4)]
+        internal string DesignatedPicturesMovedFolder
+        {
+            get { return _designatedPicturesMovedFolder; }
+            set { _designatedPicturesMovedFolder = value; }
         }
 
     }

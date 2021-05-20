@@ -19,7 +19,7 @@ namespace VRChatToolBox
             DesignatedLogPath = "";
             DesignatedEditedLogPath = "";
             DesignatedMovedLogPath = "";
-
+            DesignatedPicturesSavedFolder = "";
         }
 
         // 設定の初期処理
@@ -67,40 +67,41 @@ namespace VRChatToolBox
         // VRChatのログのパスを返す
         internal static string GetVRChatLogPath()
         {
-            if (string.IsNullOrWhiteSpace(Settings.DesignatedLogPath))
-            {
-                return $"{LogPath1}{Settings.UserName}{LogPath2}";
-            }
-            else
-            {
-                return Settings.DesignatedLogPath;
-            }
+            if (string.IsNullOrWhiteSpace(Settings.DesignatedLogPath)) return $"{LogPath1}{Settings.UserName}{LogPath2}";
+
+            return Settings.DesignatedLogPath;
         }
 
         // VRChatのログの移動先のパスを返す
         internal static string GetVRChatLogMovedPath()
         {
-            if (string.IsNullOrWhiteSpace(Settings.DesignatedMovedLogPath))
-            {
-                return $"{Settings.ExeFolderPath}\\{MovedLogPath}";
-            }
-            else
-            {
-                return Settings.DesignatedMovedLogPath;
-            }
+            if (string.IsNullOrWhiteSpace(Settings.DesignatedMovedLogPath)) return $"{Settings.ExeFolderPath}\\{MovedLogPath}";
+
+            return Settings.DesignatedMovedLogPath;
         }
 
         // 編集後ログの保存先のパスを返す
         internal static string GetEditedLogPath()
         {
-            if (string.IsNullOrWhiteSpace(Settings.DesignatedEditedLogPath))
-            {
-                return $"{Settings.ExeFolderPath}\\{EditedLogPath}";
-            }
-            else
-            {
-                return Settings.DesignatedEditedLogPath;
-            }
+            if (string.IsNullOrWhiteSpace(Settings.DesignatedEditedLogPath)) return $"{Settings.ExeFolderPath}\\{EditedLogPath}";
+
+            return Settings.DesignatedEditedLogPath;
+        }
+
+        // VRChatの写真のフォルダを返す
+        internal static string GetPicturesSavedFolder()
+        {
+            if (string.IsNullOrWhiteSpace(Settings.DesignatedPicturesSavedFolder)) return $"{LogPath1}{Settings.UserName}{PicturesSavedFolder}";
+
+            return Settings.DesignatedPicturesSavedFolder;
+        }
+
+        // 整理後の写真のフォルダを返す
+        internal static string GetPicturesMovedFolder()
+        {
+            if (string.IsNullOrWhiteSpace(Settings.DesignatedPicturesMovedFolder)) return $"{LogPath1}{Settings.UserName}{PicturesSavedFolder}";
+
+            return Settings.DesignatedPicturesMovedFolder;
         }
 
     }

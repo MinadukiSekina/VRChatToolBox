@@ -14,12 +14,27 @@ namespace VRChatToolBox
     {
         public Form1()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+                ProgramSettings.InitializeSettings();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "起動時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BT_EditLog_Click(object sender, EventArgs e)
         {
-            LogEditor.CopyAndEdit();
+            try
+            {
+                LogEditor.CopyAndEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}\r\n{ex.StackTrace}", "処理時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

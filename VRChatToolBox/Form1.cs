@@ -50,5 +50,11 @@ namespace VRChatToolBox
                 MessageBox.Show($"{ex.Message}\r\n{ex.StackTrace}", "処理時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void BT_Settings_Click(object sender, EventArgs e)
+        {
+            SettingsEditor settingsEditor = new SettingsEditor();
+            settingsEditor.ShowDialog();
+        }
     }
 }

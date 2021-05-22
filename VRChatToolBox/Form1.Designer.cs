@@ -30,6 +30,7 @@
         {
             this.BT_EditLog = new System.Windows.Forms.Button();
             this.BT_PicturesMove = new System.Windows.Forms.Button();
+            this.BT_Settings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BT_EditLog
@@ -54,11 +55,23 @@
             this.BT_PicturesMove.UseVisualStyleBackColor = true;
             this.BT_PicturesMove.Click += new System.EventHandler(this.BT_PicturesMove_Click);
             // 
+            // BT_Settings
+            // 
+            this.BT_Settings.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Settings.Location = new System.Drawing.Point(128, 21);
+            this.BT_Settings.Name = "BT_Settings";
+            this.BT_Settings.Size = new System.Drawing.Size(121, 34);
+            this.BT_Settings.TabIndex = 2;
+            this.BT_Settings.Text = "設定";
+            this.BT_Settings.UseVisualStyleBackColor = true;
+            this.BT_Settings.Click += new System.EventHandler(this.BT_Settings_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 243);
+            this.Controls.Add(this.BT_Settings);
             this.Controls.Add(this.BT_PicturesMove);
             this.Controls.Add(this.BT_EditLog);
             this.Name = "Form1";
@@ -71,6 +84,7 @@
 
         private System.Windows.Forms.Button BT_EditLog;
         private System.Windows.Forms.Button BT_PicturesMove;
+        private System.Windows.Forms.Button BT_Settings;
     }
 }
 

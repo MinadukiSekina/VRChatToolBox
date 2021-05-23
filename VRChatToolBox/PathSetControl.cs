@@ -18,6 +18,12 @@ namespace VRChatToolBox
             get { return PathSetGroup.Text; }
             set { PathSetGroup.Text = value; }
         }
+        public string SelectedPath
+        {
+            get { return PathText.Text.Trim(); }
+            set { PathText.Text = value; }
+        }
+
         public PathSetControl()
         {
             InitializeComponent();
@@ -33,8 +39,7 @@ namespace VRChatToolBox
 
             if (dialog.ShowDialog() != DialogResult.OK) return;
 
-            PathText.Text = dialog.SelectedPath;
-            SelectNextControl(PathText, true, true, true, true);
+            PathText.Text = dialog.SelectedPath.Trim();
 
         }
 

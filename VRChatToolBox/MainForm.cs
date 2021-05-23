@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VRChatToolBox
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace VRChatToolBox
             try
             {
                 LogEditor.CopyAndEdit();
-                MessageBox.Show("ログの複製と編集が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("ログのコピーと編集が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

@@ -38,6 +38,10 @@
             this.BT_Reset = new System.Windows.Forms.Button();
             this.BT_Cancel = new System.Windows.Forms.Button();
             this.PN_Function = new System.Windows.Forms.Panel();
+            this.LB_F3 = new System.Windows.Forms.Label();
+            this.LB_F2 = new System.Windows.Forms.Label();
+            this.LB_F1 = new System.Windows.Forms.Label();
+            this.LB_ESC = new System.Windows.Forms.Label();
             this.PN_Function.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,6 +136,10 @@
             // 
             // PN_Function
             // 
+            this.PN_Function.Controls.Add(this.LB_F3);
+            this.PN_Function.Controls.Add(this.LB_F2);
+            this.PN_Function.Controls.Add(this.LB_F1);
+            this.PN_Function.Controls.Add(this.LB_ESC);
             this.PN_Function.Controls.Add(this.BT_Save);
             this.PN_Function.Controls.Add(this.BT_Cancel);
             this.PN_Function.Controls.Add(this.BT_Return);
@@ -141,6 +149,46 @@
             this.PN_Function.Name = "PN_Function";
             this.PN_Function.Size = new System.Drawing.Size(1194, 76);
             this.PN_Function.TabIndex = 5;
+            // 
+            // LB_F3
+            // 
+            this.LB_F3.AutoSize = true;
+            this.LB_F3.Font = new System.Drawing.Font("MS UI Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_F3.Location = new System.Drawing.Point(441, 10);
+            this.LB_F3.Name = "LB_F3";
+            this.LB_F3.Size = new System.Drawing.Size(26, 17);
+            this.LB_F3.TabIndex = 7;
+            this.LB_F3.Text = "F3";
+            // 
+            // LB_F2
+            // 
+            this.LB_F2.AutoSize = true;
+            this.LB_F2.Font = new System.Drawing.Font("MS UI Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_F2.Location = new System.Drawing.Point(304, 10);
+            this.LB_F2.Name = "LB_F2";
+            this.LB_F2.Size = new System.Drawing.Size(26, 17);
+            this.LB_F2.TabIndex = 6;
+            this.LB_F2.Text = "F2";
+            // 
+            // LB_F1
+            // 
+            this.LB_F1.AutoSize = true;
+            this.LB_F1.Font = new System.Drawing.Font("MS UI Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_F1.Location = new System.Drawing.Point(167, 9);
+            this.LB_F1.Name = "LB_F1";
+            this.LB_F1.Size = new System.Drawing.Size(26, 17);
+            this.LB_F1.TabIndex = 5;
+            this.LB_F1.Text = "F1";
+            // 
+            // LB_ESC
+            // 
+            this.LB_ESC.AutoSize = true;
+            this.LB_ESC.Font = new System.Drawing.Font("MS UI Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_ESC.Location = new System.Drawing.Point(29, 9);
+            this.LB_ESC.Name = "LB_ESC";
+            this.LB_ESC.Size = new System.Drawing.Size(39, 17);
+            this.LB_ESC.TabIndex = 4;
+            this.LB_ESC.Text = "ESC";
             // 
             // SettingsEditor
             // 
@@ -155,10 +203,12 @@
             this.Controls.Add(this.PSC_LogSavedPath);
             this.KeyPreview = true;
             this.Name = "SettingsEditor";
-            this.Text = "SettingsEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "設定";
             this.Load += new System.EventHandler(this.SettingsEditor_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsEditor_KeyDown);
             this.PN_Function.ResumeLayout(false);
+            this.PN_Function.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -174,5 +224,9 @@
         private System.Windows.Forms.Button BT_Reset;
         private System.Windows.Forms.Button BT_Cancel;
         private System.Windows.Forms.Panel PN_Function;
+        private System.Windows.Forms.Label LB_F3;
+        private System.Windows.Forms.Label LB_F2;
+        private System.Windows.Forms.Label LB_F1;
+        private System.Windows.Forms.Label LB_ESC;
     }
 }

@@ -20,12 +20,13 @@ namespace VRChatToolBox
 
             foreach(string picture in pictures)
             {
-                dateString = File.GetCreationTime(picture).ToString("yyyyMMdd");
+                dateString = File.GetCreationTime(picture).ToString("yyyyMM");
                 pictureName = Path.GetFileName(picture);
                 NewFolderPath = $"{movedPicturesFolder}\\{dateString}";
                 // 写真の日付のフォルダがあるか
                 if (!Directory.Exists(NewFolderPath)) Directory.CreateDirectory(NewFolderPath);
-                File.Move(picture, $"{NewFolderPath}\\{pictureName}");
+                // エラー回避？
+                if(!File.Exists($"{NewFolderPath}\\{pictureName}")) File.Move(picture, $"{NewFolderPath}\\{pictureName}");
             }
         }
     }

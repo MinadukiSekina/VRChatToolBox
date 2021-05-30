@@ -66,7 +66,7 @@
             this.BT_Settings.UseVisualStyleBackColor = true;
             this.BT_Settings.Click += new System.EventHandler(this.BT_Settings_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -74,8 +74,8 @@
             this.Controls.Add(this.BT_Settings);
             this.Controls.Add(this.BT_PicturesMove);
             this.Controls.Add(this.BT_EditLog);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "VRChatToolBox";
             this.ResumeLayout(false);
 
         }

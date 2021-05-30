@@ -15,7 +15,6 @@ namespace VRChatToolBox
         public SettingsEditor()
         {
             InitializeComponent();
-            
         }
 
         private void SettingsEditor_KeyDown(object sender, KeyEventArgs e)

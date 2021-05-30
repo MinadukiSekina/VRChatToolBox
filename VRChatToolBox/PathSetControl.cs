@@ -40,6 +40,7 @@ namespace VRChatToolBox
             if (dialog.ShowDialog() != DialogResult.OK) return;
 
             PathText.Text = dialog.SelectedPath.Trim();
+            PathText.Select();
 
         }
 

@@ -26,7 +26,7 @@ namespace VRChatToolBox
                 // 写真の日付のフォルダがあるか
                 if (!Directory.Exists(NewFolderPath)) Directory.CreateDirectory(NewFolderPath);
                 // エラー回避？
-                if(!File.Exists($"{NewFolderPath}\\{pictureName}")) File.Move(picture, $"{NewFolderPath}\\{pictureName}");
+                if (!File.Exists($"{NewFolderPath}\\{pictureName}")) File.Move(picture, $"{NewFolderPath}\\{pictureName}");
             }
         }
     }

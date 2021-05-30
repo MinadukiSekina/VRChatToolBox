@@ -11,8 +11,8 @@ namespace VRChatToolBox
     {
         internal static void OrganizePictures()
         {
-            string savedPicturesFolder = ProgramSettings.GetPicturesSavedFolder();
-            string movedPicturesFolder = ProgramSettings.GetPicturesMovedFolder();
+            string savedPicturesFolder = ProgramSettings.Settings.DesignatedPicturesSavedFolder;
+            string movedPicturesFolder = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
             string NewFolderPath = "";
             string pictureName = "";
             string dateString = "";

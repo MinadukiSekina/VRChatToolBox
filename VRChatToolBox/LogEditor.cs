@@ -13,9 +13,9 @@ namespace VRChatToolBox
     {
        internal static void CopyAndEdit()
         {
-            string[] Files = Directory.GetFiles(ProgramSettings.GetVRChatLogPath(), "*.txt", SearchOption.TopDirectoryOnly);
-            string LogMovedPath = ProgramSettings.GetVRChatLogMovedPath();
-            string EditedLogPath = ProgramSettings.GetEditedLogPath();
+            string[] Files = Directory.GetFiles(ProgramSettings.Settings.DesignatedLogPath, "*.txt", SearchOption.TopDirectoryOnly);
+            string LogMovedPath = ProgramSettings.Settings.DesignatedMovedLogPath;
+            string EditedLogPath = ProgramSettings.Settings.DesignatedEditedLogPath;
             string DateString = "";
             string TimeString = "";
             string DirPath = "";

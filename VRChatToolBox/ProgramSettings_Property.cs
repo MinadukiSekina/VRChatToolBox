@@ -51,8 +51,8 @@ namespace VRChatToolBox
         [DataMember(Name = "VRChatのログフォルダ", Order = 0)]
         internal string DesignatedLogPath
         {
-            get { return _designatedLogPath; }
-            set { _designatedLogPath = value; }
+            get => string.IsNullOrWhiteSpace(_designatedLogPath) ? $"{LogPath1}{_userName}{LogPath2}" : _designatedLogPath;
+            set => _designatedLogPath = value;
         }
 
         // VRChatのログの移動先：exeのフォルダパスにくっつけるつもり
@@ -63,8 +63,8 @@ namespace VRChatToolBox
         [DataMember(Name = "VRChatのログの移動先", Order = 1)]
         internal string DesignatedMovedLogPath
         {
-            get { return _designatedMovedLogPath; }
-            set { _designatedMovedLogPath = value; }
+            get => string.IsNullOrWhiteSpace(_designatedMovedLogPath) ? $"{_exeFolderPath}\\{MovedLogPath}" : _designatedMovedLogPath;
+            set => _designatedMovedLogPath = value;
         }
 
         // 編集したログの保存先：exeのフォルダパスにくっつけるつもり
@@ -75,8 +75,8 @@ namespace VRChatToolBox
         [DataMember(Name = "編集したログの保存先", Order = 2)]
         internal string DesignatedEditedLogPath
         {
-            get { return _designatedEditedLogPath; }
-            set { _designatedEditedLogPath = value; }
+            get => string.IsNullOrWhiteSpace(_designatedEditedLogPath) ? $"{_exeFolderPath}\\{EditedLogPath}" : _designatedEditedLogPath;
+            set => _designatedEditedLogPath = value;
         }
 
         // VRChatの写真のデフォルトフォルダ
@@ -87,8 +87,8 @@ namespace VRChatToolBox
         [DataMember(Name = "写真の保存フォルダ", Order = 3)]
         internal string DesignatedPicturesSavedFolder
         {
-            get { return _designatedPicturesSavedFolder; }
-            set { _designatedPicturesSavedFolder = value; }
+            get => string.IsNullOrWhiteSpace(_designatedPicturesSavedFolder) ? $"{LogPath1}{_userName}{PicturesSavedFolder}" : _designatedPicturesSavedFolder;
+            set => _designatedPicturesSavedFolder = value;
         }
 
         // 整理後の写真の保存先：ユーザーが指定する場合
@@ -96,8 +96,8 @@ namespace VRChatToolBox
         [DataMember(Name = "写真の整理先フォルダ", Order = 4)]
         internal string DesignatedPicturesMovedFolder
         {
-            get { return _designatedPicturesMovedFolder; }
-            set { _designatedPicturesMovedFolder = value; }
+            get => string.IsNullOrWhiteSpace(_designatedPicturesMovedFolder) ? $"{LogPath1}{_userName}{PicturesSavedFolder}" : _designatedPicturesMovedFolder;
+            set => _designatedPicturesMovedFolder = value;
         }
 
     }

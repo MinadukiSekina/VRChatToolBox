@@ -80,11 +80,11 @@ namespace VRChatToolBox
         private void SetNowValue()
         {
             // 設定の表示
-            PSC_LogSavedPath.SelectedPath = ProgramSettings.GetVRChatLogPath();
-            PSC_LogMovedPath.SelectedPath = ProgramSettings.GetVRChatLogMovedPath();
-            PSC_LogEditedPath.SelectedPath = ProgramSettings.GetEditedLogPath();
-            PSC_PicturesSavedPath.SelectedPath = ProgramSettings.GetPicturesSavedFolder();
-            PSC_PicturesMovedPath.SelectedPath = ProgramSettings.GetPicturesMovedFolder();
+            PSC_LogSavedPath.SelectedPath = ProgramSettings.Settings.DesignatedLogPath;
+            PSC_LogMovedPath.SelectedPath = ProgramSettings.Settings.DesignatedMovedLogPath;
+            PSC_LogEditedPath.SelectedPath = ProgramSettings.Settings.DesignatedEditedLogPath;
+            PSC_PicturesSavedPath.SelectedPath = ProgramSettings.Settings.DesignatedPicturesSavedFolder;
+            PSC_PicturesMovedPath.SelectedPath = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
         }
     }
 }

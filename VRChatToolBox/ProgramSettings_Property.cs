@@ -9,8 +9,11 @@ using System.Runtime.Serialization;
 namespace VRChatToolBox
 {
     [DataContract(Namespace = "")]
-   internal partial class ProgramSettings
+   internal partial class ProgramSettings : IExtensibleDataObject
     {
+        // 上位下位互換保持用
+        public ExtensionDataObject ExtensionData { get; set; }
+
         // ただ１つのインスタンス
         private static ProgramSettings _instance;
         internal static ProgramSettings Settings

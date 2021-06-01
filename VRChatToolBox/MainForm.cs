@@ -56,5 +56,11 @@ namespace VRChatToolBox
             SettingsEditor settingsEditor = new SettingsEditor();
             settingsEditor.ShowDialog();
         }
+
+        private void BT_Select_Click(object sender, EventArgs e)
+        {
+            PictureSelector pictureSelector = new PictureSelector();
+            pictureSelector.ShowDialog();
+        }
     }
 }

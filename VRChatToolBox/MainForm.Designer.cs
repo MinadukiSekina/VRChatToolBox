@@ -31,6 +31,7 @@
             this.BT_EditLog = new System.Windows.Forms.Button();
             this.BT_PicturesMove = new System.Windows.Forms.Button();
             this.BT_Settings = new System.Windows.Forms.Button();
+            this.BT_Select = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BT_EditLog
@@ -66,15 +67,28 @@
             this.BT_Settings.UseVisualStyleBackColor = true;
             this.BT_Settings.Click += new System.EventHandler(this.BT_Settings_Click);
             // 
+            // BT_Select
+            // 
+            this.BT_Select.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Select.Location = new System.Drawing.Point(128, 171);
+            this.BT_Select.Name = "BT_Select";
+            this.BT_Select.Size = new System.Drawing.Size(121, 34);
+            this.BT_Select.TabIndex = 3;
+            this.BT_Select.Text = "写真選択";
+            this.BT_Select.UseVisualStyleBackColor = true;
+            this.BT_Select.Click += new System.EventHandler(this.BT_Select_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 243);
+            this.Controls.Add(this.BT_Select);
             this.Controls.Add(this.BT_Settings);
             this.Controls.Add(this.BT_PicturesMove);
             this.Controls.Add(this.BT_EditLog);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VRChatToolBox";
             this.ResumeLayout(false);
 
@@ -85,6 +99,7 @@
         private System.Windows.Forms.Button BT_EditLog;
         private System.Windows.Forms.Button BT_PicturesMove;
         private System.Windows.Forms.Button BT_Settings;
+        private System.Windows.Forms.Button BT_Select;
     }
 }
 

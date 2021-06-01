@@ -16,7 +16,8 @@ namespace VRChatToolBox
         {
             System.Threading.Mutex mutex = new System.Threading.Mutex(false, "VRChatToolBox");
             bool hasHandle = false;
-            try{
+            try
+            {
                 try
                 {
                     hasHandle = mutex.WaitOne(0, false);

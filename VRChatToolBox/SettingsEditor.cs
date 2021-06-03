@@ -20,12 +20,12 @@ namespace VRChatToolBox
         private void SettingsEditor_KeyDown(object sender, KeyEventArgs e)
         {
             switch(e.KeyCode) {
-                case Keys.Enter: SelectNextControl(ActiveControl, true, true, true, true); break;
-                case Keys.Escape: BT_Cancel_Click(BT_Cancel,EventArgs.Empty); break;
-                case Keys.F1: BT_Return_Click(BT_Cancel,EventArgs.Empty); break;
-                case Keys.F2: BT_Reset_Click(BT_Cancel,EventArgs.Empty); break;
-                case Keys.F3: BT_Save_Click(BT_Cancel,EventArgs.Empty); break;
-                default: break;
+                case Keys.Enter : SelectNextControl(ActiveControl, true, true, true, true); break;
+                case Keys.Escape : BT_Cancel_Click(BT_Cancel,EventArgs.Empty); break;
+                case Keys.F1 : BT_Return_Click(BT_Cancel,EventArgs.Empty); break;
+                case Keys.F2 : BT_Reset_Click(BT_Cancel,EventArgs.Empty); break;
+                case Keys.F3 : BT_Save_Click(BT_Cancel,EventArgs.Empty); break;
+                default : break;
             }
 
         }

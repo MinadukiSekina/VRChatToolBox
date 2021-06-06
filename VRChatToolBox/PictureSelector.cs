@@ -13,18 +13,23 @@ namespace VRChatToolBox
 {
     public partial class PictureSelector : Form
     {
+
         public PictureSelector()
         {
             InitializeComponent();
 
-            // 初期化
-            directoryTreeView0.InitList();
-            fileListView0.SetListItems(ProgramSettings.Settings.DesignatedPicturesSavedFolder);
-            fileListView0.PictureDisp = PB_Picture;
+        }
 
-            directoryTreeView1.InitList();
-            fileListView1.SetListItems(ProgramSettings.Settings.DesignatedPicturesSavedFolder);
-            fileListView1.PictureDisp = PB_Picture;
+        private void PictureSelector_Load(object sender, EventArgs e)
+        {
+            pictureExplorer1.Init(ProgramSettings.Settings.DesignatedPicturesSavedFolder, PB_Display);
+            pictureExplorer2.Init(ProgramSettings.Settings.DesignatedPicturesMovedFolder, PB_Display);
+        }
+
+        private void PB_Display_MouseDown(object sender, MouseEventArgs e)
+        {
+            DataObject dataObject = new DataObject(DataFormats.FileDrop, PB_Display.ImageLocation);
+            PB_Display.DoDragDrop(dataObject, DragDropEffects.Copy);
         }
 
     }

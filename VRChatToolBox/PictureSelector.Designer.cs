@@ -30,19 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PictureSelector));
-            this.SpC0 = new System.Windows.Forms.SplitContainer();
             this.ViewImageList0 = new System.Windows.Forms.ImageList(this.components);
-            this.SpC1 = new System.Windows.Forms.SplitContainer();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.PN_Menu0 = new System.Windows.Forms.Panel();
-            this.splitter2 = new System.Windows.Forms.Splitter();
-            this.PN_Menu1 = new System.Windows.Forms.Panel();
             this.ViewImageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.PB_Picture = new System.Windows.Forms.PictureBox();
-            this.fileListView0 = new VRChatToolBox.FileListView();
-            this.directoryTreeView0 = new VRChatToolBox.DirectoryTreeView();
-            this.fileListView1 = new VRChatToolBox.FileListView();
-            this.directoryTreeView1 = new VRChatToolBox.DirectoryTreeView();
+            this.SpC0 = new System.Windows.Forms.SplitContainer();
+            this.SpC1 = new System.Windows.Forms.SplitContainer();
+            this.PB_Display = new System.Windows.Forms.PictureBox();
+            this.BT_Save = new System.Windows.Forms.Button();
+            this.BT_Move = new System.Windows.Forms.Button();
+            this.BT_OpenVRCHome = new System.Windows.Forms.Button();
+            this.BT_OpenTwitter = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.BT_Close = new System.Windows.Forms.Button();
+            this.TB_WorldName = new System.Windows.Forms.TextBox();
+            this.LB_WorldName = new System.Windows.Forms.Label();
+            this.LB_AuthorName = new System.Windows.Forms.Label();
+            this.TB_AuthorName = new System.Windows.Forms.TextBox();
+            this.TB_Sentence = new System.Windows.Forms.TextBox();
+            this.LB_WorldList = new System.Windows.Forms.Label();
+            this.pictureExplorer1 = new VRChatToolBox.PictureExplorer();
+            this.pictureExplorer2 = new VRChatToolBox.PictureExplorer();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();
@@ -51,28 +57,8 @@
             this.SpC1.Panel1.SuspendLayout();
             this.SpC1.Panel2.SuspendLayout();
             this.SpC1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Picture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
             this.SuspendLayout();
-            // 
-            // SpC0
-            // 
-            this.SpC0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SpC0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpC0.IsSplitterFixed = true;
-            this.SpC0.Location = new System.Drawing.Point(0, 0);
-            this.SpC0.Name = "SpC0";
-            this.SpC0.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // SpC0.Panel1
-            // 
-            this.SpC0.Panel1.Controls.Add(this.PB_Picture);
-            // 
-            // SpC0.Panel2
-            // 
-            this.SpC0.Panel2.Controls.Add(this.SpC1);
-            this.SpC0.Size = new System.Drawing.Size(800, 822);
-            this.SpC0.SplitterDistance = 282;
-            this.SpC0.TabIndex = 0;
             // 
             // ViewImageList0
             // 
@@ -80,9 +66,44 @@
             this.ViewImageList0.TransparentColor = System.Drawing.Color.Transparent;
             this.ViewImageList0.Images.SetKeyName(0, "sozai_cman_jp_20210601203235.png");
             // 
+            // ViewImageList1
+            // 
+            this.ViewImageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ViewImageList1.ImageStream")));
+            this.ViewImageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.ViewImageList1.Images.SetKeyName(0, "sozai_cman_jp_20210601203235.png");
+            // 
+            // SpC0
+            // 
+            this.SpC0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SpC0.IsSplitterFixed = true;
+            this.SpC0.Location = new System.Drawing.Point(0, 0);
+            this.SpC0.Name = "SpC0";
+            // 
+            // SpC0.Panel1
+            // 
+            this.SpC0.Panel1.Controls.Add(this.SpC1);
+            // 
+            // SpC0.Panel2
+            // 
+            this.SpC0.Panel2.Controls.Add(this.LB_WorldList);
+            this.SpC0.Panel2.Controls.Add(this.TB_Sentence);
+            this.SpC0.Panel2.Controls.Add(this.LB_AuthorName);
+            this.SpC0.Panel2.Controls.Add(this.TB_AuthorName);
+            this.SpC0.Panel2.Controls.Add(this.LB_WorldName);
+            this.SpC0.Panel2.Controls.Add(this.TB_WorldName);
+            this.SpC0.Panel2.Controls.Add(this.BT_Close);
+            this.SpC0.Panel2.Controls.Add(this.listBox1);
+            this.SpC0.Panel2.Controls.Add(this.BT_OpenTwitter);
+            this.SpC0.Panel2.Controls.Add(this.BT_OpenVRCHome);
+            this.SpC0.Panel2.Controls.Add(this.BT_Move);
+            this.SpC0.Panel2.Controls.Add(this.BT_Save);
+            this.SpC0.Panel2.Controls.Add(this.PB_Display);
+            this.SpC0.Size = new System.Drawing.Size(1284, 822);
+            this.SpC0.SplitterDistance = 782;
+            this.SpC0.TabIndex = 0;
+            // 
             // SpC1
             // 
-            this.SpC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SpC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SpC1.Location = new System.Drawing.Point(0, 0);
             this.SpC1.Name = "SpC1";
@@ -90,146 +111,202 @@
             // 
             // SpC1.Panel1
             // 
-            this.SpC1.Panel1.Controls.Add(this.fileListView0);
-            this.SpC1.Panel1.Controls.Add(this.PN_Menu0);
-            this.SpC1.Panel1.Controls.Add(this.splitter1);
-            this.SpC1.Panel1.Controls.Add(this.directoryTreeView0);
+            this.SpC1.Panel1.Controls.Add(this.pictureExplorer1);
             // 
             // SpC1.Panel2
             // 
-            this.SpC1.Panel2.Controls.Add(this.fileListView1);
-            this.SpC1.Panel2.Controls.Add(this.PN_Menu1);
-            this.SpC1.Panel2.Controls.Add(this.splitter2);
-            this.SpC1.Panel2.Controls.Add(this.directoryTreeView1);
-            this.SpC1.Size = new System.Drawing.Size(800, 536);
-            this.SpC1.SplitterDistance = 271;
+            this.SpC1.Panel2.Controls.Add(this.pictureExplorer2);
+            this.SpC1.Size = new System.Drawing.Size(782, 822);
+            this.SpC1.SplitterDistance = 373;
             this.SpC1.TabIndex = 0;
             // 
-            // splitter1
+            // PB_Display
             // 
-            this.splitter1.Location = new System.Drawing.Point(121, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 269);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
+            this.PB_Display.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB_Display.Location = new System.Drawing.Point(9, 8);
+            this.PB_Display.Name = "PB_Display";
+            this.PB_Display.Size = new System.Drawing.Size(480, 270);
+            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_Display.TabIndex = 0;
+            this.PB_Display.TabStop = false;
+            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
             // 
-            // PN_Menu0
+            // BT_Save
             // 
-            this.PN_Menu0.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PN_Menu0.Location = new System.Drawing.Point(124, 0);
-            this.PN_Menu0.Name = "PN_Menu0";
-            this.PN_Menu0.Size = new System.Drawing.Size(674, 58);
-            this.PN_Menu0.TabIndex = 3;
+            this.BT_Save.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Save.Location = new System.Drawing.Point(23, 746);
+            this.BT_Save.Name = "BT_Save";
+            this.BT_Save.Size = new System.Drawing.Size(147, 31);
+            this.BT_Save.TabIndex = 1;
+            this.BT_Save.Text = "保存";
+            this.BT_Save.UseVisualStyleBackColor = true;
             // 
-            // splitter2
+            // BT_Move
             // 
-            this.splitter2.Location = new System.Drawing.Point(121, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 259);
-            this.splitter2.TabIndex = 1;
-            this.splitter2.TabStop = false;
+            this.BT_Move.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Move.Location = new System.Drawing.Point(176, 746);
+            this.BT_Move.Name = "BT_Move";
+            this.BT_Move.Size = new System.Drawing.Size(147, 31);
+            this.BT_Move.TabIndex = 2;
+            this.BT_Move.Text = "投稿済へ";
+            this.BT_Move.UseVisualStyleBackColor = true;
             // 
-            // PN_Menu1
+            // BT_OpenVRCHome
             // 
-            this.PN_Menu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PN_Menu1.Location = new System.Drawing.Point(124, 0);
-            this.PN_Menu1.Name = "PN_Menu1";
-            this.PN_Menu1.Size = new System.Drawing.Size(674, 63);
-            this.PN_Menu1.TabIndex = 2;
+            this.BT_OpenVRCHome.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_OpenVRCHome.Location = new System.Drawing.Point(176, 783);
+            this.BT_OpenVRCHome.Name = "BT_OpenVRCHome";
+            this.BT_OpenVRCHome.Size = new System.Drawing.Size(147, 31);
+            this.BT_OpenVRCHome.TabIndex = 3;
+            this.BT_OpenVRCHome.Text = "VRChat Home";
+            this.BT_OpenVRCHome.UseVisualStyleBackColor = true;
             // 
-            // ViewImageList1
+            // BT_OpenTwitter
             // 
-            this.ViewImageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ViewImageList1.ImageStream")));
-            this.ViewImageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.ViewImageList1.Images.SetKeyName(0, "sozai_cman_jp_20210601203235.png");
+            this.BT_OpenTwitter.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_OpenTwitter.Location = new System.Drawing.Point(23, 783);
+            this.BT_OpenTwitter.Name = "BT_OpenTwitter";
+            this.BT_OpenTwitter.Size = new System.Drawing.Size(147, 31);
+            this.BT_OpenTwitter.TabIndex = 4;
+            this.BT_OpenTwitter.Text = "Twitter";
+            this.BT_OpenTwitter.UseVisualStyleBackColor = true;
             // 
-            // PB_Picture
+            // listBox1
             // 
-            this.PB_Picture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.PB_Picture.Location = new System.Drawing.Point(3, 3);
-            this.PB_Picture.Name = "PB_Picture";
-            this.PB_Picture.Size = new System.Drawing.Size(480, 270);
-            this.PB_Picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PB_Picture.TabIndex = 0;
-            this.PB_Picture.TabStop = false;
+            this.listBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(9, 314);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(477, 124);
+            this.listBox1.TabIndex = 5;
             // 
-            // fileListView0
+            // BT_Close
             // 
-            this.fileListView0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileListView0.HideSelection = false;
-            this.fileListView0.LargeImageList = this.ViewImageList0;
-            this.fileListView0.Location = new System.Drawing.Point(124, 58);
-            this.fileListView0.Name = "fileListView0";
-            this.fileListView0.Size = new System.Drawing.Size(674, 211);
-            this.fileListView0.SmallImageList = this.ViewImageList0;
-            this.fileListView0.TabIndex = 2;
-            this.fileListView0.UseCompatibleStateImageBehavior = false;
+            this.BT_Close.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Close.Location = new System.Drawing.Point(329, 746);
+            this.BT_Close.Name = "BT_Close";
+            this.BT_Close.Size = new System.Drawing.Size(147, 31);
+            this.BT_Close.TabIndex = 6;
+            this.BT_Close.Text = "閉じる";
+            this.BT_Close.UseVisualStyleBackColor = true;
             // 
-            // directoryTreeView0
+            // TB_WorldName
             // 
-            this.directoryTreeView0.Dock = System.Windows.Forms.DockStyle.Left;
-            this.directoryTreeView0.Location = new System.Drawing.Point(0, 0);
-            this.directoryTreeView0.Name = "directoryTreeView0";
-            this.directoryTreeView0.Size = new System.Drawing.Size(121, 269);
-            this.directoryTreeView0.TabIndex = 0;
+            this.TB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TB_WorldName.Location = new System.Drawing.Point(103, 460);
+            this.TB_WorldName.Name = "TB_WorldName";
+            this.TB_WorldName.Size = new System.Drawing.Size(383, 27);
+            this.TB_WorldName.TabIndex = 7;
             // 
-            // fileListView1
+            // LB_WorldName
             // 
-            this.fileListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileListView1.HideSelection = false;
-            this.fileListView1.LargeImageList = this.ViewImageList1;
-            this.fileListView1.Location = new System.Drawing.Point(124, 63);
-            this.fileListView1.Name = "fileListView1";
-            this.fileListView1.Size = new System.Drawing.Size(674, 196);
-            this.fileListView1.SmallImageList = this.ViewImageList1;
-            this.fileListView1.TabIndex = 3;
-            this.fileListView1.UseCompatibleStateImageBehavior = false;
+            this.LB_WorldName.AutoSize = true;
+            this.LB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_WorldName.Location = new System.Drawing.Point(9, 463);
+            this.LB_WorldName.Name = "LB_WorldName";
+            this.LB_WorldName.Size = new System.Drawing.Size(80, 20);
+            this.LB_WorldName.TabIndex = 8;
+            this.LB_WorldName.Text = "ワールド：";
             // 
-            // directoryTreeView1
+            // LB_AuthorName
             // 
-            this.directoryTreeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.directoryTreeView1.Location = new System.Drawing.Point(0, 0);
-            this.directoryTreeView1.Name = "directoryTreeView1";
-            this.directoryTreeView1.Size = new System.Drawing.Size(121, 259);
-            this.directoryTreeView1.TabIndex = 0;
+            this.LB_AuthorName.AutoSize = true;
+            this.LB_AuthorName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_AuthorName.Location = new System.Drawing.Point(9, 496);
+            this.LB_AuthorName.Name = "LB_AuthorName";
+            this.LB_AuthorName.Size = new System.Drawing.Size(79, 20);
+            this.LB_AuthorName.TabIndex = 10;
+            this.LB_AuthorName.Text = "製作者：";
+            // 
+            // TB_AuthorName
+            // 
+            this.TB_AuthorName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TB_AuthorName.Location = new System.Drawing.Point(103, 493);
+            this.TB_AuthorName.Name = "TB_AuthorName";
+            this.TB_AuthorName.Size = new System.Drawing.Size(383, 27);
+            this.TB_AuthorName.TabIndex = 9;
+            // 
+            // TB_Sentence
+            // 
+            this.TB_Sentence.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TB_Sentence.Location = new System.Drawing.Point(9, 529);
+            this.TB_Sentence.Multiline = true;
+            this.TB_Sentence.Name = "TB_Sentence";
+            this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TB_Sentence.Size = new System.Drawing.Size(477, 197);
+            this.TB_Sentence.TabIndex = 11;
+            // 
+            // LB_WorldList
+            // 
+            this.LB_WorldList.AutoSize = true;
+            this.LB_WorldList.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_WorldList.Location = new System.Drawing.Point(9, 291);
+            this.LB_WorldList.Name = "LB_WorldList";
+            this.LB_WorldList.Size = new System.Drawing.Size(110, 20);
+            this.LB_WorldList.TabIndex = 12;
+            this.LB_WorldList.Text = "ワールド候補";
+            // 
+            // pictureExplorer1
+            // 
+            this.pictureExplorer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureExplorer1.Location = new System.Drawing.Point(0, 0);
+            this.pictureExplorer1.Name = "pictureExplorer1";
+            this.pictureExplorer1.Size = new System.Drawing.Size(782, 373);
+            this.pictureExplorer1.TabIndex = 0;
+            // 
+            // pictureExplorer2
+            // 
+            this.pictureExplorer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureExplorer2.Location = new System.Drawing.Point(0, 0);
+            this.pictureExplorer2.Name = "pictureExplorer2";
+            this.pictureExplorer2.Size = new System.Drawing.Size(782, 445);
+            this.pictureExplorer2.TabIndex = 0;
             // 
             // PictureSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 822);
+            this.ClientSize = new System.Drawing.Size(1284, 822);
             this.Controls.Add(this.SpC0);
             this.Name = "PictureSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PictureSelector";
+            this.Load += new System.EventHandler(this.PictureSelector_Load);
             this.SpC0.Panel1.ResumeLayout(false);
             this.SpC0.Panel2.ResumeLayout(false);
+            this.SpC0.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).EndInit();
             this.SpC0.ResumeLayout(false);
             this.SpC1.Panel1.ResumeLayout(false);
             this.SpC1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SpC1)).EndInit();
             this.SpC1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Picture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer SpC0;
         private System.Windows.Forms.ImageList ViewImageList0;
-        private System.Windows.Forms.SplitContainer SpC1;
-        private FileListView fileListView0;
-        private System.Windows.Forms.Panel PN_Menu0;
-        private System.Windows.Forms.Splitter splitter1;
-        private DirectoryTreeView directoryTreeView0;
-        private FileListView fileListView1;
-        private System.Windows.Forms.Panel PN_Menu1;
-        private System.Windows.Forms.Splitter splitter2;
-        private DirectoryTreeView directoryTreeView1;
         private System.Windows.Forms.ImageList ViewImageList1;
-        private System.Windows.Forms.PictureBox PB_Picture;
+        private System.Windows.Forms.SplitContainer SpC0;
+        private System.Windows.Forms.SplitContainer SpC1;
+        private PictureExplorer pictureExplorer1;
+        private PictureExplorer pictureExplorer2;
+        private System.Windows.Forms.PictureBox PB_Display;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button BT_OpenTwitter;
+        private System.Windows.Forms.Button BT_OpenVRCHome;
+        private System.Windows.Forms.Button BT_Move;
+        private System.Windows.Forms.Button BT_Save;
+        private System.Windows.Forms.Button BT_Close;
+        private System.Windows.Forms.Label LB_AuthorName;
+        private System.Windows.Forms.TextBox TB_AuthorName;
+        private System.Windows.Forms.Label LB_WorldName;
+        private System.Windows.Forms.TextBox TB_WorldName;
+        private System.Windows.Forms.TextBox TB_Sentence;
+        private System.Windows.Forms.Label LB_WorldList;
     }
 }

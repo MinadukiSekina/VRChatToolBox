@@ -81,6 +81,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LogEditor.cs" />
+    <Compile Include="PictureExplorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PictureExplorer.Designer.cs">
+      <DependentUpon>PictureExplorer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PathSetControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PictureExplorer.resx">
+      <DependentUpon>PictureExplorer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PathSetControl.resx">
       <DependentUpon>PathSetControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +130,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SettingsEditor.resx">
       <DependentUpon>SettingsEditor.cs</DependentUpon>
@@ -149,6 +159,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sozai_cman_jp_20210605091547.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sozai_cman_jp_20210605091818.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sozai_cman_jp_20210605100828.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

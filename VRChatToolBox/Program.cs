@@ -8,6 +8,7 @@ namespace VRChatToolBox
 {
     static class Program
     {
+
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>

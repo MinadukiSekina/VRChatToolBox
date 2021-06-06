@@ -11,8 +11,10 @@ namespace VRChatToolBox
 {
     class FileListView : ListView
     {
-        // 写真表示用の紐付け
-        internal PictureBox PictureDisp { get; set; }
+        // 選択したパスの格納
+        internal string StringPath { get; set; }
+        // 何を選んだか
+        internal ListSelectedItemType SelectedItemType { get; set; }
 
         // とりあえず単一ビュー想定なので、使ってるイメージリストを返す
         internal ImageList NowViewImages
@@ -36,9 +38,12 @@ namespace VRChatToolBox
         {
             // 初期化
             Clear();
+            StringPath = folderPath;
+            SelectedItemType = ListSelectedItemType.Folder;
+
             if (NowViewImages.Images.Count >= 2)
             {
-                for (int i = 1; i < NowViewImages.Images.Count; i++)
+                for (int i = NowViewImages.Images.Count - 1; i > 0; i--)
                 {
                     NowViewImages.Images.RemoveAt(i);
                 }
@@ -68,26 +73,50 @@ namespace VRChatToolBox
         // ダブルクリック時
         protected override void OnDoubleClick(EventArgs e)
         {
-            // 何も選択されてなかったら抜ける
-            if (SelectedItems.Count == 0) return;
-
-            string selectedPath = SelectedItems[0].SubItems[1].Text;
-
-            // 選択がフォルダなら再設定して抜ける
-            if (Directory.Exists(selectedPath))
+            try
             {
-                SetListItems(selectedPath);
-            }
-            else
-            {
-                // 存在しないなら抜ける
-                if (!File.Exists(selectedPath)) return;
-                // 表示させる
-                PictureDisp.ImageLocation = selectedPath;
-            }
+                // 何も選択されてなかったら抜ける
+                if (SelectedItems.Count == 0) return;
 
+                string selectedPath = SelectedItems[0].SubItems[1].Text;
+
+                // 選択がフォルダなら再設定
+                if (Directory.Exists(selectedPath)) SetListItems(selectedPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             // 基底クラスの処理
             base.OnDoubleClick(e);
         }
+
+        protected override void OnClick(EventArgs e)
+        {
+            try
+            {
+                // 何も選択されてなかったら抜ける
+                if (SelectedItems.Count == 0) return;
+
+                string selectedPath = SelectedItems[0].SubItems[1].Text;
+
+                // ファイルが存在しないなら抜ける
+                if (!File.Exists(selectedPath)) return;
+                // 表示させる
+                StringPath = selectedPath;
+                SelectedItemType = ListSelectedItemType.Picture;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 基底クラスのイベント処理
+            base.OnClick(e);
+        }
+
     }
 }

@@ -8,6 +8,12 @@ using System.Runtime.Serialization;
 
 namespace VRChatToolBox
 {
+    enum ListSelectedItemType
+    {
+        Folder,
+        Picture
+    }
+
     [DataContract(Namespace = "")]
    internal partial class ProgramSettings : IExtensibleDataObject
     {

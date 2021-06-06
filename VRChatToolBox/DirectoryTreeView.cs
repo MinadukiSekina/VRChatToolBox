@@ -40,9 +40,10 @@ namespace VRChatToolBox
                     node.Nodes.Add(child);
                 }
             }
-            catch (IOException ie)
+            catch (Exception ex)
             {
-                MessageBox.Show(ie.Message, "選択エラー",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "選択エラー",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
             }
 
             // 基底クラスの処理呼び出し

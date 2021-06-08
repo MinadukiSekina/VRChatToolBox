@@ -34,19 +34,19 @@
             this.ViewImageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SpC0 = new System.Windows.Forms.SplitContainer();
             this.SpC1 = new System.Windows.Forms.SplitContainer();
-            this.PB_Display = new System.Windows.Forms.PictureBox();
-            this.BT_Save = new System.Windows.Forms.Button();
-            this.BT_Move = new System.Windows.Forms.Button();
-            this.BT_OpenVRCHome = new System.Windows.Forms.Button();
-            this.BT_OpenTwitter = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.BT_Close = new System.Windows.Forms.Button();
-            this.TB_WorldName = new System.Windows.Forms.TextBox();
-            this.LB_WorldName = new System.Windows.Forms.Label();
+            this.LB_WorldList = new System.Windows.Forms.Label();
+            this.TB_Sentence = new System.Windows.Forms.TextBox();
             this.LB_AuthorName = new System.Windows.Forms.Label();
             this.TB_AuthorName = new System.Windows.Forms.TextBox();
-            this.TB_Sentence = new System.Windows.Forms.TextBox();
-            this.LB_WorldList = new System.Windows.Forms.Label();
+            this.LB_WorldName = new System.Windows.Forms.Label();
+            this.TB_WorldName = new System.Windows.Forms.TextBox();
+            this.BT_Close = new System.Windows.Forms.Button();
+            this.Li_WorldList = new System.Windows.Forms.ListBox();
+            this.BT_OpenTwitter = new System.Windows.Forms.Button();
+            this.BT_OpenVRCHome = new System.Windows.Forms.Button();
+            this.BT_Move = new System.Windows.Forms.Button();
+            this.BT_Save = new System.Windows.Forms.Button();
+            this.PB_Display = new System.Windows.Forms.PictureBox();
             this.pictureExplorer1 = new VRChatToolBox.PictureExplorer();
             this.pictureExplorer2 = new VRChatToolBox.PictureExplorer();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
@@ -92,7 +92,7 @@
             this.SpC0.Panel2.Controls.Add(this.LB_WorldName);
             this.SpC0.Panel2.Controls.Add(this.TB_WorldName);
             this.SpC0.Panel2.Controls.Add(this.BT_Close);
-            this.SpC0.Panel2.Controls.Add(this.listBox1);
+            this.SpC0.Panel2.Controls.Add(this.Li_WorldList);
             this.SpC0.Panel2.Controls.Add(this.BT_OpenTwitter);
             this.SpC0.Panel2.Controls.Add(this.BT_OpenVRCHome);
             this.SpC0.Panel2.Controls.Add(this.BT_Move);
@@ -120,95 +120,25 @@
             this.SpC1.SplitterDistance = 373;
             this.SpC1.TabIndex = 0;
             // 
-            // PB_Display
+            // LB_WorldList
             // 
-            this.PB_Display.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PB_Display.Location = new System.Drawing.Point(9, 8);
-            this.PB_Display.Name = "PB_Display";
-            this.PB_Display.Size = new System.Drawing.Size(480, 270);
-            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PB_Display.TabIndex = 0;
-            this.PB_Display.TabStop = false;
-            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
+            this.LB_WorldList.AutoSize = true;
+            this.LB_WorldList.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_WorldList.Location = new System.Drawing.Point(9, 291);
+            this.LB_WorldList.Name = "LB_WorldList";
+            this.LB_WorldList.Size = new System.Drawing.Size(110, 20);
+            this.LB_WorldList.TabIndex = 12;
+            this.LB_WorldList.Text = "ワールド候補";
             // 
-            // BT_Save
+            // TB_Sentence
             // 
-            this.BT_Save.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_Save.Location = new System.Drawing.Point(23, 746);
-            this.BT_Save.Name = "BT_Save";
-            this.BT_Save.Size = new System.Drawing.Size(147, 31);
-            this.BT_Save.TabIndex = 1;
-            this.BT_Save.Text = "保存";
-            this.BT_Save.UseVisualStyleBackColor = true;
-            // 
-            // BT_Move
-            // 
-            this.BT_Move.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_Move.Location = new System.Drawing.Point(176, 746);
-            this.BT_Move.Name = "BT_Move";
-            this.BT_Move.Size = new System.Drawing.Size(147, 31);
-            this.BT_Move.TabIndex = 2;
-            this.BT_Move.Text = "投稿済へ";
-            this.BT_Move.UseVisualStyleBackColor = true;
-            // 
-            // BT_OpenVRCHome
-            // 
-            this.BT_OpenVRCHome.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_OpenVRCHome.Location = new System.Drawing.Point(176, 783);
-            this.BT_OpenVRCHome.Name = "BT_OpenVRCHome";
-            this.BT_OpenVRCHome.Size = new System.Drawing.Size(147, 31);
-            this.BT_OpenVRCHome.TabIndex = 3;
-            this.BT_OpenVRCHome.Text = "VRChat Home";
-            this.BT_OpenVRCHome.UseVisualStyleBackColor = true;
-            // 
-            // BT_OpenTwitter
-            // 
-            this.BT_OpenTwitter.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_OpenTwitter.Location = new System.Drawing.Point(23, 783);
-            this.BT_OpenTwitter.Name = "BT_OpenTwitter";
-            this.BT_OpenTwitter.Size = new System.Drawing.Size(147, 31);
-            this.BT_OpenTwitter.TabIndex = 4;
-            this.BT_OpenTwitter.Text = "Twitter";
-            this.BT_OpenTwitter.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            this.listBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(9, 314);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(477, 124);
-            this.listBox1.TabIndex = 5;
-            // 
-            // BT_Close
-            // 
-            this.BT_Close.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_Close.Location = new System.Drawing.Point(329, 746);
-            this.BT_Close.Name = "BT_Close";
-            this.BT_Close.Size = new System.Drawing.Size(147, 31);
-            this.BT_Close.TabIndex = 6;
-            this.BT_Close.Text = "閉じる";
-            this.BT_Close.UseVisualStyleBackColor = true;
-            // 
-            // TB_WorldName
-            // 
-            this.TB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_WorldName.Location = new System.Drawing.Point(103, 460);
-            this.TB_WorldName.Name = "TB_WorldName";
-            this.TB_WorldName.Size = new System.Drawing.Size(383, 27);
-            this.TB_WorldName.TabIndex = 7;
-            // 
-            // LB_WorldName
-            // 
-            this.LB_WorldName.AutoSize = true;
-            this.LB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.LB_WorldName.Location = new System.Drawing.Point(9, 463);
-            this.LB_WorldName.Name = "LB_WorldName";
-            this.LB_WorldName.Size = new System.Drawing.Size(80, 20);
-            this.LB_WorldName.TabIndex = 8;
-            this.LB_WorldName.Text = "ワールド：";
+            this.TB_Sentence.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TB_Sentence.Location = new System.Drawing.Point(9, 529);
+            this.TB_Sentence.Multiline = true;
+            this.TB_Sentence.Name = "TB_Sentence";
+            this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TB_Sentence.Size = new System.Drawing.Size(477, 197);
+            this.TB_Sentence.TabIndex = 11;
             // 
             // LB_AuthorName
             // 
@@ -228,25 +158,101 @@
             this.TB_AuthorName.Size = new System.Drawing.Size(383, 27);
             this.TB_AuthorName.TabIndex = 9;
             // 
-            // TB_Sentence
+            // LB_WorldName
             // 
-            this.TB_Sentence.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_Sentence.Location = new System.Drawing.Point(9, 529);
-            this.TB_Sentence.Multiline = true;
-            this.TB_Sentence.Name = "TB_Sentence";
-            this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(477, 197);
-            this.TB_Sentence.TabIndex = 11;
+            this.LB_WorldName.AutoSize = true;
+            this.LB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_WorldName.Location = new System.Drawing.Point(9, 463);
+            this.LB_WorldName.Name = "LB_WorldName";
+            this.LB_WorldName.Size = new System.Drawing.Size(80, 20);
+            this.LB_WorldName.TabIndex = 8;
+            this.LB_WorldName.Text = "ワールド：";
             // 
-            // LB_WorldList
+            // TB_WorldName
             // 
-            this.LB_WorldList.AutoSize = true;
-            this.LB_WorldList.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.LB_WorldList.Location = new System.Drawing.Point(9, 291);
-            this.LB_WorldList.Name = "LB_WorldList";
-            this.LB_WorldList.Size = new System.Drawing.Size(110, 20);
-            this.LB_WorldList.TabIndex = 12;
-            this.LB_WorldList.Text = "ワールド候補";
+            this.TB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TB_WorldName.Location = new System.Drawing.Point(103, 460);
+            this.TB_WorldName.Name = "TB_WorldName";
+            this.TB_WorldName.Size = new System.Drawing.Size(383, 27);
+            this.TB_WorldName.TabIndex = 7;
+            // 
+            // BT_Close
+            // 
+            this.BT_Close.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Close.Location = new System.Drawing.Point(329, 746);
+            this.BT_Close.Name = "BT_Close";
+            this.BT_Close.Size = new System.Drawing.Size(147, 31);
+            this.BT_Close.TabIndex = 6;
+            this.BT_Close.Text = "閉じる";
+            this.BT_Close.UseVisualStyleBackColor = true;
+            this.BT_Close.Click += new System.EventHandler(this.BT_Close_Click);
+            // 
+            // Li_WorldList
+            // 
+            this.Li_WorldList.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Li_WorldList.FormattingEnabled = true;
+            this.Li_WorldList.ItemHeight = 20;
+            this.Li_WorldList.Location = new System.Drawing.Point(9, 314);
+            this.Li_WorldList.Name = "Li_WorldList";
+            this.Li_WorldList.Size = new System.Drawing.Size(477, 124);
+            this.Li_WorldList.TabIndex = 5;
+            this.Li_WorldList.DoubleClick += new System.EventHandler(this.Li_WorldList_DoubleClick);
+            // 
+            // BT_OpenTwitter
+            // 
+            this.BT_OpenTwitter.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_OpenTwitter.Location = new System.Drawing.Point(23, 783);
+            this.BT_OpenTwitter.Name = "BT_OpenTwitter";
+            this.BT_OpenTwitter.Size = new System.Drawing.Size(147, 31);
+            this.BT_OpenTwitter.TabIndex = 4;
+            this.BT_OpenTwitter.Text = "Twitter";
+            this.BT_OpenTwitter.UseVisualStyleBackColor = true;
+            this.BT_OpenTwitter.Click += new System.EventHandler(this.BT_OpenTwitter_Click);
+            // 
+            // BT_OpenVRCHome
+            // 
+            this.BT_OpenVRCHome.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_OpenVRCHome.Location = new System.Drawing.Point(176, 783);
+            this.BT_OpenVRCHome.Name = "BT_OpenVRCHome";
+            this.BT_OpenVRCHome.Size = new System.Drawing.Size(147, 31);
+            this.BT_OpenVRCHome.TabIndex = 3;
+            this.BT_OpenVRCHome.Text = "VRChat Home";
+            this.BT_OpenVRCHome.UseVisualStyleBackColor = true;
+            this.BT_OpenVRCHome.Click += new System.EventHandler(this.BT_OpenVRCHome_Click);
+            // 
+            // BT_Move
+            // 
+            this.BT_Move.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Move.Location = new System.Drawing.Point(176, 746);
+            this.BT_Move.Name = "BT_Move";
+            this.BT_Move.Size = new System.Drawing.Size(147, 31);
+            this.BT_Move.TabIndex = 2;
+            this.BT_Move.Text = "投稿済へ";
+            this.BT_Move.UseVisualStyleBackColor = true;
+            this.BT_Move.Click += new System.EventHandler(this.BT_Move_Click);
+            // 
+            // BT_Save
+            // 
+            this.BT_Save.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Save.Location = new System.Drawing.Point(23, 746);
+            this.BT_Save.Name = "BT_Save";
+            this.BT_Save.Size = new System.Drawing.Size(147, 31);
+            this.BT_Save.TabIndex = 1;
+            this.BT_Save.Text = "保存";
+            this.BT_Save.UseVisualStyleBackColor = true;
+            this.BT_Save.Click += new System.EventHandler(this.BT_Save_Click);
+            // 
+            // PB_Display
+            // 
+            this.PB_Display.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB_Display.Location = new System.Drawing.Point(9, 8);
+            this.PB_Display.Name = "PB_Display";
+            this.PB_Display.Size = new System.Drawing.Size(480, 270);
+            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_Display.TabIndex = 0;
+            this.PB_Display.TabStop = false;
+            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
             // 
             // pictureExplorer1
             // 
@@ -296,7 +302,7 @@
         private PictureExplorer pictureExplorer1;
         private PictureExplorer pictureExplorer2;
         private System.Windows.Forms.PictureBox PB_Display;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox Li_WorldList;
         private System.Windows.Forms.Button BT_OpenTwitter;
         private System.Windows.Forms.Button BT_OpenVRCHome;
         private System.Windows.Forms.Button BT_Move;

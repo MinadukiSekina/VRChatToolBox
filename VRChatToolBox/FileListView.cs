@@ -36,37 +36,50 @@ namespace VRChatToolBox
         // リストの設定
         internal void SetListItems(string folderPath)
         {
-            // 初期化
-            Clear();
-            StringPath = folderPath;
-            SelectedItemType = ListSelectedItemType.Folder;
-
-            if (NowViewImages.Images.Count >= 2)
+            try
             {
-                for (int i = NowViewImages.Images.Count - 1; i > 0; i--)
+                // 処理を軽くしたい
+                SuspendLayout();
+
+                // 初期化
+                Clear();
+                StringPath = folderPath;
+                SelectedItemType = ListSelectedItemType.Folder;
+
+                if (NowViewImages.Images.Count >= 2)
                 {
-                    NowViewImages.Images.RemoveAt(i);
+                    for (int i = NowViewImages.Images.Count - 1; i > 0; i--)
+                    {
+                        NowViewImages.Images.RemoveAt(i);
+                    }
+                }
+
+                DirectoryInfo ParentDir = new DirectoryInfo(folderPath);
+                // フォルダの列挙
+                foreach (DirectoryInfo childDir in ParentDir.EnumerateDirectories())
+                {
+                    string[] items = { childDir.Name, childDir.FullName };
+                    ListViewItem listViewItem = new ListViewItem(items, 0);
+                    Items.Add(listViewItem);
+                }
+
+                // 写真の列挙
+                int j = 1;
+                foreach (FileInfo childFile in ParentDir.EnumerateFiles("*.png", SearchOption.TopDirectoryOnly))
+                {
+                    FileStream fileStream = File.OpenRead(childFile.FullName);
+                    Image image = Image.FromStream(fileStream, false, false);
+                    NowViewImages.Images.Add(image);
+                    ListViewItem listViewItem = new ListViewItem(childFile.Name, j);
+                    listViewItem.SubItems.Add(childFile.FullName);
+                    Items.Add(listViewItem);
+                    image.Dispose();
+                    j += 1;
                 }
             }
-
-            DirectoryInfo ParentDir = new DirectoryInfo(folderPath);
-            // フォルダの列挙
-            foreach (DirectoryInfo childDir in ParentDir.EnumerateDirectories())
+            finally
             {
-                string[] items = { childDir.Name, childDir.FullName };
-                ListViewItem listViewItem = new ListViewItem(items, 0);
-                Items.Add(listViewItem);
-            }
-
-            // 写真の列挙
-            int j = 1;
-            foreach (FileInfo childFile in ParentDir.EnumerateFiles("*.png", SearchOption.TopDirectoryOnly))
-            {
-                NowViewImages.Images.Add(Bitmap.FromFile(childFile.FullName));
-                ListViewItem listViewItem = new ListViewItem(childFile.Name, j);
-                listViewItem.SubItems.Add(childFile.FullName);
-                Items.Add(listViewItem);
-                j += 1;
+                ResumeLayout();
             }
         }
 

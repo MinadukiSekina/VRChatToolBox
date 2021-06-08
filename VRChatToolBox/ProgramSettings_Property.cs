@@ -47,6 +47,7 @@ namespace VRChatToolBox
             get { return _userName; }
             set { _userName = value; }
         }
+    
 
         // VRChatのログのパス：ユーザー名の前まで
         // 写真取得でも使う
@@ -54,6 +55,7 @@ namespace VRChatToolBox
 
         // VRChatのログのパス：ユーザー名から後
         internal const string LogPath2 = "\\AppData\\LocalLow\\VRChat\\vrchat";
+
 
         // VRChatのログのパス：ユーザーが指定する場合(フルパス想定)
         private string _designatedLogPath;
@@ -88,6 +90,7 @@ namespace VRChatToolBox
             set => _designatedEditedLogPath = value;
         }
 
+
         // VRChatの写真のデフォルトフォルダ
         internal const string PicturesSavedFolder = "\\Pictures\\VRChat";
 
@@ -107,6 +110,58 @@ namespace VRChatToolBox
         {
             get => string.IsNullOrWhiteSpace(_designatedPicturesMovedFolder) ? $"{LogPath1}{_userName}{PicturesSavedFolder}" : _designatedPicturesMovedFolder;
             set => _designatedPicturesMovedFolder = value;
+        }
+
+
+        // 選択した写真の保存先
+        internal const string PictureSelectedFolder = "SelectedPicture";
+
+        // 選択した写真の保存先：ユーザーが指定する場合
+        private string _designatedPicturesSelectedFolder;
+        [DataMember(Name = "投稿用写真のフォルダ", Order = 5)]
+        internal string DesignatedPicturesSelectedFolder
+        {
+            get => string.IsNullOrWhiteSpace(_designatedPicturesSelectedFolder) ?
+                        $"{LogPath1}{_userName}{PicturesSavedFolder}\\{PictureSelectedFolder}" : _designatedPicturesSelectedFolder;
+            set => _designatedPicturesSelectedFolder = value;
+        }
+
+        // 投稿済の保存フォルダ
+        internal const string PictureUpLoadedFolder = "UpLoadedPicture";
+
+        // 投稿後の写真の保存先：ユーザーが指定する場合
+        private string _designatedPicturesUpLoadedFolder;
+        [DataMember(Name = "写真の投稿後フォルダ", Order = 6)]
+        internal string DesignatedPicturesUpLoadedFolder
+        {
+            get => string.IsNullOrWhiteSpace(_designatedPicturesUpLoadedFolder) ? 
+                        $"{LogPath1}{_userName}{PicturesSavedFolder}\\{PictureUpLoadedFolder}" : _designatedPicturesUpLoadedFolder;
+            set => _designatedPicturesUpLoadedFolder = value;
+        }
+
+
+        // 写真のメタデータの保存先：exeのフォルダパスにくっつけるつもり
+        internal const string PictureInfoPath = "PictureInfo";
+
+        // 写真のメタデータの保存先：ユーザーが指定する場合(フルパス想定)
+        private string _designatedPictureInfoPath;
+        [DataMember(Name = "写真のメタデータの保存先", Order = 7)]
+        internal string DesignatedPictureInfoPath
+        {
+            get => string.IsNullOrWhiteSpace(_designatedPictureInfoPath) ? $"{_exeFolderPath}\\{PictureInfoPath}" : _designatedPictureInfoPath;
+            set => _designatedPictureInfoPath = value;
+        }
+
+        // 投稿後のメタデータの保存先：exeのフォルダパスにくっつけるつもり
+        internal const string UpLoadedInfoPath = "UpLoadedInfo";
+
+        // 投稿後のメタデータの保存先：ユーザーが指定する場合(フルパス想定)
+        private string _designatedUpLoadedInfoPath;
+        [DataMember(Name = "投稿後のメタデータの保存先", Order = 8)]
+        internal string DesignatedUpLoadedInfoPath
+        {
+            get => string.IsNullOrWhiteSpace(_designatedUpLoadedInfoPath) ? $"{_exeFolderPath}\\{UpLoadedInfoPath}" : _designatedUpLoadedInfoPath;
+            set => _designatedUpLoadedInfoPath = value;
         }
 
     }

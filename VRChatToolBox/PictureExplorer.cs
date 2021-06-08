@@ -13,9 +13,8 @@ namespace VRChatToolBox
 {
     public partial class PictureExplorer : UserControl
     {
-        internal FileListView FileListView => FileListView1;
         internal PictureBox PictureDisplay { get; set; }
-
+        internal PictureSelector MyBoss { get; set; }
 
         public PictureExplorer()
         {
@@ -23,10 +22,12 @@ namespace VRChatToolBox
         }
 
         //  初期化処理
-        internal void Init(string pathString,PictureBox pictureBox)
+        internal void Init(string pathString, PictureBox pictureBox, PictureSelector pictureSelector)
         {
             try
             {
+                SuspendLayout();
+                MyBoss = pictureSelector;
                 PictureDisplay = pictureBox;
                 DirectoryTreeView1.InitList();
                 FileListView1.SetListItems(pathString);
@@ -35,6 +36,10 @@ namespace VRChatToolBox
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "初期化エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                ResumeLayout();
             }
         }
 
@@ -103,11 +108,14 @@ namespace VRChatToolBox
             {
                 // 情報の更新
                 if (FileListView1.SelectedItemType == ListSelectedItemType.Picture) PictureDisplay.ImageLocation = FileListView1.StringPath;
+                // フォームへのイベント通達：よくわからなかったから苦肉
+                MyBoss.PictureSelected();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         // ファイル一覧のダブルクリック：コントロール独自の処理後

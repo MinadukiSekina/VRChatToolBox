@@ -11,6 +11,7 @@ namespace VRChatToolBox
 {
   internal static class LogEditor
     {
+        // VRChatログのコピーと編集したログの作成
        internal static void CopyAndEdit()
         {
             IEnumerable<string> Files = Directory.EnumerateFiles(ProgramSettings.Settings.DesignatedLogPath, "*.txt", SearchOption.TopDirectoryOnly);
@@ -75,6 +76,19 @@ namespace VRChatToolBox
 
             }
 
+        }
+   
+        // 投稿後のメタデータの移動
+        internal static void MoveMetaDataFile(string filePath)
+        {
+            string fileName = Path.GetFileName(filePath);
+            string destPath = $"{ProgramSettings.Settings.DesignatedUpLoadedInfoPath}\\{fileName}";
+            // 既にあれば移動しない
+            if (File.Exists(destPath)) return;
+            // なければフォルダを作る
+            if (!Directory.Exists(ProgramSettings.Settings.DesignatedUpLoadedInfoPath))
+                 Directory.CreateDirectory(ProgramSettings.Settings.DesignatedUpLoadedInfoPath);
+            File.Move(filePath, destPath);
         }
     }
 }

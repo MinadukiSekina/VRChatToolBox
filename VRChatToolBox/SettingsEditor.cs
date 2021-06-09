@@ -17,6 +17,13 @@ namespace VRChatToolBox
             InitializeComponent();
         }
 
+        private void SettingsEditor_Load(object sender, EventArgs e)
+        {
+            // 現在設定の表示
+            SetNowValue();
+
+        }
+
         private void SettingsEditor_KeyDown(object sender, KeyEventArgs e)
         {
             switch(e.KeyCode) {
@@ -30,22 +37,23 @@ namespace VRChatToolBox
 
         }
 
-        private void SettingsEditor_Load(object sender, EventArgs e)
-        {
-            // 現在設定の表示
-            SetNowValue();
-        }
-
         private void BT_Save_Click(object sender, EventArgs e)
         {
             try
             {
                 // 設定の保存
-                ProgramSettings.Settings.DesignatedLogPath = PSC_LogSavedPath.SelectedPath;
-                ProgramSettings.Settings.DesignatedMovedLogPath = PSC_LogMovedPath.SelectedPath;
-                ProgramSettings.Settings.DesignatedEditedLogPath = PSC_LogEditedPath.SelectedPath;
-                ProgramSettings.Settings.DesignatedPicturesSavedFolder = PSC_PicturesSavedPath.SelectedPath;
-                ProgramSettings.Settings.DesignatedPicturesMovedFolder = PSC_PicturesMovedPath.SelectedPath;
+                // ログ関連
+                ProgramSettings.Settings.DesignatedLogPath = PSC_LogSavedPath.SelectedPath.Trim();
+                ProgramSettings.Settings.DesignatedMovedLogPath = PSC_LogMovedPath.SelectedPath.Trim();
+                ProgramSettings.Settings.DesignatedEditedLogPath = PSC_LogEditedPath.SelectedPath.Trim();
+                // 写真関連
+                ProgramSettings.Settings.DesignatedPicturesSavedFolder = PSC_PicturesSavedPath.SelectedPath.Trim();
+                ProgramSettings.Settings.DesignatedPicturesMovedFolder = PSC_PicturesMovedPath.SelectedPath.Trim();
+                ProgramSettings.Settings.DesignatedPicturesSelectedFolder = PSC_SelectedPicturesFolder.SelectedPath.Trim();
+                ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder = PSC_UpLoadedPicturesFolder.SelectedPath.Trim();
+                // メタデータ関連
+                ProgramSettings.Settings.DesignatedPictureInfoPath = PSC_SelectedInfoFolder.SelectedPath.Trim();
+                ProgramSettings.Settings.DesignatedUpLoadedInfoPath = PSC_UpLoadedInfoFolder.SelectedPath.Trim();
 
                 ProgramSettings.WriteSettings($"{ProgramSettings.Settings.ExeFolderPath}\\MySettings.settings");
             }
@@ -63,12 +71,18 @@ namespace VRChatToolBox
         private void BT_Reset_Click(object sender, EventArgs e)
         {
             // 設定のリセット
+            // ログ関連
             PSC_LogSavedPath.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.LogPath2}";
             PSC_LogMovedPath.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.MovedLogPath}";
             PSC_LogEditedPath.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.EditedLogPath}";
+            // 写真関連
             PSC_PicturesSavedPath.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.PicturesSavedFolder}";
             PSC_PicturesMovedPath.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.PicturesSavedFolder}";
-
+            PSC_SelectedPicturesFolder.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.PicturesSavedFolder}\\{ProgramSettings.PictureSelectedFolder}";
+            PSC_UpLoadedPicturesFolder.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.PicturesSavedFolder}\\{ProgramSettings.PictureUpLoadedFolder}";
+            // メタデータ関連
+            PSC_SelectedInfoFolder.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.PictureInfoPath}";
+            PSC_UpLoadedInfoFolder.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.UpLoadedInfoPath}";
         }
 
         private void BT_Cancel_Click(object sender, EventArgs e)
@@ -80,11 +94,18 @@ namespace VRChatToolBox
         private void SetNowValue()
         {
             // 設定の表示
+            // ログ出力関連
             PSC_LogSavedPath.SelectedPath = ProgramSettings.Settings.DesignatedLogPath;
             PSC_LogMovedPath.SelectedPath = ProgramSettings.Settings.DesignatedMovedLogPath;
             PSC_LogEditedPath.SelectedPath = ProgramSettings.Settings.DesignatedEditedLogPath;
+            // 写真関連
             PSC_PicturesSavedPath.SelectedPath = ProgramSettings.Settings.DesignatedPicturesSavedFolder;
             PSC_PicturesMovedPath.SelectedPath = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
+            PSC_SelectedPicturesFolder.SelectedPath = ProgramSettings.Settings.DesignatedPicturesSelectedFolder;
+            PSC_UpLoadedPicturesFolder.SelectedPath = ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder;
+            // メタデータ関連
+            PSC_SelectedInfoFolder.SelectedPath = ProgramSettings.Settings.DesignatedPictureInfoPath;
+            PSC_UpLoadedInfoFolder.SelectedPath = ProgramSettings.Settings.DesignatedUpLoadedInfoPath;
         }
     }
 }

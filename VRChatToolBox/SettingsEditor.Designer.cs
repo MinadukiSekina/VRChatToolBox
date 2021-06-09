@@ -42,7 +42,19 @@
             this.LB_F2 = new System.Windows.Forms.Label();
             this.LB_F1 = new System.Windows.Forms.Label();
             this.LB_ESC = new System.Windows.Forms.Label();
+            this.TC_Settings = new System.Windows.Forms.TabControl();
+            this.LogTab = new System.Windows.Forms.TabPage();
+            this.PictureTab = new System.Windows.Forms.TabPage();
+            this.PSC_UpLoadedPicturesFolder = new VRChatToolBox.PathSetControl();
+            this.PSC_SelectedPicturesFolder = new VRChatToolBox.PathSetControl();
+            this.MetaTab = new System.Windows.Forms.TabPage();
+            this.PSC_UpLoadedInfoFolder = new VRChatToolBox.PathSetControl();
+            this.PSC_SelectedInfoFolder = new VRChatToolBox.PathSetControl();
             this.PN_Function.SuspendLayout();
+            this.TC_Settings.SuspendLayout();
+            this.LogTab.SuspendLayout();
+            this.PictureTab.SuspendLayout();
+            this.MetaTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // BT_Save
@@ -69,46 +81,51 @@
             // 
             // PSC_LogEditedPath
             // 
-            this.PSC_LogEditedPath.Location = new System.Drawing.Point(12, 210);
+            this.PSC_LogEditedPath.Location = new System.Drawing.Point(4, 225);
+            this.PSC_LogEditedPath.Margin = new System.Windows.Forms.Padding(4);
             this.PSC_LogEditedPath.Name = "PSC_LogEditedPath";
             this.PSC_LogEditedPath.SelectedPath = "";
-            this.PSC_LogEditedPath.Size = new System.Drawing.Size(580, 76);
+            this.PSC_LogEditedPath.Size = new System.Drawing.Size(798, 101);
             this.PSC_LogEditedPath.TabIndex = 2;
             this.PSC_LogEditedPath.Title = "編集したログの保存場所";
             // 
             // PSC_LogMovedPath
             // 
-            this.PSC_LogMovedPath.Location = new System.Drawing.Point(12, 114);
+            this.PSC_LogMovedPath.Location = new System.Drawing.Point(4, 116);
+            this.PSC_LogMovedPath.Margin = new System.Windows.Forms.Padding(4);
             this.PSC_LogMovedPath.Name = "PSC_LogMovedPath";
             this.PSC_LogMovedPath.SelectedPath = "";
-            this.PSC_LogMovedPath.Size = new System.Drawing.Size(580, 76);
+            this.PSC_LogMovedPath.Size = new System.Drawing.Size(798, 101);
             this.PSC_LogMovedPath.TabIndex = 1;
             this.PSC_LogMovedPath.Title = "VRChatログのコピー場所";
             // 
             // PSC_PicturesMovedPath
             // 
-            this.PSC_PicturesMovedPath.Location = new System.Drawing.Point(602, 114);
+            this.PSC_PicturesMovedPath.Location = new System.Drawing.Point(4, 116);
+            this.PSC_PicturesMovedPath.Margin = new System.Windows.Forms.Padding(4);
             this.PSC_PicturesMovedPath.Name = "PSC_PicturesMovedPath";
             this.PSC_PicturesMovedPath.SelectedPath = "";
-            this.PSC_PicturesMovedPath.Size = new System.Drawing.Size(580, 76);
-            this.PSC_PicturesMovedPath.TabIndex = 4;
-            this.PSC_PicturesMovedPath.Title = "写真の整理保存場所";
+            this.PSC_PicturesMovedPath.Size = new System.Drawing.Size(798, 101);
+            this.PSC_PicturesMovedPath.TabIndex = 1;
+            this.PSC_PicturesMovedPath.Title = "整理した写真の保存場所";
             // 
             // PSC_PicturesSavedPath
             // 
-            this.PSC_PicturesSavedPath.Location = new System.Drawing.Point(602, 18);
+            this.PSC_PicturesSavedPath.Location = new System.Drawing.Point(4, 7);
+            this.PSC_PicturesSavedPath.Margin = new System.Windows.Forms.Padding(4);
             this.PSC_PicturesSavedPath.Name = "PSC_PicturesSavedPath";
             this.PSC_PicturesSavedPath.SelectedPath = "";
-            this.PSC_PicturesSavedPath.Size = new System.Drawing.Size(580, 76);
-            this.PSC_PicturesSavedPath.TabIndex = 3;
+            this.PSC_PicturesSavedPath.Size = new System.Drawing.Size(798, 101);
+            this.PSC_PicturesSavedPath.TabIndex = 0;
             this.PSC_PicturesSavedPath.Title = "VRChat写真の場所";
             // 
             // PSC_LogSavedPath
             // 
-            this.PSC_LogSavedPath.Location = new System.Drawing.Point(12, 18);
+            this.PSC_LogSavedPath.Location = new System.Drawing.Point(4, 7);
+            this.PSC_LogSavedPath.Margin = new System.Windows.Forms.Padding(4);
             this.PSC_LogSavedPath.Name = "PSC_LogSavedPath";
             this.PSC_LogSavedPath.SelectedPath = "";
-            this.PSC_LogSavedPath.Size = new System.Drawing.Size(580, 76);
+            this.PSC_LogSavedPath.Size = new System.Drawing.Size(798, 101);
             this.PSC_LogSavedPath.TabIndex = 0;
             this.PSC_LogSavedPath.Title = "VRChatログの保存場所";
             // 
@@ -145,9 +162,9 @@
             this.PN_Function.Controls.Add(this.BT_Return);
             this.PN_Function.Controls.Add(this.BT_Reset);
             this.PN_Function.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PN_Function.Location = new System.Drawing.Point(0, 314);
+            this.PN_Function.Location = new System.Drawing.Point(0, 471);
             this.PN_Function.Name = "PN_Function";
-            this.PN_Function.Size = new System.Drawing.Size(1194, 76);
+            this.PN_Function.Size = new System.Drawing.Size(816, 76);
             this.PN_Function.TabIndex = 5;
             // 
             // LB_F3
@@ -190,17 +207,107 @@
             this.LB_ESC.TabIndex = 4;
             this.LB_ESC.Text = "ESC";
             // 
+            // TC_Settings
+            // 
+            this.TC_Settings.Controls.Add(this.LogTab);
+            this.TC_Settings.Controls.Add(this.PictureTab);
+            this.TC_Settings.Controls.Add(this.MetaTab);
+            this.TC_Settings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TC_Settings.Location = new System.Drawing.Point(0, 0);
+            this.TC_Settings.Name = "TC_Settings";
+            this.TC_Settings.SelectedIndex = 0;
+            this.TC_Settings.Size = new System.Drawing.Size(816, 547);
+            this.TC_Settings.TabIndex = 2;
+            // 
+            // LogTab
+            // 
+            this.LogTab.Controls.Add(this.PSC_LogEditedPath);
+            this.LogTab.Controls.Add(this.PSC_LogMovedPath);
+            this.LogTab.Controls.Add(this.PSC_LogSavedPath);
+            this.LogTab.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.LogTab.Location = new System.Drawing.Point(4, 25);
+            this.LogTab.Name = "LogTab";
+            this.LogTab.Padding = new System.Windows.Forms.Padding(3);
+            this.LogTab.Size = new System.Drawing.Size(808, 518);
+            this.LogTab.TabIndex = 0;
+            this.LogTab.Text = "ログ出力";
+            this.LogTab.UseVisualStyleBackColor = true;
+            // 
+            // PictureTab
+            // 
+            this.PictureTab.Controls.Add(this.PSC_UpLoadedPicturesFolder);
+            this.PictureTab.Controls.Add(this.PSC_SelectedPicturesFolder);
+            this.PictureTab.Controls.Add(this.PSC_PicturesSavedPath);
+            this.PictureTab.Controls.Add(this.PSC_PicturesMovedPath);
+            this.PictureTab.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.PictureTab.Location = new System.Drawing.Point(4, 25);
+            this.PictureTab.Name = "PictureTab";
+            this.PictureTab.Padding = new System.Windows.Forms.Padding(3);
+            this.PictureTab.Size = new System.Drawing.Size(808, 518);
+            this.PictureTab.TabIndex = 1;
+            this.PictureTab.Text = "写真";
+            this.PictureTab.UseVisualStyleBackColor = true;
+            // 
+            // PSC_UpLoadedPicturesFolder
+            // 
+            this.PSC_UpLoadedPicturesFolder.Location = new System.Drawing.Point(4, 334);
+            this.PSC_UpLoadedPicturesFolder.Margin = new System.Windows.Forms.Padding(4);
+            this.PSC_UpLoadedPicturesFolder.Name = "PSC_UpLoadedPicturesFolder";
+            this.PSC_UpLoadedPicturesFolder.SelectedPath = "";
+            this.PSC_UpLoadedPicturesFolder.Size = new System.Drawing.Size(798, 101);
+            this.PSC_UpLoadedPicturesFolder.TabIndex = 3;
+            this.PSC_UpLoadedPicturesFolder.Title = "投稿した写真の保存先";
+            // 
+            // PSC_SelectedPicturesFolder
+            // 
+            this.PSC_SelectedPicturesFolder.Location = new System.Drawing.Point(4, 225);
+            this.PSC_SelectedPicturesFolder.Margin = new System.Windows.Forms.Padding(4);
+            this.PSC_SelectedPicturesFolder.Name = "PSC_SelectedPicturesFolder";
+            this.PSC_SelectedPicturesFolder.SelectedPath = "";
+            this.PSC_SelectedPicturesFolder.Size = new System.Drawing.Size(798, 101);
+            this.PSC_SelectedPicturesFolder.TabIndex = 2;
+            this.PSC_SelectedPicturesFolder.Title = "選択した写真の保存先";
+            // 
+            // MetaTab
+            // 
+            this.MetaTab.Controls.Add(this.PSC_UpLoadedInfoFolder);
+            this.MetaTab.Controls.Add(this.PSC_SelectedInfoFolder);
+            this.MetaTab.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.MetaTab.Location = new System.Drawing.Point(4, 25);
+            this.MetaTab.Name = "MetaTab";
+            this.MetaTab.Padding = new System.Windows.Forms.Padding(3);
+            this.MetaTab.Size = new System.Drawing.Size(808, 518);
+            this.MetaTab.TabIndex = 2;
+            this.MetaTab.Text = "メタデータ";
+            this.MetaTab.UseVisualStyleBackColor = true;
+            // 
+            // PSC_UpLoadedInfoFolder
+            // 
+            this.PSC_UpLoadedInfoFolder.Location = new System.Drawing.Point(4, 116);
+            this.PSC_UpLoadedInfoFolder.Margin = new System.Windows.Forms.Padding(4);
+            this.PSC_UpLoadedInfoFolder.Name = "PSC_UpLoadedInfoFolder";
+            this.PSC_UpLoadedInfoFolder.SelectedPath = "";
+            this.PSC_UpLoadedInfoFolder.Size = new System.Drawing.Size(798, 101);
+            this.PSC_UpLoadedInfoFolder.TabIndex = 1;
+            this.PSC_UpLoadedInfoFolder.Title = "投稿した写真のメタデータの保存場所";
+            // 
+            // PSC_SelectedInfoFolder
+            // 
+            this.PSC_SelectedInfoFolder.Location = new System.Drawing.Point(4, 7);
+            this.PSC_SelectedInfoFolder.Margin = new System.Windows.Forms.Padding(4);
+            this.PSC_SelectedInfoFolder.Name = "PSC_SelectedInfoFolder";
+            this.PSC_SelectedInfoFolder.SelectedPath = "";
+            this.PSC_SelectedInfoFolder.Size = new System.Drawing.Size(798, 101);
+            this.PSC_SelectedInfoFolder.TabIndex = 0;
+            this.PSC_SelectedInfoFolder.Title = "選択した写真のメタデータの保存場所";
+            // 
             // SettingsEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1194, 390);
+            this.ClientSize = new System.Drawing.Size(816, 547);
             this.Controls.Add(this.PN_Function);
-            this.Controls.Add(this.PSC_LogEditedPath);
-            this.Controls.Add(this.PSC_LogMovedPath);
-            this.Controls.Add(this.PSC_PicturesMovedPath);
-            this.Controls.Add(this.PSC_PicturesSavedPath);
-            this.Controls.Add(this.PSC_LogSavedPath);
+            this.Controls.Add(this.TC_Settings);
             this.KeyPreview = true;
             this.Name = "SettingsEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -209,6 +316,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsEditor_KeyDown);
             this.PN_Function.ResumeLayout(false);
             this.PN_Function.PerformLayout();
+            this.TC_Settings.ResumeLayout(false);
+            this.LogTab.ResumeLayout(false);
+            this.PictureTab.ResumeLayout(false);
+            this.MetaTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -228,5 +339,13 @@
         private System.Windows.Forms.Label LB_F2;
         private System.Windows.Forms.Label LB_F1;
         private System.Windows.Forms.Label LB_ESC;
+        private System.Windows.Forms.TabControl TC_Settings;
+        private System.Windows.Forms.TabPage PictureTab;
+        private System.Windows.Forms.TabPage LogTab;
+        private PathSetControl PSC_UpLoadedPicturesFolder;
+        private PathSetControl PSC_SelectedPicturesFolder;
+        private System.Windows.Forms.TabPage MetaTab;
+        private PathSetControl PSC_UpLoadedInfoFolder;
+        private PathSetControl PSC_SelectedInfoFolder;
     }
 }

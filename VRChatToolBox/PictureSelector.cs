@@ -53,7 +53,7 @@ namespace VRChatToolBox
                 }
                 else if (File.Exists($"{ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder}\\{pictureName}"))
                 {
-                    MetaDataFilePath = $"{ProgramSettings.Settings.DesignatedUpLoadedInfoPath}\\{pictureName}";
+                    MetaDataFilePath = $"{ProgramSettings.Settings.DesignatedUpLoadedInfoPath}\\{MetaDataFileName}";
                     BT_Move.Enabled  = false;
                     BT_Save.Enabled  = false;
                 }
@@ -152,5 +152,9 @@ namespace VRChatToolBox
             }
         }
 
+        private void PictureSelector_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

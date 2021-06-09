@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PictureSelector));
             this.SpC0 = new System.Windows.Forms.SplitContainer();
-            this.pictureExplorer1 = new VRChatToolBox.PictureExplorer();
             this.LB_AvatarAuthor = new System.Windows.Forms.Label();
             this.TB_AvatarAuthor = new System.Windows.Forms.TextBox();
             this.LB_AvatarName = new System.Windows.Forms.Label();
@@ -47,11 +48,21 @@
             this.BT_Move = new System.Windows.Forms.Button();
             this.BT_Save = new System.Windows.Forms.Button();
             this.PB_Display = new System.Windows.Forms.PictureBox();
+            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.PN_Menu = new System.Windows.Forms.Panel();
+            this.TB_FolderPath = new System.Windows.Forms.TextBox();
+            this.BT_UP = new System.Windows.Forms.Button();
+            this.FV_FileList = new VRChatToolBox.FileListView();
+            this.ViewImageList = new System.Windows.Forms.ImageList(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();
             this.SpC0.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
+            this.PN_Menu.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // SpC0
@@ -63,7 +74,10 @@
             // 
             // SpC0.Panel1
             // 
-            this.SpC0.Panel1.Controls.Add(this.pictureExplorer1);
+            this.SpC0.Panel1.Controls.Add(this.FV_FileList);
+            this.SpC0.Panel1.Controls.Add(this.PN_Menu);
+            this.SpC0.Panel1.Controls.Add(this.splitter1);
+            this.SpC0.Panel1.Controls.Add(this.DT_DirectoryList);
             // 
             // SpC0.Panel2
             // 
@@ -72,31 +86,18 @@
             this.SpC0.Panel2.Controls.Add(this.LB_AvatarName);
             this.SpC0.Panel2.Controls.Add(this.TB_AvatarName);
             this.SpC0.Panel2.Controls.Add(this.LB_WorldList);
-            this.SpC0.Panel2.Controls.Add(this.TB_Sentence);
             this.SpC0.Panel2.Controls.Add(this.LB_AuthorName);
             this.SpC0.Panel2.Controls.Add(this.TB_WorldAuthorName);
             this.SpC0.Panel2.Controls.Add(this.LB_WorldName);
             this.SpC0.Panel2.Controls.Add(this.TB_WorldName);
-            this.SpC0.Panel2.Controls.Add(this.BT_Close);
             this.SpC0.Panel2.Controls.Add(this.Li_WorldList);
-            this.SpC0.Panel2.Controls.Add(this.BT_OpenTwitter);
-            this.SpC0.Panel2.Controls.Add(this.BT_OpenVRCHome);
-            this.SpC0.Panel2.Controls.Add(this.BT_Move);
-            this.SpC0.Panel2.Controls.Add(this.BT_Save);
             this.SpC0.Panel2.Controls.Add(this.PB_Display);
+            this.SpC0.Panel2.Controls.Add(this.panel1);
+            this.SpC0.Panel2.Controls.Add(this.TB_Sentence);
             this.SpC0.Size = new System.Drawing.Size(1284, 822);
             this.SpC0.SplitterDistance = 782;
             this.SpC0.TabIndex = 0;
             this.SpC0.TabStop = false;
-            // 
-            // pictureExplorer1
-            // 
-            this.pictureExplorer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureExplorer1.Location = new System.Drawing.Point(0, 0);
-            this.pictureExplorer1.Name = "pictureExplorer1";
-            this.pictureExplorer1.Size = new System.Drawing.Size(782, 822);
-            this.pictureExplorer1.TabIndex = 0;
-            this.pictureExplorer1.TabStop = false;
             // 
             // LB_AvatarAuthor
             // 
@@ -203,7 +204,7 @@
             // BT_Close
             // 
             this.BT_Close.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_Close.Location = new System.Drawing.Point(329, 746);
+            this.BT_Close.Location = new System.Drawing.Point(335, 11);
             this.BT_Close.Name = "BT_Close";
             this.BT_Close.Size = new System.Drawing.Size(147, 31);
             this.BT_Close.TabIndex = 6;
@@ -228,7 +229,7 @@
             // BT_OpenTwitter
             // 
             this.BT_OpenTwitter.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_OpenTwitter.Location = new System.Drawing.Point(23, 783);
+            this.BT_OpenTwitter.Location = new System.Drawing.Point(29, 48);
             this.BT_OpenTwitter.Name = "BT_OpenTwitter";
             this.BT_OpenTwitter.Size = new System.Drawing.Size(147, 31);
             this.BT_OpenTwitter.TabIndex = 4;
@@ -239,7 +240,7 @@
             // BT_OpenVRCHome
             // 
             this.BT_OpenVRCHome.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_OpenVRCHome.Location = new System.Drawing.Point(176, 783);
+            this.BT_OpenVRCHome.Location = new System.Drawing.Point(182, 48);
             this.BT_OpenVRCHome.Name = "BT_OpenVRCHome";
             this.BT_OpenVRCHome.Size = new System.Drawing.Size(147, 31);
             this.BT_OpenVRCHome.TabIndex = 3;
@@ -251,7 +252,7 @@
             // 
             this.BT_Move.Enabled = false;
             this.BT_Move.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_Move.Location = new System.Drawing.Point(176, 746);
+            this.BT_Move.Location = new System.Drawing.Point(182, 11);
             this.BT_Move.Name = "BT_Move";
             this.BT_Move.Size = new System.Drawing.Size(147, 31);
             this.BT_Move.TabIndex = 2;
@@ -263,7 +264,7 @@
             // 
             this.BT_Save.Enabled = false;
             this.BT_Save.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BT_Save.Location = new System.Drawing.Point(23, 746);
+            this.BT_Save.Location = new System.Drawing.Point(29, 11);
             this.BT_Save.Name = "BT_Save";
             this.BT_Save.Size = new System.Drawing.Size(147, 31);
             this.BT_Save.TabIndex = 1;
@@ -283,6 +284,94 @@
             this.PB_Display.TabStop = false;
             this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
             // 
+            // DT_DirectoryList
+            // 
+            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
+            this.DT_DirectoryList.Name = "DT_DirectoryList";
+            this.DT_DirectoryList.Size = new System.Drawing.Size(177, 822);
+            this.DT_DirectoryList.TabIndex = 0;
+            this.DT_DirectoryList.TabStop = false;
+            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(177, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 822);
+            this.splitter1.TabIndex = 1;
+            this.splitter1.TabStop = false;
+            // 
+            // PN_Menu
+            // 
+            this.PN_Menu.Controls.Add(this.BT_UP);
+            this.PN_Menu.Controls.Add(this.TB_FolderPath);
+            this.PN_Menu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PN_Menu.Location = new System.Drawing.Point(180, 0);
+            this.PN_Menu.Name = "PN_Menu";
+            this.PN_Menu.Size = new System.Drawing.Size(602, 61);
+            this.PN_Menu.TabIndex = 2;
+            // 
+            // TB_FolderPath
+            // 
+            this.TB_FolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TB_FolderPath.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.TB_FolderPath.Location = new System.Drawing.Point(59, 17);
+            this.TB_FolderPath.Name = "TB_FolderPath";
+            this.TB_FolderPath.Size = new System.Drawing.Size(528, 27);
+            this.TB_FolderPath.TabIndex = 0;
+            this.TB_FolderPath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_FolderPath_KeyDown);
+            this.TB_FolderPath.Validating += new System.ComponentModel.CancelEventHandler(this.TB_FolderPath_Validating);
+            // 
+            // BT_UP
+            // 
+            this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.BT_UP.Image = global::VRChatToolBox.Properties.Resources.sozai_cman_jp_20210605100828;
+            this.BT_UP.Location = new System.Drawing.Point(12, 10);
+            this.BT_UP.Name = "BT_UP";
+            this.BT_UP.Size = new System.Drawing.Size(41, 40);
+            this.BT_UP.TabIndex = 1;
+            this.BT_UP.UseVisualStyleBackColor = true;
+            this.BT_UP.Click += new System.EventHandler(this.BT_UP_Click);
+            // 
+            // FV_FileList
+            // 
+            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FV_FileList.HideSelection = false;
+            this.FV_FileList.LargeImageList = this.ViewImageList;
+            this.FV_FileList.Location = new System.Drawing.Point(180, 61);
+            this.FV_FileList.MultiSelect = false;
+            this.FV_FileList.Name = "FV_FileList";
+            this.FV_FileList.Size = new System.Drawing.Size(602, 761);
+            this.FV_FileList.SmallImageList = this.ViewImageList;
+            this.FV_FileList.TabIndex = 3;
+            this.FV_FileList.TabStop = false;
+            this.FV_FileList.UseCompatibleStateImageBehavior = false;
+            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
+            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
+            // 
+            // ViewImageList
+            // 
+            this.ViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ViewImageList.ImageStream")));
+            this.ViewImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.ViewImageList.Images.SetKeyName(0, "sozai_cman_jp_20210601203235.png");
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.BT_Save);
+            this.panel1.Controls.Add(this.BT_Move);
+            this.panel1.Controls.Add(this.BT_OpenVRCHome);
+            this.panel1.Controls.Add(this.BT_OpenTwitter);
+            this.panel1.Controls.Add(this.BT_Close);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 732);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(498, 90);
+            this.panel1.TabIndex = 17;
+            // 
             // PictureSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -301,6 +390,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).EndInit();
             this.SpC0.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
+            this.PN_Menu.ResumeLayout(false);
+            this.PN_Menu.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -320,10 +412,17 @@
         private System.Windows.Forms.TextBox TB_WorldName;
         private System.Windows.Forms.TextBox TB_Sentence;
         private System.Windows.Forms.Label LB_WorldList;
-        private PictureExplorer pictureExplorer1;
         private System.Windows.Forms.Label LB_AvatarAuthor;
         private System.Windows.Forms.TextBox TB_AvatarAuthor;
         private System.Windows.Forms.Label LB_AvatarName;
         private System.Windows.Forms.TextBox TB_AvatarName;
+        private System.Windows.Forms.Panel PN_Menu;
+        private System.Windows.Forms.Button BT_UP;
+        private System.Windows.Forms.TextBox TB_FolderPath;
+        private System.Windows.Forms.Splitter splitter1;
+        private DirectoryTreeView DT_DirectoryList;
+        private FileListView FV_FileList;
+        private System.Windows.Forms.ImageList ViewImageList;
+        private System.Windows.Forms.Panel panel1;
     }
 }

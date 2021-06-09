@@ -23,13 +23,22 @@ namespace VRChatToolBox
 
         private void PictureSelector_Load(object sender, EventArgs e)
         {
-                pictureExplorer1.Init(ProgramSettings.Settings.DesignatedPicturesMovedFolder, PB_Display, this);
+            //pictureExplorer1.Init(ProgramSettings.Settings.DesignatedPicturesMovedFolder, PB_Display, this);
+            // 初期化
+            DT_DirectoryList.InitList();
+            TB_FolderPath.Text = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
+            FV_FileList.SetListItems(ProgramSettings.Settings.DesignatedPicturesMovedFolder);
         }
 
         private void PB_Display_MouseDown(object sender, MouseEventArgs e)
         {
-            DataObject dataObject = new DataObject(DataFormats.FileDrop, PB_Display.ImageLocation);
-            PB_Display.DoDragDrop(dataObject, DragDropEffects.Copy);
+            if (!File.Exists(PB_Display.ImageLocation)) return;
+
+            // これでドラッグアンドドロップで投稿できるけど、理由は理解できてません。
+            string[] fileNames = { PB_Display.ImageLocation };
+            DataObject dataObject = new DataObject(DataFormats.FileDrop, fileNames);
+            dataObject.SetData(DataFormats.Bitmap, Image.FromFile(fileNames[0]));
+            PB_Display.DoDragDrop(dataObject, DragDropEffects.All);
         }
 
         // 写真選択後
@@ -155,6 +164,88 @@ namespace VRChatToolBox
         private void PictureSelector_KeyDown(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void BT_UP_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tmpString = TB_FolderPath.Text.Trim();
+                int strPosition = tmpString.LastIndexOf("\\");
+
+                tmpString = tmpString.Remove(strPosition, tmpString.Length - strPosition);
+
+                TB_FolderPath.Text = tmpString;
+                FV_FileList.SetListItems(tmpString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TB_FolderPath_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            if (!Path_Validation(TB_FolderPath.Text.Trim())) return;
+            FV_FileList.SetListItems(TB_FolderPath.Text.Trim());
+        }
+
+        private void TB_FolderPath_Validating(object sender, CancelEventArgs e)
+        {
+            TB_FolderPath.Text = TB_FolderPath.Text.Trim();
+            e.Cancel = Path_Validation(TB_FolderPath.Text) ? false : true;
+        }
+
+        //　パスチェックのメインメソッド
+        private bool Path_Validation(string pathString)
+        {
+            if (Directory.Exists(pathString)) return true;
+
+            MessageBox.Show("存在しないパスです。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        private void DT_DirectoryList_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                FV_FileList.SetListItems(e.Node.FullPath);
+                TB_FolderPath.Text = e.Node.FullPath;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FV_FileList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 情報の更新
+                if (FV_FileList.SelectedItemType == ListSelectedItemType.Picture) PB_Display.ImageLocation = FV_FileList.StringPath;
+                // フォームへのイベント通達：よくわからなかったから苦肉
+                PictureSelected();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void FV_FileList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                // 情報の更新
+                if (FV_FileList.SelectedItemType == ListSelectedItemType.Folder) TB_FolderPath.Text = FV_FileList.StringPath;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

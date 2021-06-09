@@ -23,8 +23,7 @@ namespace VRChatToolBox
 
         private void PictureSelector_Load(object sender, EventArgs e)
         {
-                pictureExplorer1.Init(ProgramSettings.Settings.DesignatedPicturesSavedFolder, PB_Display, this);
-                pictureExplorer2.Init(ProgramSettings.Settings.DesignatedPicturesMovedFolder, PB_Display, this);
+                pictureExplorer1.Init(ProgramSettings.Settings.DesignatedPicturesMovedFolder, PB_Display, this);
         }
 
         private void PB_Display_MouseDown(object sender, MouseEventArgs e)
@@ -41,9 +40,29 @@ namespace VRChatToolBox
                 // 写真のファイル名の取得と、メタデータの設定
                 string pictureName = Path.GetFileName(PB_Display.ImageLocation);
                 MetaDataFileName = pictureName.Replace("png", "xml");
-                string MetaDataFilePath = File.Exists($"{ProgramSettings.Settings.DesignatedPictureInfoPath}\\{MetaDataFileName}")
-                    ? $"{ProgramSettings.Settings.DesignatedPictureInfoPath}\\{MetaDataFileName}"
-                    : $"{ProgramSettings.Settings.DesignatedUpLoadedInfoPath}\\{MetaDataFileName}";
+                string MetaDataFilePath;
+
+                // 選択済みの写真ならメタデータは投稿前にある判断、投稿済みボタンは使用可、保存は可
+                // 投稿済みの写真ならメタデータは投稿済みにある判断、投稿済みボタンは使用不可、保存は不可
+                // どれでもない場合は未選択として、メタデータは無し、投稿済みボタンは使用不可、保存は可
+                if (File.Exists($"{ProgramSettings.Settings.DesignatedPicturesSelectedFolder}\\{pictureName}"))
+                {
+                    MetaDataFilePath = $"{ProgramSettings.Settings.DesignatedPictureInfoPath}\\{MetaDataFileName}";
+                    BT_Move.Enabled  = true;
+                    BT_Save.Enabled  = true;
+                }
+                else if (File.Exists($"{ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder}\\{pictureName}"))
+                {
+                    MetaDataFilePath = $"{ProgramSettings.Settings.DesignatedUpLoadedInfoPath}\\{pictureName}";
+                    BT_Move.Enabled  = false;
+                    BT_Save.Enabled  = false;
+                }
+                else
+                {
+                    MetaDataFilePath = "";
+                    BT_Move.Enabled  = false;
+                    BT_Save.Enabled  = true;
+                }
 
                 // 年月日の取得
                 for (int i = 0; i <= 2; i++)
@@ -59,7 +78,9 @@ namespace VRChatToolBox
                 // 内容の読み込み（あれば）
                 PictureInfo pictureInfo = PictureInfo.LoadInfo(MetaDataFilePath);
                 TB_WorldName.Text = pictureInfo.WorldName;
-                TB_AuthorName.Text = pictureInfo.WorldAuthor;
+                TB_WorldAuthorName.Text = pictureInfo.WorldAuthor;
+                TB_AvatarName.Text = pictureInfo.AvatarName;
+                TB_AvatarAuthor.Text = pictureInfo.AvatarAuthor;
                 TB_Sentence.Lines = pictureInfo.TweetContents;
             }
             catch(Exception ex)
@@ -94,8 +115,9 @@ namespace VRChatToolBox
         {
             try
             {
+                string selectedPicturePath = $"{ProgramSettings.Settings.DesignatedPicturesSelectedFolder}\\{Path.GetFileName(PB_Display.ImageLocation)}";
                 // 写真を移動して、メタデータも移動
-                PicturesOrganizer.MoveUpLoadedPicture(PB_Display.ImageLocation);
+                PicturesOrganizer.MoveUpLoadedPicture(selectedPicturePath);
                 LogEditor.MoveMetaDataFile($"{ProgramSettings.Settings.DesignatedPictureInfoPath}\\{MetaDataFileName}");
             }
             catch(Exception ex)
@@ -111,8 +133,10 @@ namespace VRChatToolBox
                 // インスタンスにメタデータを格納
                 PictureInfo pictureInfo = new PictureInfo
                 {
-                    WorldName = TB_WorldName.Text.Trim(),
-                    WorldAuthor = TB_AuthorName.Text.Trim(),
+                    WorldName     = TB_WorldName.Text.Trim(),
+                    WorldAuthor   = TB_WorldAuthorName.Text.Trim(),
+                    AvatarName    = TB_AvatarName.Text.Trim(),
+                    AvatarAuthor  = TB_AvatarAuthor.Text.Trim(),
                     TweetContents = TB_Sentence.Lines
                 };
 
@@ -127,5 +151,6 @@ namespace VRChatToolBox
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

@@ -62,8 +62,6 @@ namespace VRChatToolBox
         {
             try
             {
-                PictureDisplay.ImageLocation = null;
-
                 string tmpString = PathText.Text;
                 int strPosition = tmpString.LastIndexOf("\\");
 

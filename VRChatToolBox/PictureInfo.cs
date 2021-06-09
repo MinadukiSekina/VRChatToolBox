@@ -28,7 +28,13 @@ namespace VRChatToolBox
         [DataMember(Name = "ワールド作者", Order = 1)]
         internal string WorldAuthor { get; set; }
 
-        [DataMember(Name = "投稿内容", Order = 2)]
+        [DataMember(Name = "アバター名", Order = 2)]
+        internal string AvatarName { get; set; }
+
+        [DataMember(Name = "アバター作者", Order = 3)]
+        internal string AvatarAuthor { get; set; }
+
+        [DataMember(Name = "投稿内容", Order = 4)]
         internal string[] TweetContents { get; set; }
 
         // 情報の書き込み

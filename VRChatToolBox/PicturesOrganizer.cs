@@ -36,8 +36,12 @@ namespace VRChatToolBox
         // ワールド候補リストの取得
         internal static string[] GetWorldList(string pictureDate)
         {
-            IEnumerable<string> editedLogFileList = Directory.EnumerateFiles($"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{pictureDate}", 
-                                                                             $"*{pictureDate}*.txt", SearchOption.TopDirectoryOnly);
+            // フォルダが無ければすぐに戻す
+            string targetDir = $"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{pictureDate}";
+            if (!Directory.Exists(targetDir)) return new string[0];
+
+            IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{pictureDate}*.txt", SearchOption.TopDirectoryOnly);
+
             List<string> worldList = new List<string>();
             string[] contents;
             string SearchStr = "World";
@@ -59,7 +63,8 @@ namespace VRChatToolBox
 
             }
 
-            return worldList.ToArray();
+            // 重複は除いて配列化
+            return worldList.Distinct().ToArray();
         }
 
         // 選択した写真のコピー
@@ -78,14 +83,20 @@ namespace VRChatToolBox
         // 投稿した写真の移動
         internal static void MoveUpLoadedPicture(string picturePath)
         {
+            // 万が一写真が無ければ返す
+            if (!File.Exists(picturePath)) return;
+
             string pictureName = Path.GetFileName(picturePath);
             string destPath = $"{ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder}\\{pictureName}";
+
             // 既にあるなら移動させない
             if (File.Exists(destPath)) return;
             // なければフォルダを作る
             if (!Directory.Exists(ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder))
                  Directory.CreateDirectory(ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder);
+
             File.Move(picturePath, destPath);
+
         }
     }
 }

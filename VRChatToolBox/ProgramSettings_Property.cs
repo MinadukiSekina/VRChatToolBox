@@ -179,12 +179,12 @@ namespace VRChatToolBox
         }
 
         // 投稿内容のデフォルト
-        private string[] _Tweet;
+        private string[] _tweet;
         [DataMember(Name = "投稿内容", Order = 10)]
         internal string[] Tweet
         {
-            get => _Tweet is null ? new string[] { } : _Tweet;
-            set => _Tweet = value;
+            get => (_tweet is null) ? new string[] { } : _tweet;
+            set => _tweet = value;
         }
 
     }

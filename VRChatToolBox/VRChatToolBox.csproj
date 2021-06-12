@@ -68,7 +68,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Avatar.cs" />
     <Compile Include="DirectoryTreeView.cs">
       <SubType>Component</SubType>
     </Compile>

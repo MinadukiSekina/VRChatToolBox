@@ -35,8 +35,8 @@ namespace VRChatToolBox
         internal void SetAvatarList()
         {
             LI_AvatarList.DisplayMember = "AvatarName";
-            LI_AvatarList.ValueMember   = "AvatarAuthor";
-            LI_AvatarList.DataSource    = ProgramSettings.Settings.AvataData;
+            LI_AvatarList.ValueMember = "AvatarAuthor";
+            LI_AvatarList.DataSource = ProgramSettings.Settings.AvataData;
         }
 
         private void PB_Display_MouseDown(object sender, MouseEventArgs e)
@@ -159,10 +159,10 @@ namespace VRChatToolBox
                 // インスタンスにメタデータを格納
                 PictureInfo pictureInfo = new PictureInfo
                 {
-                    WorldName     = TB_WorldName.Text.Trim(),
-                    WorldAuthor   = TB_WorldAuthorName.Text.Trim(),
-                    AvatarName    = TB_AvatarName.Text.Trim(),
-                    AvatarAuthor  = TB_AvatarAuthor.Text.Trim(),
+                    WorldName = TB_WorldName.Text.Trim(),
+                    WorldAuthor = TB_WorldAuthorName.Text.Trim(),
+                    AvatarName = TB_AvatarName.Text.Trim(),
+                    AvatarAuthor = TB_AvatarAuthor.Text.Trim(),
                     TweetContents = TB_Sentence.Lines
                 };
 
@@ -293,7 +293,7 @@ namespace VRChatToolBox
         private void LI_AvatarList_DoubleClick(object sender, EventArgs e)
         {
             if (LI_AvatarList.Items.Count == 0 || LI_AvatarList.SelectedItem is null) return;
-            TB_AvatarName.Text = LI_AvatarList.SelectedItem.ToString();
+            TB_AvatarName.Text = ((DataRowView)LI_AvatarList.SelectedItem)[0].ToString();
             TB_AvatarAuthor.Text = LI_AvatarList.SelectedValue.ToString();
         }
     }

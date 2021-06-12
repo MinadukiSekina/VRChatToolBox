@@ -12,7 +12,7 @@ namespace VRChatToolBox
 {
     public partial class SettingsEditor : Form
     {
-        private DataTable DataTable { get; set; }
+
         public SettingsEditor()
         {
             InitializeComponent();
@@ -23,12 +23,15 @@ namespace VRChatToolBox
         {
             // 現在設定の表示
             SetNowValue();
+            PSC_LogSavedPath.Select();
         }
 
         private void SettingsEditor_KeyDown(object sender, KeyEventArgs e)
         {
             switch(e.KeyCode) {
-                case Keys.Enter : SelectNextControl(ActiveControl, true, true, true, true); break;
+                case Keys.Enter :
+                    if (ActiveControl.Name != TweetBox1.Name) SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
                 case Keys.Escape : BT_Cancel_Click(BT_Cancel,EventArgs.Empty); break;
                 case Keys.F1 : BT_Return_Click(BT_Cancel,EventArgs.Empty); break;
                 case Keys.F2 : BT_Reset_Click(BT_Cancel,EventArgs.Empty); break;
@@ -127,6 +130,7 @@ namespace VRChatToolBox
             try
             {
                 ProgramSettings.Settings.AvataData.Rows.Add(new string[] { "", "" });
+
             }
             catch (Exception ex)
             {
@@ -150,5 +154,19 @@ namespace VRChatToolBox
         {
             ProgramSettings.Settings.AvataData.RejectChanges();
         }
+
+        private void TweetBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode!= Keys.Enter || e.Control == true) return;
+                SelectNextControl(ActiveControl, true, true, true, true);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

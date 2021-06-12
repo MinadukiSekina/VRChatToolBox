@@ -72,5 +72,6 @@ namespace VRChatToolBox
             dataTable.Columns.AddRange(new DataColumn[] { new DataColumn("AvatarName"), new DataColumn("AvatarAuthor") });
             return dataTable;
         }
+
     }
 }

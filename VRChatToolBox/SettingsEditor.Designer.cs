@@ -56,6 +56,7 @@
             this.PSC_SelectedInfoFolder = new VRChatToolBox.PathSetControl();
             this.AvatarName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AvatarAuthor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LB_Notification = new System.Windows.Forms.Label();
             this.PN_Function.SuspendLayout();
             this.TC_Settings.SuspendLayout();
             this.LogTab.SuspendLayout();
@@ -277,6 +278,7 @@
             // 
             // MetaTab
             // 
+            this.MetaTab.Controls.Add(this.LB_Notification);
             this.MetaTab.Controls.Add(this.BT_RemoveRow);
             this.MetaTab.Controls.Add(this.BT_AddRow);
             this.MetaTab.Controls.Add(this.DGV_AvatarData);
@@ -322,21 +324,23 @@
             this.DGV_AvatarData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AvatarName,
             this.AvatarAuthor});
-            this.DGV_AvatarData.Location = new System.Drawing.Point(400, 235);
+            this.DGV_AvatarData.Location = new System.Drawing.Point(400, 254);
             this.DGV_AvatarData.Name = "DGV_AvatarData";
             this.DGV_AvatarData.RowHeadersVisible = false;
             this.DGV_AvatarData.RowTemplate.Height = 24;
             this.DGV_AvatarData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_AvatarData.Size = new System.Drawing.Size(394, 150);
+            this.DGV_AvatarData.Size = new System.Drawing.Size(394, 131);
             this.DGV_AvatarData.TabIndex = 3;
             // 
             // TweetBox1
             // 
-            this.TweetBox1.Location = new System.Drawing.Point(28, 235);
+            this.TweetBox1.Location = new System.Drawing.Point(28, 254);
             this.TweetBox1.Multiline = true;
             this.TweetBox1.Name = "TweetBox1";
-            this.TweetBox1.Size = new System.Drawing.Size(354, 190);
+            this.TweetBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TweetBox1.Size = new System.Drawing.Size(354, 171);
             this.TweetBox1.TabIndex = 2;
+            this.TweetBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TweetBox1_KeyDown);
             // 
             // PSC_UpLoadedInfoFolder
             // 
@@ -371,6 +375,16 @@
             this.AvatarAuthor.HeaderText = "作者";
             this.AvatarAuthor.Name = "AvatarAuthor";
             this.AvatarAuthor.Width = 150;
+            // 
+            // LB_Notification
+            // 
+            this.LB_Notification.AutoSize = true;
+            this.LB_Notification.Font = new System.Drawing.Font("MS UI Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_Notification.Location = new System.Drawing.Point(28, 233);
+            this.LB_Notification.Name = "LB_Notification";
+            this.LB_Notification.Size = new System.Drawing.Size(142, 17);
+            this.LB_Notification.TabIndex = 10;
+            this.LB_Notification.Text = "Ctrl + Enterで改行";
             // 
             // SettingsEditor
             // 
@@ -427,5 +441,6 @@
         private System.Windows.Forms.Button BT_RemoveRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn AvatarName;
         private System.Windows.Forms.DataGridViewTextBoxColumn AvatarAuthor;
+        private System.Windows.Forms.Label LB_Notification;
     }
 }

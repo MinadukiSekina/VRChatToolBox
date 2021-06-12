@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Data;
 
 namespace VRChatToolBox
 {
@@ -15,7 +16,7 @@ namespace VRChatToolBox
     }
 
     [DataContract(Namespace = "")]
-   internal partial class ProgramSettings : IExtensibleDataObject
+    internal partial class ProgramSettings : IExtensibleDataObject
     {
         // 上位下位互換保持用
         public ExtensionDataObject ExtensionData { get; set; }
@@ -47,7 +48,7 @@ namespace VRChatToolBox
             get { return _userName; }
             set { _userName = value; }
         }
-    
+
 
         // VRChatのログのパス：ユーザー名の前まで
         // 写真取得でも使う
@@ -68,7 +69,7 @@ namespace VRChatToolBox
 
         // VRChatのログの移動先：exeのフォルダパスにくっつけるつもり
         internal const string MovedLogPath = "VRChatLog";
- 
+
         // VRChatのログの移動先：ユーザーが指定する場合(フルパス想定)
         private string _designatedMovedLogPath;
         [DataMember(Name = "VRChatのログの移動先", Order = 1)]
@@ -134,7 +135,7 @@ namespace VRChatToolBox
         [DataMember(Name = "写真の投稿後フォルダ", Order = 6)]
         internal string DesignatedPicturesUpLoadedFolder
         {
-            get => string.IsNullOrWhiteSpace(_designatedPicturesUpLoadedFolder) ? 
+            get => string.IsNullOrWhiteSpace(_designatedPicturesUpLoadedFolder) ?
                         $"{LogPath1}{_userName}{PicturesSavedFolder}\\{PictureUpLoadedFolder}" : _designatedPicturesUpLoadedFolder;
             set => _designatedPicturesUpLoadedFolder = value;
         }
@@ -162,6 +163,28 @@ namespace VRChatToolBox
         {
             get => string.IsNullOrWhiteSpace(_designatedUpLoadedInfoPath) ? $"{_exeFolderPath}\\{UpLoadedInfoPath}" : _designatedUpLoadedInfoPath;
             set => _designatedUpLoadedInfoPath = value;
+        }
+
+        // アバターのデータ
+        private DataTable _avatarData;
+        [DataMember(Name = "アバターのリスト", Order = 9)]
+        internal DataTable AvataData
+        {
+            get
+            {
+                if (_avatarData is null) _avatarData = InitAvatarData();
+                return _avatarData;
+            }
+            set => _avatarData = value;
+        }
+
+        // 投稿内容のデフォルト
+        private string[] _Tweet;
+        [DataMember(Name = "投稿内容", Order = 10)]
+        internal string[] Tweet
+        {
+            get => _Tweet is null ? new string[] { } : _Tweet;
+            set => _Tweet = value;
         }
 
     }

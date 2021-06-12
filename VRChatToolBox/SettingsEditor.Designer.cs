@@ -48,13 +48,20 @@
             this.PSC_UpLoadedPicturesFolder = new VRChatToolBox.PathSetControl();
             this.PSC_SelectedPicturesFolder = new VRChatToolBox.PathSetControl();
             this.MetaTab = new System.Windows.Forms.TabPage();
+            this.BT_RemoveRow = new System.Windows.Forms.Button();
+            this.BT_AddRow = new System.Windows.Forms.Button();
+            this.DGV_AvatarData = new System.Windows.Forms.DataGridView();
+            this.TweetBox1 = new VRChatToolBox.TweetBox();
             this.PSC_UpLoadedInfoFolder = new VRChatToolBox.PathSetControl();
             this.PSC_SelectedInfoFolder = new VRChatToolBox.PathSetControl();
+            this.AvatarName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvatarAuthor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PN_Function.SuspendLayout();
             this.TC_Settings.SuspendLayout();
             this.LogTab.SuspendLayout();
             this.PictureTab.SuspendLayout();
             this.MetaTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_AvatarData)).BeginInit();
             this.SuspendLayout();
             // 
             // BT_Save
@@ -270,6 +277,10 @@
             // 
             // MetaTab
             // 
+            this.MetaTab.Controls.Add(this.BT_RemoveRow);
+            this.MetaTab.Controls.Add(this.BT_AddRow);
+            this.MetaTab.Controls.Add(this.DGV_AvatarData);
+            this.MetaTab.Controls.Add(this.TweetBox1);
             this.MetaTab.Controls.Add(this.PSC_UpLoadedInfoFolder);
             this.MetaTab.Controls.Add(this.PSC_SelectedInfoFolder);
             this.MetaTab.Font = new System.Drawing.Font("MS UI Gothic", 12F);
@@ -280,6 +291,52 @@
             this.MetaTab.TabIndex = 2;
             this.MetaTab.Text = "メタデータ";
             this.MetaTab.UseVisualStyleBackColor = true;
+            // 
+            // BT_RemoveRow
+            // 
+            this.BT_RemoveRow.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_RemoveRow.Location = new System.Drawing.Point(673, 391);
+            this.BT_RemoveRow.Name = "BT_RemoveRow";
+            this.BT_RemoveRow.Size = new System.Drawing.Size(121, 34);
+            this.BT_RemoveRow.TabIndex = 9;
+            this.BT_RemoveRow.Text = "削除";
+            this.BT_RemoveRow.UseVisualStyleBackColor = true;
+            this.BT_RemoveRow.Click += new System.EventHandler(this.BT_RemoveRow_Click);
+            // 
+            // BT_AddRow
+            // 
+            this.BT_AddRow.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_AddRow.Location = new System.Drawing.Point(400, 391);
+            this.BT_AddRow.Name = "BT_AddRow";
+            this.BT_AddRow.Size = new System.Drawing.Size(121, 34);
+            this.BT_AddRow.TabIndex = 8;
+            this.BT_AddRow.Text = "追加";
+            this.BT_AddRow.UseVisualStyleBackColor = true;
+            this.BT_AddRow.Click += new System.EventHandler(this.BT_AddRow_Click);
+            // 
+            // DGV_AvatarData
+            // 
+            this.DGV_AvatarData.AllowUserToAddRows = false;
+            this.DGV_AvatarData.AllowUserToDeleteRows = false;
+            this.DGV_AvatarData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_AvatarData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AvatarName,
+            this.AvatarAuthor});
+            this.DGV_AvatarData.Location = new System.Drawing.Point(400, 235);
+            this.DGV_AvatarData.Name = "DGV_AvatarData";
+            this.DGV_AvatarData.RowHeadersVisible = false;
+            this.DGV_AvatarData.RowTemplate.Height = 24;
+            this.DGV_AvatarData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_AvatarData.Size = new System.Drawing.Size(394, 150);
+            this.DGV_AvatarData.TabIndex = 3;
+            // 
+            // TweetBox1
+            // 
+            this.TweetBox1.Location = new System.Drawing.Point(28, 235);
+            this.TweetBox1.Multiline = true;
+            this.TweetBox1.Name = "TweetBox1";
+            this.TweetBox1.Size = new System.Drawing.Size(354, 190);
+            this.TweetBox1.TabIndex = 2;
             // 
             // PSC_UpLoadedInfoFolder
             // 
@@ -301,6 +358,20 @@
             this.PSC_SelectedInfoFolder.TabIndex = 0;
             this.PSC_SelectedInfoFolder.Title = "選択した写真のメタデータの保存場所";
             // 
+            // AvatarName
+            // 
+            this.AvatarName.DataPropertyName = "AvatarName";
+            this.AvatarName.HeaderText = "アバター名";
+            this.AvatarName.Name = "AvatarName";
+            this.AvatarName.Width = 200;
+            // 
+            // AvatarAuthor
+            // 
+            this.AvatarAuthor.DataPropertyName = "AvatarAuthor";
+            this.AvatarAuthor.HeaderText = "作者";
+            this.AvatarAuthor.Name = "AvatarAuthor";
+            this.AvatarAuthor.Width = 150;
+            // 
             // SettingsEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -312,6 +383,7 @@
             this.Name = "SettingsEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "設定";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsEditor_FormClosing);
             this.Load += new System.EventHandler(this.SettingsEditor_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsEditor_KeyDown);
             this.PN_Function.ResumeLayout(false);
@@ -320,6 +392,8 @@
             this.LogTab.ResumeLayout(false);
             this.PictureTab.ResumeLayout(false);
             this.MetaTab.ResumeLayout(false);
+            this.MetaTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_AvatarData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -347,5 +421,11 @@
         private System.Windows.Forms.TabPage MetaTab;
         private PathSetControl PSC_UpLoadedInfoFolder;
         private PathSetControl PSC_SelectedInfoFolder;
+        private TweetBox TweetBox1;
+        private System.Windows.Forms.DataGridView DGV_AvatarData;
+        private System.Windows.Forms.Button BT_AddRow;
+        private System.Windows.Forms.Button BT_RemoveRow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvatarName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvatarAuthor;
     }
 }

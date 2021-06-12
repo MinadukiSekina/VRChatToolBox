@@ -22,6 +22,7 @@ namespace VRChatToolBox
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "起動時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
             }
         }
 
@@ -29,6 +30,9 @@ namespace VRChatToolBox
         {
             try
             {
+                Enabled = false;
+                Cursor.Current = Cursors.WaitCursor;
+
                 LogEditor.CopyAndEdit();
                 MessageBox.Show("ログのコピーと編集が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -36,18 +40,31 @@ namespace VRChatToolBox
             {
                 MessageBox.Show($"{ex.Message}\r\n{ex.StackTrace}", "処理時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+                Enabled = true;
+            }
         }
 
         private void BT_PicturesMove_Click(object sender, EventArgs e)
         {
             try
             {
+                Enabled = false;
+                Cursor.Current = Cursors.WaitCursor;
+
                 PicturesOrganizer.OrganizePictures();
                 MessageBox.Show("写真の整理が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{ex.Message}\r\n{ex.StackTrace}", "処理時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+                Enabled = true;
             }
         }
 

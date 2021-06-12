@@ -67,13 +67,16 @@ namespace VRChatToolBox
                 int j = 1;
                 foreach (FileInfo childFile in ParentDir.EnumerateFiles("*.png", SearchOption.TopDirectoryOnly))
                 {
-                    FileStream fileStream = File.OpenRead(childFile.FullName);
-                    Image image = Image.FromStream(fileStream, false, false);
-                    NowViewImages.Images.Add(image);
-                    ListViewItem listViewItem = new ListViewItem(childFile.Name, j);
-                    listViewItem.SubItems.Add(childFile.FullName);
-                    Items.Add(listViewItem);
-                    image.Dispose();
+                    using (FileStream fileStream = File.OpenRead(childFile.FullName))
+                    {
+                        using (Image image = Image.FromStream(fileStream, false, false))
+                        {
+                            NowViewImages.Images.Add(image);
+                            ListViewItem listViewItem = new ListViewItem(childFile.Name, j);
+                            listViewItem.SubItems.Add(childFile.FullName);
+                            Items.Add(listViewItem);
+                        }
+                    }
                     j += 1;
                 }
             }

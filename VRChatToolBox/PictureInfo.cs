@@ -19,7 +19,7 @@ namespace VRChatToolBox
         {
             WorldName = "";
             WorldAuthor = "";
-            TweetContents = new string[0];
+            TweetContents = ProgramSettings.Settings.Tweet;
         }
 
         [DataMember(Name ="ワールド名",Order = 0)]

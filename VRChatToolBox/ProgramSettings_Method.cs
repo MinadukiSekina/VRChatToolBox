@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 using System.Reflection;
 using System.IO;
+using System.Data;
 
 namespace VRChatToolBox
 {
@@ -64,5 +65,12 @@ namespace VRChatToolBox
             }
         }
 
+        // AvatarDataの初期化
+        internal static DataTable InitAvatarData()
+        {
+            DataTable dataTable = new DataTable("AvatarData");
+            dataTable.Columns.AddRange(new DataColumn[] { new DataColumn("AvatarName"), new DataColumn("AvatarAuthor") });
+            return dataTable;
+        }
     }
 }

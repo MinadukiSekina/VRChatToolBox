@@ -28,6 +28,15 @@ namespace VRChatToolBox
             DT_DirectoryList.InitList();
             TB_FolderPath.Text = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
             FV_FileList.SetListItems(ProgramSettings.Settings.DesignatedPicturesMovedFolder);
+            SetAvatarList();
+            FV_FileList.Select();
+        }
+
+        internal void SetAvatarList()
+        {
+            LI_AvatarList.DisplayMember = "AvatarName";
+            LI_AvatarList.ValueMember   = "AvatarAuthor";
+            LI_AvatarList.DataSource    = ProgramSettings.Settings.AvataData;
         }
 
         private void PB_Display_MouseDown(object sender, MouseEventArgs e)
@@ -36,9 +45,12 @@ namespace VRChatToolBox
 
             // これでドラッグアンドドロップで投稿できるけど、理由は理解できてません。
             string[] fileNames = { PB_Display.ImageLocation };
-            DataObject dataObject = new DataObject(DataFormats.FileDrop, fileNames);
-            dataObject.SetData(DataFormats.Bitmap, Image.FromFile(fileNames[0]));
-            PB_Display.DoDragDrop(dataObject, DragDropEffects.All);
+            using (Image image = Image.FromFile(fileNames[0]))
+            {
+                DataObject dataObject = new DataObject(DataFormats.FileDrop, fileNames);
+                dataObject.SetData(DataFormats.Bitmap, image);
+                PB_Display.DoDragDrop(dataObject, DragDropEffects.All);
+            }
         }
 
         // 写真選択後
@@ -81,8 +93,8 @@ namespace VRChatToolBox
                 string pictureDate = pictureName.Replace("-", "");
 
                 // ワールド候補リストの設定
-                Li_WorldList.Items.Clear();
-                Li_WorldList.Items.AddRange(PicturesOrganizer.GetWorldList(pictureDate));
+                LI_WorldList.Items.Clear();
+                LI_WorldList.Items.AddRange(PicturesOrganizer.GetWorldList(pictureDate));
 
                 // 内容の読み込み（あれば）
                 PictureInfo pictureInfo = PictureInfo.LoadInfo(MetaDataFilePath);
@@ -102,7 +114,8 @@ namespace VRChatToolBox
         // ワールド名選択
         private void Li_WorldList_DoubleClick(object sender, EventArgs e)
         {
-            TB_WorldName.Text = Li_WorldList.SelectedItem.ToString();
+            if (LI_WorldList.Items.Count == 0 || LI_WorldList.SelectedItem is null) return;
+            TB_WorldName.Text = LI_WorldList.SelectedItem.ToString();
         }
         // 閉じる
         private void BT_Close_Click(object sender, EventArgs e)
@@ -128,6 +141,10 @@ namespace VRChatToolBox
                 // 写真を移動して、メタデータも移動
                 PicturesOrganizer.MoveUpLoadedPicture(selectedPicturePath);
                 LogEditor.MoveMetaDataFile($"{ProgramSettings.Settings.DesignatedPictureInfoPath}\\{MetaDataFileName}");
+
+                // 追加で処理ができないように
+                BT_Save.Enabled = false;
+                BT_Move.Enabled = false;
             }
             catch(Exception ex)
             {
@@ -154,6 +171,9 @@ namespace VRChatToolBox
                 // 写真をコピーして、メタデータを作成
                 PicturesOrganizer.MoveSelectedPicture(PB_Display.ImageLocation);
                 PictureInfo.WriteInfo(metaDataFilePath, pictureInfo);
+
+                // 投稿済みボタンを押せるように
+                BT_Move.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -225,7 +245,6 @@ namespace VRChatToolBox
             {
                 // 情報の更新
                 if (FV_FileList.SelectedItemType == ListSelectedItemType.Picture) PB_Display.ImageLocation = FV_FileList.StringPath;
-                // フォームへのイベント通達：よくわからなかったから苦肉
                 PictureSelected();
             }
             catch (Exception ex)
@@ -246,6 +265,36 @@ namespace VRChatToolBox
             {
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        #region"テキストボックスのカーソル送り"
+        private void TB_WorldName_KeyDown(object sender, KeyEventArgs e)
+        {
+            TB_WorldAuthorName.Select();
+        }
+
+        private void TB_WorldAuthorName_KeyDown(object sender, KeyEventArgs e)
+        {
+            TB_Sentence.Select();
+        }
+
+        private void TB_AvatarName_KeyDown(object sender, KeyEventArgs e)
+        {
+            TB_AvatarAuthor.Select();
+        }
+
+        private void TB_AvatarAuthor_KeyDown(object sender, KeyEventArgs e)
+        {
+            TB_Sentence.Select();
+        }
+
+        #endregion
+
+        private void LI_AvatarList_DoubleClick(object sender, EventArgs e)
+        {
+            if (LI_AvatarList.Items.Count == 0 || LI_AvatarList.SelectedItem is null) return;
+            TB_AvatarName.Text = LI_AvatarList.SelectedItem.ToString();
+            TB_AvatarAuthor.Text = LI_AvatarList.SelectedValue.ToString();
         }
     }
 }

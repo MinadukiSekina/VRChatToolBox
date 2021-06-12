@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Avatar.cs" />
     <Compile Include="DirectoryTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -110,6 +111,9 @@
     </Compile>
     <Compile Include="SettingsEditor.Designer.cs">
       <DependentUpon>SettingsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TweetBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="XmlContractor.cs" />
     <EmbeddedResource Include="MainForm.resx">

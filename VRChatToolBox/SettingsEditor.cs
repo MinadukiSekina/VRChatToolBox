@@ -12,16 +12,17 @@ namespace VRChatToolBox
 {
     public partial class SettingsEditor : Form
     {
+        private DataTable DataTable { get; set; }
         public SettingsEditor()
         {
             InitializeComponent();
+            DGV_AvatarData.AutoGenerateColumns = false;
         }
 
         private void SettingsEditor_Load(object sender, EventArgs e)
         {
             // 現在設定の表示
             SetNowValue();
-
         }
 
         private void SettingsEditor_KeyDown(object sender, KeyEventArgs e)
@@ -54,6 +55,9 @@ namespace VRChatToolBox
                 // メタデータ関連
                 ProgramSettings.Settings.DesignatedPictureInfoPath = PSC_SelectedInfoFolder.SelectedPath.Trim();
                 ProgramSettings.Settings.DesignatedUpLoadedInfoPath = PSC_UpLoadedInfoFolder.SelectedPath.Trim();
+                ProgramSettings.Settings.Tweet = TweetBox1.Lines;
+                DGV_AvatarData.EndEdit();
+                ProgramSettings.Settings.AvataData.AcceptChanges();
 
                 ProgramSettings.WriteSettings($"{ProgramSettings.Settings.ExeFolderPath}\\MySettings.settings");
             }
@@ -83,10 +87,16 @@ namespace VRChatToolBox
             // メタデータ関連
             PSC_SelectedInfoFolder.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.PictureInfoPath}";
             PSC_UpLoadedInfoFolder.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.UpLoadedInfoPath}";
+            TweetBox1.Text = "";
+            DGV_AvatarData.EndEdit();
+            ProgramSettings.Settings.AvataData.RejectChanges();
+
         }
 
         private void BT_Cancel_Click(object sender, EventArgs e)
         {
+            DGV_AvatarData.EndEdit();
+            ProgramSettings.Settings.AvataData.RejectChanges();
             // 現在の設定値を表示
             SetNowValue();
         }
@@ -106,6 +116,39 @@ namespace VRChatToolBox
             // メタデータ関連
             PSC_SelectedInfoFolder.SelectedPath = ProgramSettings.Settings.DesignatedPictureInfoPath;
             PSC_UpLoadedInfoFolder.SelectedPath = ProgramSettings.Settings.DesignatedUpLoadedInfoPath;
+            TweetBox1.Lines = ProgramSettings.Settings.Tweet;
+            DGV_AvatarData.DataSource = ProgramSettings.Settings.AvataData;
+
+        }
+
+        // 行の追加
+        private void BT_AddRow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProgramSettings.Settings.AvataData.Rows.Add(new string[] { "", "" });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BT_RemoveRow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProgramSettings.Settings.AvataData.Rows.RemoveAt(DGV_AvatarData.CurrentRow.Index);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SettingsEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ProgramSettings.Settings.AvataData.RejectChanges();
         }
     }
 }

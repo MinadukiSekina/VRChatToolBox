@@ -36,10 +36,6 @@ namespace VRChatToolBox
         // リストの設定
         internal void SetListItems(string folderPath)
         {
-            // スプラッシュ的画面表示
-            WatingForm watingForm = new WatingForm();
-            watingForm.Show();
-
             try
             {
 
@@ -89,8 +85,6 @@ namespace VRChatToolBox
             {
                 // 描画処理再開
                 EndUpdate();
-                // スプラッシュ的画面は消す
-                watingForm.Close();
             }
         }
 

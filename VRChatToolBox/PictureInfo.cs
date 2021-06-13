@@ -41,7 +41,6 @@ namespace VRChatToolBox
         internal static void WriteInfo(string filePath, PictureInfo pictureInfo)
         {
             string destFolder = Path.GetDirectoryName(filePath);
-            if (File.Exists(filePath)) return;
             if (!Directory.Exists(destFolder))
                  Directory.CreateDirectory(destFolder);
 

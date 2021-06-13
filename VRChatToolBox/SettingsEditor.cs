@@ -62,7 +62,7 @@ namespace VRChatToolBox
                 DGV_AvatarData.EndEdit();
                 ProgramSettings.Settings.AvataData.AcceptChanges();
 
-                ProgramSettings.WriteSettings($"{ProgramSettings.Settings.ExeFolderPath}\\MySettings.settings");
+                ProgramSettings.WriteSettings($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.SettingsFileName}");
             }
             catch(Exception ex)
             {

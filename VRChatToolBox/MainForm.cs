@@ -26,6 +26,7 @@ namespace VRChatToolBox
             }
         }
 
+        // ログのコピーと編集
         private void BT_EditLog_Click(object sender, EventArgs e)
         {
             try
@@ -46,7 +47,8 @@ namespace VRChatToolBox
                 Enabled = true;
             }
         }
-
+        
+        // 写真の整理と移動
         private void BT_PicturesMove_Click(object sender, EventArgs e)
         {
             try
@@ -67,16 +69,25 @@ namespace VRChatToolBox
                 Enabled = true;
             }
         }
-
+        
+        // 設定画面のオープン
         private void BT_Settings_Click(object sender, EventArgs e)
         {
             SettingsEditor settingsEditor = new SettingsEditor();
             settingsEditor.ShowDialog();
         }
-
+        
+        // 投稿する写真を選ぶ
         private void BT_Select_Click(object sender, EventArgs e)
         {
-            PictureSelector pictureSelector = new PictureSelector();
+            PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.Select);
+            pictureSelector.ShowDialog();
+        }
+        
+        // 写真を投稿する
+        private void BT_UpLoad_Click(object sender, EventArgs e)
+        {
+            PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.UpLoad);
             pictureSelector.ShowDialog();
         }
     }

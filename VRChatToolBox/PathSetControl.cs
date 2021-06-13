@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace VRChatToolBox
 {
@@ -41,8 +42,23 @@ namespace VRChatToolBox
 
             PathText.Text = dialog.SelectedPath.Trim();
             PathText.Select();
-
         }
 
+        protected override void OnValidating(CancelEventArgs e)
+        {
+            PathText.Text = PathText.Text.Trim().TrimEnd('\\');
+            if (!Directory.Exists(PathText.Text))
+            {
+                MessageBox.Show("存在しないパスです。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
+
+            base.OnValidating(e);
+        }
     }
+
 }

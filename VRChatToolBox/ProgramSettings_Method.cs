@@ -27,7 +27,7 @@ namespace VRChatToolBox
         internal static void InitializeSettings()
         {
             string exeFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string settingsFilePath = $"{exeFolderPath}\\MySettings.settings";
+            string settingsFilePath = $"{exeFolderPath}\\{SettingsFileName}";
 
             // 設定ファイルがあれば読み込み
             if (File.Exists(settingsFilePath)) LoadSettings(settingsFilePath);

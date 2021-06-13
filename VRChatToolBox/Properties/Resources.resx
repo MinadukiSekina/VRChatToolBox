@@ -118,13 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="sozai_cman_jp_20210605091818" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sozai_cman_jp_20210605091818.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sozai_cman_jp_20210605091547" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sozai_cman_jp_20210605091547.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sozai_cman_jp_20210605091818" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sozai_cman_jp_20210605091818.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sozai_cman_jp_20210605100828" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sozai_cman_jp_20210605100828.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sozai_cman_jp_20210613082030" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sozai_cman_jp_20210613082030.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sozai_cman_jp_20210613082324" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sozai_cman_jp_20210613082324.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -9,10 +9,17 @@ using System.Data;
 
 namespace VRChatToolBox
 {
-    enum ListSelectedItemType
+    // ファイルリストビューで何が選択されたか
+    internal enum ListSelectedItemType
     {
         Folder,
         Picture
+    }
+
+    public enum PictureSelectMode
+    {
+        Select,
+        UpLoad
     }
 
     [DataContract(Namespace = "")]
@@ -57,6 +64,8 @@ namespace VRChatToolBox
         // VRChatのログのパス：ユーザー名から後
         internal const string LogPath2 = "\\AppData\\LocalLow\\VRChat\\vrchat";
 
+        // 設定ファイルの名称
+        internal const string SettingsFileName = "UserSettings.xml";
 
         // VRChatのログのパス：ユーザーが指定する場合(フルパス想定)
         private string _designatedLogPath;

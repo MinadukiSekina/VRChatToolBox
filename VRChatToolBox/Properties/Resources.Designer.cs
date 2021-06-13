@@ -89,5 +89,25 @@ namespace VRChatToolBox.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap sozai_cman_jp_20210613082030 {
+            get {
+                object obj = ResourceManager.GetObject("sozai_cman_jp_20210613082030", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap sozai_cman_jp_20210613082324 {
+            get {
+                object obj = ResourceManager.GetObject("sozai_cman_jp_20210613082324", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

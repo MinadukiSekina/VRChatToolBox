@@ -36,10 +36,15 @@ namespace VRChatToolBox
         // リストの設定
         internal void SetListItems(string folderPath)
         {
+            // スプラッシュ的画面表示
+            WatingForm watingForm = new WatingForm();
+            watingForm.Show();
+
             try
             {
+
                 // 処理を軽くしたい
-                SuspendLayout();
+                BeginUpdate();
 
                 // 初期化
                 Clear();
@@ -82,11 +87,23 @@ namespace VRChatToolBox
             }
             finally
             {
-                ResumeLayout();
+                // 描画処理再開
+                EndUpdate();
+                // スプラッシュ的画面は消す
+                watingForm.Close();
             }
         }
 
+        //// 選択した項目の削除
+        //internal void DeleteItemAndImage()
+        //{
+        //    if (Items.Count == 0 || SelectedItems is null) return;
+        //    NowViewImages.Images.RemoveAt(SelectedIndices[0] + 1);
+        //    Items.Remove(SelectedItems[0]);
+        //}
+
         // ダブルクリック時
+
         protected override void OnDoubleClick(EventArgs e)
         {
             try

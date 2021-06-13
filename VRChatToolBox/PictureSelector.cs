@@ -14,31 +14,48 @@ namespace VRChatToolBox
 {
     public partial class PictureSelector : Form
     {
+        // メタデータファイルの名称を保持
         private string MetaDataFileName { get; set; } 
+        // 呼び出しモード
+        internal PictureSelectMode ActivateMode { get; set; }
 
+        // デフォルト
         public PictureSelector()
         {
             InitializeComponent();
         }
+        // 起動モード指定のコンストラクト
+        public PictureSelector(PictureSelectMode activateMode) : this()
+        {
+            ActivateMode = activateMode;
+        }
 
         private void PictureSelector_Load(object sender, EventArgs e)
         {
-            //pictureExplorer1.Init(ProgramSettings.Settings.DesignatedPicturesMovedFolder, PB_Display, this);
+            // 表示するフォルダの設定
+            string selectFolderPath = (ActivateMode == PictureSelectMode.Select)
+                                       ? ProgramSettings.Settings.DesignatedPicturesMovedFolder
+                                       : ProgramSettings.Settings.DesignatedPicturesSelectedFolder;
+            // 無いとエラーになるので
+            if (!Directory.Exists(selectFolderPath)) Directory.CreateDirectory(selectFolderPath);
+
             // 初期化
-            DT_DirectoryList.InitList();
-            TB_FolderPath.Text = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
-            FV_FileList.SetListItems(ProgramSettings.Settings.DesignatedPicturesMovedFolder);
+            DT_DirectoryList.InitList(); 
+            TB_FolderPath.Text = selectFolderPath;
+            FV_FileList.SetListItems(selectFolderPath);
             SetAvatarList();
             FV_FileList.Select();
         }
 
+        // アバターリストのセット
         internal void SetAvatarList()
         {
             LI_AvatarList.DisplayMember = "AvatarName";
-            LI_AvatarList.ValueMember = "AvatarAuthor";
-            LI_AvatarList.DataSource = ProgramSettings.Settings.AvataData;
+            LI_AvatarList.ValueMember   = "AvatarAuthor";
+            LI_AvatarList.DataSource    = ProgramSettings.Settings.AvataData;
         }
 
+        // ドラッグアンドドロップ用
         private void PB_Display_MouseDown(object sender, MouseEventArgs e)
         {
             if (!File.Exists(PB_Display.ImageLocation)) return;
@@ -137,21 +154,24 @@ namespace VRChatToolBox
         {
             try
             {
-                string selectedPicturePath = $"{ProgramSettings.Settings.DesignatedPicturesSelectedFolder}\\{Path.GetFileName(PB_Display.ImageLocation)}";
+                string upLoadedPicturePath = $"{ProgramSettings.Settings.DesignatedPicturesSelectedFolder}\\{Path.GetFileName(PB_Display.ImageLocation)}";
                 // 写真を移動して、メタデータも移動
-                PicturesOrganizer.MoveUpLoadedPicture(selectedPicturePath);
+                PicturesOrganizer.MoveUpLoadedPicture(upLoadedPicturePath);
                 LogEditor.MoveMetaDataFile($"{ProgramSettings.Settings.DesignatedPictureInfoPath}\\{MetaDataFileName}");
 
                 // 追加で処理ができないように
                 BT_Save.Enabled = false;
                 BT_Move.Enabled = false;
+
+                if (TB_FolderPath.Text.Trim() == ProgramSettings.Settings.DesignatedPicturesSelectedFolder)
+                    FV_FileList.SetListItems(ProgramSettings.Settings.DesignatedPicturesSelectedFolder);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        // 写真を選抜して保存：メタデータも作成
+        // 選択した写真をコピー：メタデータも作成
         private void BT_Save_Click(object sender, EventArgs e)
         {
             try
@@ -186,6 +206,7 @@ namespace VRChatToolBox
 
         }
 
+        // 上の階層へ
         private void BT_UP_Click(object sender, EventArgs e)
         {
             try
@@ -207,13 +228,14 @@ namespace VRChatToolBox
         private void TB_FolderPath_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter) return;
-            if (!Path_Validation(TB_FolderPath.Text.Trim())) return;
-            FV_FileList.SetListItems(TB_FolderPath.Text.Trim());
+            TB_FolderPath.Text = TB_FolderPath.Text.Trim().TrimEnd('\\');
+            if (!Path_Validation(TB_FolderPath.Text)) return;
+            FV_FileList.SetListItems(TB_FolderPath.Text);
         }
 
         private void TB_FolderPath_Validating(object sender, CancelEventArgs e)
         {
-            TB_FolderPath.Text = TB_FolderPath.Text.Trim();
+            TB_FolderPath.Text = TB_FolderPath.Text.Trim().TrimEnd('\\');
             e.Cancel = Path_Validation(TB_FolderPath.Text) ? false : true;
         }
 
@@ -226,6 +248,7 @@ namespace VRChatToolBox
             return false;
         }
 
+        // フォルダリストから選択時
         private void DT_DirectoryList_AfterSelect(object sender, TreeViewEventArgs e)
         {
             try
@@ -238,11 +261,13 @@ namespace VRChatToolBox
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        // ファイルの選択時
         private void FV_FileList_Click(object sender, EventArgs e)
         {
             try
             {
+                // 既に選択したものなら処理しない
+                if (FV_FileList.StringPath == PB_Display.ImageLocation) return;
                 // 情報の更新
                 if (FV_FileList.SelectedItemType == ListSelectedItemType.Picture) PB_Display.ImageLocation = FV_FileList.StringPath;
                 PictureSelected();
@@ -253,7 +278,7 @@ namespace VRChatToolBox
             }
 
         }
-
+        // ファイル一覧からフォルダを選択時
         private void FV_FileList_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -290,6 +315,7 @@ namespace VRChatToolBox
 
         #endregion
 
+        // アバター選択時
         private void LI_AvatarList_DoubleClick(object sender, EventArgs e)
         {
             if (LI_AvatarList.Items.Count == 0 || LI_AvatarList.SelectedItem is null) return;

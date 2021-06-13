@@ -13,7 +13,8 @@ namespace VRChatToolBox
        
         protected override void OnValidating(CancelEventArgs e)
         {
-           if(Text.Length > 140)
+
+            if (Text.Length > 140)
             {
                 MessageBox.Show("140文字を超えています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 e.Cancel = true;

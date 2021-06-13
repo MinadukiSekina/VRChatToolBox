@@ -295,21 +295,25 @@ namespace VRChatToolBox
         #region"テキストボックスのカーソル送り"
         private void TB_WorldName_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter) return;
             TB_WorldAuthorName.Select();
         }
 
         private void TB_WorldAuthorName_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter) return;
             TB_Sentence.Select();
         }
 
         private void TB_AvatarName_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter) return;
             TB_AvatarAuthor.Select();
         }
 
         private void TB_AvatarAuthor_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter) return;
             TB_Sentence.Select();
         }
 

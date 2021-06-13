@@ -35,12 +35,14 @@
             this.PN_Menu1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.PN_Buffer = new System.Windows.Forms.Panel();
+            this.PB_Display = new System.Windows.Forms.PictureBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.PN_Bottom = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.FV_FileList = new VRChatToolBox.FileListView();
             this.ViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.PN_Menu = new System.Windows.Forms.Panel();
+            this.BT_UP = new System.Windows.Forms.Button();
             this.TB_FolderPath = new System.Windows.Forms.TextBox();
             this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             this.LB_Sentence = new System.Windows.Forms.Label();
@@ -56,9 +58,9 @@
             this.LB_AvatarList = new System.Windows.Forms.Label();
             this.LI_AvatarList = new System.Windows.Forms.ListBox();
             this.TB_AvatarName = new System.Windows.Forms.TextBox();
-            this.LB_AvatarAuthor = new System.Windows.Forms.Label();
             this.LB_AvatarName = new System.Windows.Forms.Label();
             this.TB_AvatarAuthor = new System.Windows.Forms.TextBox();
+            this.LB_AvatarAuthor = new System.Windows.Forms.Label();
             this.TB_Sentence = new System.Windows.Forms.TextBox();
             this.PN_Button = new System.Windows.Forms.Panel();
             this.BT_Save = new System.Windows.Forms.Button();
@@ -66,21 +68,19 @@
             this.BT_OpenVRCHome = new System.Windows.Forms.Button();
             this.BT_OpenTwitter = new System.Windows.Forms.Button();
             this.BT_Close = new System.Windows.Forms.Button();
-            this.PB_Display = new System.Windows.Forms.PictureBox();
-            this.BT_UP = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();
             this.SpC0.SuspendLayout();
             this.PN_Top.SuspendLayout();
             this.PN_Menu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
             this.PN_Bottom.SuspendLayout();
             this.PN_Menu.SuspendLayout();
             this.TC_Select.SuspendLayout();
             this.WorldTab.SuspendLayout();
             this.AvatarTab.SuspendLayout();
             this.PN_Button.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
             this.SuspendLayout();
             // 
             // SpC0
@@ -89,7 +89,7 @@
             this.SpC0.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SpC0.IsSplitterFixed = true;
             this.SpC0.Location = new System.Drawing.Point(0, 0);
-            this.SpC0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SpC0.Margin = new System.Windows.Forms.Padding(2);
             this.SpC0.Name = "SpC0";
             // 
             // SpC0.Panel1
@@ -117,7 +117,7 @@
             this.PN_Top.Controls.Add(this.PB_Display);
             this.PN_Top.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PN_Top.Location = new System.Drawing.Point(0, 0);
-            this.PN_Top.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PN_Top.Margin = new System.Windows.Forms.Padding(2);
             this.PN_Top.Name = "PN_Top";
             this.PN_Top.Size = new System.Drawing.Size(584, 308);
             this.PN_Top.TabIndex = 6;
@@ -127,7 +127,7 @@
             this.PN_Menu1.Controls.Add(this.button1);
             this.PN_Menu1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PN_Menu1.Location = new System.Drawing.Point(0, 276);
-            this.PN_Menu1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PN_Menu1.Margin = new System.Windows.Forms.Padding(2);
             this.PN_Menu1.Name = "PN_Menu1";
             this.PN_Menu1.Size = new System.Drawing.Size(584, 32);
             this.PN_Menu1.TabIndex = 1;
@@ -137,7 +137,7 @@
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.button1.Location = new System.Drawing.Point(66, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(67, 23);
             this.button1.TabIndex = 0;
@@ -149,17 +149,29 @@
             // 
             this.PN_Buffer.Dock = System.Windows.Forms.DockStyle.Top;
             this.PN_Buffer.Location = new System.Drawing.Point(0, 0);
-            this.PN_Buffer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PN_Buffer.Margin = new System.Windows.Forms.Padding(2);
             this.PN_Buffer.Name = "PN_Buffer";
             this.PN_Buffer.Size = new System.Drawing.Size(584, 12);
             this.PN_Buffer.TabIndex = 2;
+            // 
+            // PB_Display
+            // 
+            this.PB_Display.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PB_Display.Location = new System.Drawing.Point(0, 0);
+            this.PB_Display.Margin = new System.Windows.Forms.Padding(2);
+            this.PB_Display.Name = "PB_Display";
+            this.PB_Display.Size = new System.Drawing.Size(584, 308);
+            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_Display.TabIndex = 0;
+            this.PB_Display.TabStop = false;
+            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
             // 
             // splitter1
             // 
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter1.Location = new System.Drawing.Point(0, 308);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(2);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(584, 3);
             this.splitter1.TabIndex = 5;
@@ -173,7 +185,7 @@
             this.PN_Bottom.Controls.Add(this.DT_DirectoryList);
             this.PN_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PN_Bottom.Location = new System.Drawing.Point(0, 311);
-            this.PN_Bottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PN_Bottom.Margin = new System.Windows.Forms.Padding(2);
             this.PN_Bottom.Name = "PN_Bottom";
             this.PN_Bottom.Size = new System.Drawing.Size(584, 345);
             this.PN_Bottom.TabIndex = 4;
@@ -181,7 +193,7 @@
             // splitter2
             // 
             this.splitter2.Location = new System.Drawing.Point(134, 49);
-            this.splitter2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitter2.Margin = new System.Windows.Forms.Padding(2);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(2, 296);
             this.splitter2.TabIndex = 4;
@@ -194,7 +206,7 @@
             this.FV_FileList.HideSelection = false;
             this.FV_FileList.LargeImageList = this.ViewImageList;
             this.FV_FileList.Location = new System.Drawing.Point(134, 49);
-            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
             this.FV_FileList.MultiSelect = false;
             this.FV_FileList.Name = "FV_FileList";
             this.FV_FileList.Size = new System.Drawing.Size(450, 296);
@@ -217,10 +229,22 @@
             this.PN_Menu.Controls.Add(this.TB_FolderPath);
             this.PN_Menu.Dock = System.Windows.Forms.DockStyle.Top;
             this.PN_Menu.Location = new System.Drawing.Point(134, 0);
-            this.PN_Menu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PN_Menu.Margin = new System.Windows.Forms.Padding(2);
             this.PN_Menu.Name = "PN_Menu";
             this.PN_Menu.Size = new System.Drawing.Size(450, 49);
             this.PN_Menu.TabIndex = 2;
+            // 
+            // BT_UP
+            // 
+            this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.BT_UP.Location = new System.Drawing.Point(9, 8);
+            this.BT_UP.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_UP.Name = "BT_UP";
+            this.BT_UP.Size = new System.Drawing.Size(31, 32);
+            this.BT_UP.TabIndex = 1;
+            this.BT_UP.UseVisualStyleBackColor = true;
+            this.BT_UP.Click += new System.EventHandler(this.BT_UP_Click);
             // 
             // TB_FolderPath
             // 
@@ -229,7 +253,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_FolderPath.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.TB_FolderPath.Location = new System.Drawing.Point(44, 14);
-            this.TB_FolderPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_FolderPath.Margin = new System.Windows.Forms.Padding(2);
             this.TB_FolderPath.Name = "TB_FolderPath";
             this.TB_FolderPath.Size = new System.Drawing.Size(396, 23);
             this.TB_FolderPath.TabIndex = 0;
@@ -241,7 +265,7 @@
             this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
             this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
-            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
             this.DT_DirectoryList.Name = "DT_DirectoryList";
             this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
             this.DT_DirectoryList.TabIndex = 0;
@@ -270,10 +294,10 @@
             this.TC_Select.Controls.Add(this.AvatarTab);
             this.TC_Select.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.TC_Select.Location = new System.Drawing.Point(7, 9);
-            this.TC_Select.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TC_Select.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Select.Name = "TC_Select";
             this.TC_Select.SelectedIndex = 0;
-            this.TC_Select.Size = new System.Drawing.Size(357, 319);
+            this.TC_Select.Size = new System.Drawing.Size(358, 319);
             this.TC_Select.TabIndex = 0;
             this.TC_Select.TabStop = false;
             // 
@@ -287,10 +311,10 @@
             this.WorldTab.Controls.Add(this.LB_AuthorName);
             this.WorldTab.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.WorldTab.Location = new System.Drawing.Point(4, 26);
-            this.WorldTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WorldTab.Margin = new System.Windows.Forms.Padding(2);
             this.WorldTab.Name = "WorldTab";
-            this.WorldTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.WorldTab.Size = new System.Drawing.Size(349, 289);
+            this.WorldTab.Padding = new System.Windows.Forms.Padding(2);
+            this.WorldTab.Size = new System.Drawing.Size(350, 289);
             this.WorldTab.TabIndex = 0;
             this.WorldTab.Text = "ワールド";
             this.WorldTab.UseVisualStyleBackColor = true;
@@ -315,7 +339,7 @@
             this.LI_WorldList.FormattingEnabled = true;
             this.LI_WorldList.ItemHeight = 16;
             this.LI_WorldList.Location = new System.Drawing.Point(8, 31);
-            this.LI_WorldList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LI_WorldList.Margin = new System.Windows.Forms.Padding(2);
             this.LI_WorldList.Name = "LI_WorldList";
             this.LI_WorldList.Size = new System.Drawing.Size(336, 180);
             this.LI_WorldList.TabIndex = 5;
@@ -329,7 +353,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TB_WorldName.Location = new System.Drawing.Point(68, 228);
-            this.TB_WorldName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_WorldName.Margin = new System.Windows.Forms.Padding(2);
             this.TB_WorldName.Name = "TB_WorldName";
             this.TB_WorldName.Size = new System.Drawing.Size(276, 23);
             this.TB_WorldName.TabIndex = 0;
@@ -355,7 +379,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_WorldAuthorName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TB_WorldAuthorName.Location = new System.Drawing.Point(68, 254);
-            this.TB_WorldAuthorName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_WorldAuthorName.Margin = new System.Windows.Forms.Padding(2);
             this.TB_WorldAuthorName.Name = "TB_WorldAuthorName";
             this.TB_WorldAuthorName.Size = new System.Drawing.Size(276, 23);
             this.TB_WorldAuthorName.TabIndex = 1;
@@ -383,10 +407,10 @@
             this.AvatarTab.Controls.Add(this.TB_AvatarAuthor);
             this.AvatarTab.Controls.Add(this.LB_AvatarAuthor);
             this.AvatarTab.Location = new System.Drawing.Point(4, 26);
-            this.AvatarTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AvatarTab.Margin = new System.Windows.Forms.Padding(2);
             this.AvatarTab.Name = "AvatarTab";
-            this.AvatarTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.AvatarTab.Size = new System.Drawing.Size(349, 289);
+            this.AvatarTab.Padding = new System.Windows.Forms.Padding(2);
+            this.AvatarTab.Size = new System.Drawing.Size(350, 289);
             this.AvatarTab.TabIndex = 1;
             this.AvatarTab.Text = "アバター";
             this.AvatarTab.UseVisualStyleBackColor = true;
@@ -411,7 +435,7 @@
             this.LI_AvatarList.FormattingEnabled = true;
             this.LI_AvatarList.ItemHeight = 16;
             this.LI_AvatarList.Location = new System.Drawing.Point(8, 31);
-            this.LI_AvatarList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LI_AvatarList.Margin = new System.Windows.Forms.Padding(2);
             this.LI_AvatarList.Name = "LI_AvatarList";
             this.LI_AvatarList.Size = new System.Drawing.Size(336, 180);
             this.LI_AvatarList.TabIndex = 13;
@@ -424,22 +448,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_AvatarName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TB_AvatarName.Location = new System.Drawing.Point(68, 228);
-            this.TB_AvatarName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_AvatarName.Margin = new System.Windows.Forms.Padding(2);
             this.TB_AvatarName.Name = "TB_AvatarName";
             this.TB_AvatarName.Size = new System.Drawing.Size(276, 23);
             this.TB_AvatarName.TabIndex = 0;
             this.TB_AvatarName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_AvatarName_KeyDown);
-            // 
-            // LB_AvatarAuthor
-            // 
-            this.LB_AvatarAuthor.AutoSize = true;
-            this.LB_AvatarAuthor.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.LB_AvatarAuthor.Location = new System.Drawing.Point(7, 257);
-            this.LB_AvatarAuthor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LB_AvatarAuthor.Name = "LB_AvatarAuthor";
-            this.LB_AvatarAuthor.Size = new System.Drawing.Size(64, 16);
-            this.LB_AvatarAuthor.TabIndex = 16;
-            this.LB_AvatarAuthor.Text = "製作者：";
             // 
             // LB_AvatarName
             // 
@@ -458,11 +471,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_AvatarAuthor.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TB_AvatarAuthor.Location = new System.Drawing.Point(68, 254);
-            this.TB_AvatarAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_AvatarAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.TB_AvatarAuthor.Name = "TB_AvatarAuthor";
             this.TB_AvatarAuthor.Size = new System.Drawing.Size(276, 23);
             this.TB_AvatarAuthor.TabIndex = 1;
             this.TB_AvatarAuthor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_AvatarAuthor_KeyDown);
+            // 
+            // LB_AvatarAuthor
+            // 
+            this.LB_AvatarAuthor.AutoSize = true;
+            this.LB_AvatarAuthor.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LB_AvatarAuthor.Location = new System.Drawing.Point(7, 257);
+            this.LB_AvatarAuthor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LB_AvatarAuthor.Name = "LB_AvatarAuthor";
+            this.LB_AvatarAuthor.Size = new System.Drawing.Size(64, 16);
+            this.LB_AvatarAuthor.TabIndex = 16;
+            this.LB_AvatarAuthor.Text = "製作者：";
             // 
             // TB_Sentence
             // 
@@ -471,11 +495,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_Sentence.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TB_Sentence.Location = new System.Drawing.Point(7, 366);
-            this.TB_Sentence.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_Sentence.Margin = new System.Windows.Forms.Padding(2);
             this.TB_Sentence.Multiline = true;
             this.TB_Sentence.Name = "TB_Sentence";
             this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(357, 204);
+            this.TB_Sentence.Size = new System.Drawing.Size(358, 204);
             this.TB_Sentence.TabIndex = 1;
             // 
             // PN_Button
@@ -487,7 +511,7 @@
             this.PN_Button.Controls.Add(this.BT_Close);
             this.PN_Button.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PN_Button.Location = new System.Drawing.Point(0, 584);
-            this.PN_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PN_Button.Margin = new System.Windows.Forms.Padding(2);
             this.PN_Button.Name = "PN_Button";
             this.PN_Button.Size = new System.Drawing.Size(372, 72);
             this.PN_Button.TabIndex = 17;
@@ -497,7 +521,7 @@
             this.BT_Save.Enabled = false;
             this.BT_Save.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BT_Save.Location = new System.Drawing.Point(136, 9);
-            this.BT_Save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BT_Save.Margin = new System.Windows.Forms.Padding(2);
             this.BT_Save.Name = "BT_Save";
             this.BT_Save.Size = new System.Drawing.Size(110, 25);
             this.BT_Save.TabIndex = 1;
@@ -510,7 +534,7 @@
             this.BT_Move.Enabled = false;
             this.BT_Move.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BT_Move.Location = new System.Drawing.Point(251, 9);
-            this.BT_Move.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BT_Move.Margin = new System.Windows.Forms.Padding(2);
             this.BT_Move.Name = "BT_Move";
             this.BT_Move.Size = new System.Drawing.Size(110, 25);
             this.BT_Move.TabIndex = 2;
@@ -522,7 +546,7 @@
             // 
             this.BT_OpenVRCHome.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BT_OpenVRCHome.Location = new System.Drawing.Point(136, 38);
-            this.BT_OpenVRCHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BT_OpenVRCHome.Margin = new System.Windows.Forms.Padding(2);
             this.BT_OpenVRCHome.Name = "BT_OpenVRCHome";
             this.BT_OpenVRCHome.Size = new System.Drawing.Size(110, 25);
             this.BT_OpenVRCHome.TabIndex = 3;
@@ -534,7 +558,7 @@
             // 
             this.BT_OpenTwitter.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BT_OpenTwitter.Location = new System.Drawing.Point(22, 38);
-            this.BT_OpenTwitter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BT_OpenTwitter.Margin = new System.Windows.Forms.Padding(2);
             this.BT_OpenTwitter.Name = "BT_OpenTwitter";
             this.BT_OpenTwitter.Size = new System.Drawing.Size(110, 25);
             this.BT_OpenTwitter.TabIndex = 4;
@@ -546,38 +570,13 @@
             // 
             this.BT_Close.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BT_Close.Location = new System.Drawing.Point(22, 9);
-            this.BT_Close.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BT_Close.Margin = new System.Windows.Forms.Padding(2);
             this.BT_Close.Name = "BT_Close";
             this.BT_Close.Size = new System.Drawing.Size(110, 25);
             this.BT_Close.TabIndex = 6;
             this.BT_Close.Text = "閉じる";
             this.BT_Close.UseVisualStyleBackColor = true;
             this.BT_Close.Click += new System.EventHandler(this.BT_Close_Click);
-            // 
-            // PB_Display
-            // 
-            this.PB_Display.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PB_Display.Location = new System.Drawing.Point(0, 0);
-            this.PB_Display.Margin = new System.Windows.Forms.Padding(2);
-            this.PB_Display.Name = "PB_Display";
-            this.PB_Display.Size = new System.Drawing.Size(584, 308);
-            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PB_Display.TabIndex = 0;
-            this.PB_Display.TabStop = false;
-            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
-            // 
-            // BT_UP
-            // 
-            this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.BT_UP.Image = global::VRChatToolBox.Properties.Resources.sozai_cman_jp_20210613082324;
-            this.BT_UP.Location = new System.Drawing.Point(9, 8);
-            this.BT_UP.Margin = new System.Windows.Forms.Padding(2);
-            this.BT_UP.Name = "BT_UP";
-            this.BT_UP.Size = new System.Drawing.Size(31, 32);
-            this.BT_UP.TabIndex = 1;
-            this.BT_UP.UseVisualStyleBackColor = true;
-            this.BT_UP.Click += new System.EventHandler(this.BT_UP_Click);
             // 
             // PictureSelector
             // 
@@ -586,7 +585,7 @@
             this.ClientSize = new System.Drawing.Size(963, 658);
             this.Controls.Add(this.SpC0);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PictureSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PictureSelector";
@@ -599,6 +598,7 @@
             this.SpC0.ResumeLayout(false);
             this.PN_Top.ResumeLayout(false);
             this.PN_Menu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
             this.PN_Bottom.ResumeLayout(false);
             this.PN_Menu.ResumeLayout(false);
             this.PN_Menu.PerformLayout();
@@ -608,7 +608,6 @@
             this.AvatarTab.ResumeLayout(false);
             this.AvatarTab.PerformLayout();
             this.PN_Button.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
             this.ResumeLayout(false);
 
         }

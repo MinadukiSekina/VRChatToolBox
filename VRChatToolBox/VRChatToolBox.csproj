@@ -166,18 +166,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sozai_cman_jp_20210605091547.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sozai_cman_jp_20210605091818.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sozai_cman_jp_20210605100828.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sozai_cman_jp_20210613082030.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\sozai_cman_jp_20210613082324.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

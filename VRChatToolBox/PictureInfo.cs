@@ -17,8 +17,10 @@ namespace VRChatToolBox
 
         internal PictureInfo()
         {
-            WorldName = "";
-            WorldAuthor = "";
+            WorldName     = "";
+            WorldAuthor   = "";
+            AvatarName    = "";
+            AvatarAuthor  = "";
             TweetContents = ProgramSettings.Settings.Tweet;
         }
 

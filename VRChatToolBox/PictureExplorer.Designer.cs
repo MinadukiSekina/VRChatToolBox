@@ -75,7 +75,7 @@
             // 
             this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.BT_UP.Image = global::VRChatToolBox.Properties.Resources.sozai_cman_jp_20210605100828;
+            this.BT_UP.Image = global::VRChatToolBox.Properties.Resources.sozai_cman_jp_20210613082324;
             this.BT_UP.Location = new System.Drawing.Point(8, 6);
             this.BT_UP.Name = "BT_UP";
             this.BT_UP.Size = new System.Drawing.Size(35, 39);

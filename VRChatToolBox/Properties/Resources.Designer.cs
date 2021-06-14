@@ -63,46 +63,6 @@ namespace VRChatToolBox.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap sozai_cman_jp_20210605091547 {
-            get {
-                object obj = ResourceManager.GetObject("sozai_cman_jp_20210605091547", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap sozai_cman_jp_20210605091818 {
-            get {
-                object obj = ResourceManager.GetObject("sozai_cman_jp_20210605091818", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap sozai_cman_jp_20210605100828 {
-            get {
-                object obj = ResourceManager.GetObject("sozai_cman_jp_20210605100828", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap sozai_cman_jp_20210613082030 {
-            get {
-                object obj = ResourceManager.GetObject("sozai_cman_jp_20210613082030", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap sozai_cman_jp_20210613082324 {
             get {
                 object obj = ResourceManager.GetObject("sozai_cman_jp_20210613082324", resourceCulture);

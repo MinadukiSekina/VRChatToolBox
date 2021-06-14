@@ -35,16 +35,12 @@
             this.PN_Menu1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.PN_Buffer = new System.Windows.Forms.Panel();
-            this.PB_Display = new System.Windows.Forms.PictureBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.PN_Bottom = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
-            this.FV_FileList = new VRChatToolBox.FileListView();
             this.ViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.PN_Menu = new System.Windows.Forms.Panel();
-            this.BT_UP = new System.Windows.Forms.Button();
             this.TB_FolderPath = new System.Windows.Forms.TextBox();
-            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             this.LB_Sentence = new System.Windows.Forms.Label();
             this.TC_Select = new System.Windows.Forms.TabControl();
             this.WorldTab = new System.Windows.Forms.TabPage();
@@ -68,19 +64,23 @@
             this.BT_OpenVRCHome = new System.Windows.Forms.Button();
             this.BT_OpenTwitter = new System.Windows.Forms.Button();
             this.BT_Close = new System.Windows.Forms.Button();
+            this.PB_Display = new System.Windows.Forms.PictureBox();
+            this.BT_UP = new System.Windows.Forms.Button();
+            this.FV_FileList = new VRChatToolBox.FileListView();
+            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();
             this.SpC0.SuspendLayout();
             this.PN_Top.SuspendLayout();
             this.PN_Menu1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
             this.PN_Bottom.SuspendLayout();
             this.PN_Menu.SuspendLayout();
             this.TC_Select.SuspendLayout();
             this.WorldTab.SuspendLayout();
             this.AvatarTab.SuspendLayout();
             this.PN_Button.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
             this.SuspendLayout();
             // 
             // SpC0
@@ -154,18 +154,6 @@
             this.PN_Buffer.Size = new System.Drawing.Size(584, 12);
             this.PN_Buffer.TabIndex = 2;
             // 
-            // PB_Display
-            // 
-            this.PB_Display.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PB_Display.Location = new System.Drawing.Point(0, 0);
-            this.PB_Display.Margin = new System.Windows.Forms.Padding(2);
-            this.PB_Display.Name = "PB_Display";
-            this.PB_Display.Size = new System.Drawing.Size(584, 308);
-            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PB_Display.TabIndex = 0;
-            this.PB_Display.TabStop = false;
-            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
-            // 
             // splitter1
             // 
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -199,24 +187,6 @@
             this.splitter2.TabIndex = 4;
             this.splitter2.TabStop = false;
             // 
-            // FV_FileList
-            // 
-            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FV_FileList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.FV_FileList.HideSelection = false;
-            this.FV_FileList.LargeImageList = this.ViewImageList;
-            this.FV_FileList.Location = new System.Drawing.Point(134, 49);
-            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
-            this.FV_FileList.MultiSelect = false;
-            this.FV_FileList.Name = "FV_FileList";
-            this.FV_FileList.Size = new System.Drawing.Size(450, 296);
-            this.FV_FileList.SmallImageList = this.ViewImageList;
-            this.FV_FileList.TabIndex = 3;
-            this.FV_FileList.TabStop = false;
-            this.FV_FileList.UseCompatibleStateImageBehavior = false;
-            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
-            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
-            // 
             // ViewImageList
             // 
             this.ViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ViewImageList.ImageStream")));
@@ -234,18 +204,6 @@
             this.PN_Menu.Size = new System.Drawing.Size(450, 49);
             this.PN_Menu.TabIndex = 2;
             // 
-            // BT_UP
-            // 
-            this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.BT_UP.Location = new System.Drawing.Point(9, 8);
-            this.BT_UP.Margin = new System.Windows.Forms.Padding(2);
-            this.BT_UP.Name = "BT_UP";
-            this.BT_UP.Size = new System.Drawing.Size(31, 32);
-            this.BT_UP.TabIndex = 1;
-            this.BT_UP.UseVisualStyleBackColor = true;
-            this.BT_UP.Click += new System.EventHandler(this.BT_UP_Click);
-            // 
             // TB_FolderPath
             // 
             this.TB_FolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -259,18 +217,6 @@
             this.TB_FolderPath.TabIndex = 0;
             this.TB_FolderPath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_FolderPath_KeyDown);
             this.TB_FolderPath.Validating += new System.ComponentModel.CancelEventHandler(this.TB_FolderPath_Validating);
-            // 
-            // DT_DirectoryList
-            // 
-            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
-            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
-            this.DT_DirectoryList.Name = "DT_DirectoryList";
-            this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
-            this.DT_DirectoryList.TabIndex = 0;
-            this.DT_DirectoryList.TabStop = false;
-            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
             // 
             // LB_Sentence
             // 
@@ -297,7 +243,7 @@
             this.TC_Select.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Select.Name = "TC_Select";
             this.TC_Select.SelectedIndex = 0;
-            this.TC_Select.Size = new System.Drawing.Size(358, 319);
+            this.TC_Select.Size = new System.Drawing.Size(360, 319);
             this.TC_Select.TabIndex = 0;
             this.TC_Select.TabStop = false;
             // 
@@ -314,7 +260,7 @@
             this.WorldTab.Margin = new System.Windows.Forms.Padding(2);
             this.WorldTab.Name = "WorldTab";
             this.WorldTab.Padding = new System.Windows.Forms.Padding(2);
-            this.WorldTab.Size = new System.Drawing.Size(350, 289);
+            this.WorldTab.Size = new System.Drawing.Size(352, 289);
             this.WorldTab.TabIndex = 0;
             this.WorldTab.Text = "ワールド";
             this.WorldTab.UseVisualStyleBackColor = true;
@@ -410,7 +356,7 @@
             this.AvatarTab.Margin = new System.Windows.Forms.Padding(2);
             this.AvatarTab.Name = "AvatarTab";
             this.AvatarTab.Padding = new System.Windows.Forms.Padding(2);
-            this.AvatarTab.Size = new System.Drawing.Size(350, 289);
+            this.AvatarTab.Size = new System.Drawing.Size(352, 289);
             this.AvatarTab.TabIndex = 1;
             this.AvatarTab.Text = "アバター";
             this.AvatarTab.UseVisualStyleBackColor = true;
@@ -499,7 +445,7 @@
             this.TB_Sentence.Multiline = true;
             this.TB_Sentence.Name = "TB_Sentence";
             this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(358, 204);
+            this.TB_Sentence.Size = new System.Drawing.Size(360, 204);
             this.TB_Sentence.TabIndex = 1;
             // 
             // PN_Button
@@ -578,6 +524,62 @@
             this.BT_Close.UseVisualStyleBackColor = true;
             this.BT_Close.Click += new System.EventHandler(this.BT_Close_Click);
             // 
+            // PB_Display
+            // 
+            this.PB_Display.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PB_Display.Location = new System.Drawing.Point(0, 0);
+            this.PB_Display.Margin = new System.Windows.Forms.Padding(2);
+            this.PB_Display.Name = "PB_Display";
+            this.PB_Display.Size = new System.Drawing.Size(584, 308);
+            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_Display.TabIndex = 0;
+            this.PB_Display.TabStop = false;
+            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
+            // 
+            // BT_UP
+            // 
+            this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.BT_UP.Image = global::VRChatToolBox.Properties.Resources.sozai_cman_jp_20210613082324;
+            this.BT_UP.Location = new System.Drawing.Point(9, 8);
+            this.BT_UP.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_UP.Name = "BT_UP";
+            this.BT_UP.Size = new System.Drawing.Size(31, 32);
+            this.BT_UP.TabIndex = 1;
+            this.BT_UP.UseVisualStyleBackColor = true;
+            this.BT_UP.Click += new System.EventHandler(this.BT_UP_Click);
+            // 
+            // FV_FileList
+            // 
+            this.FV_FileList.AutoArrange = false;
+            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FV_FileList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.FV_FileList.HideSelection = false;
+            this.FV_FileList.LargeImageList = this.ViewImageList;
+            this.FV_FileList.Location = new System.Drawing.Point(134, 49);
+            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
+            this.FV_FileList.MultiSelect = false;
+            this.FV_FileList.Name = "FV_FileList";
+            this.FV_FileList.Size = new System.Drawing.Size(450, 296);
+            this.FV_FileList.SmallImageList = this.ViewImageList;
+            this.FV_FileList.TabIndex = 3;
+            this.FV_FileList.TabStop = false;
+            this.FV_FileList.UseCompatibleStateImageBehavior = false;
+            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
+            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
+            // 
+            // DT_DirectoryList
+            // 
+            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
+            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
+            this.DT_DirectoryList.Name = "DT_DirectoryList";
+            this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
+            this.DT_DirectoryList.TabIndex = 0;
+            this.DT_DirectoryList.TabStop = false;
+            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
+            // 
             // PictureSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -598,7 +600,6 @@
             this.SpC0.ResumeLayout(false);
             this.PN_Top.ResumeLayout(false);
             this.PN_Menu1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
             this.PN_Bottom.ResumeLayout(false);
             this.PN_Menu.ResumeLayout(false);
             this.PN_Menu.PerformLayout();
@@ -608,6 +609,7 @@
             this.AvatarTab.ResumeLayout(false);
             this.AvatarTab.PerformLayout();
             this.PN_Button.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -22,15 +22,32 @@ namespace VRChatToolBox
             get {
                 if (View == View.LargeIcon)
                 {
-                    if (LargeImageList == null) LargeImageList = new ImageList();
+                    if (LargeImageList is null) LargeImageList = new ImageList();
                     return LargeImageList;
                 }
                 else
                 {
-                    if (SmallImageList == null) SmallImageList = new ImageList();
+                    if (SmallImageList is null) SmallImageList = new ImageList();
                     return SmallImageList;
                 }
             }
+        }
+
+        // リストビューアイテムのリスト
+        private List<ListViewItem> _listViewItems;
+        internal List<ListViewItem> ListViewItems
+        {
+            get { if (_listViewItems is null)
+                    _listViewItems = new List<ListViewItem> { };
+                  return _listViewItems; }
+            set { _listViewItems = value; }
+        }
+
+        // コンストラクタ
+        public FileListView()
+        {
+            // イベント追加
+            RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(FilelistView_RetrieveVirtualItem);
         }
 
         // リストの設定
@@ -38,7 +55,6 @@ namespace VRChatToolBox
         {
             try
             {
-
                 // 処理を軽くしたい
                 BeginUpdate();
 
@@ -46,6 +62,10 @@ namespace VRChatToolBox
                 Clear();
                 StringPath = folderPath;
                 SelectedItemType = ListSelectedItemType.Folder;
+
+                // 仮想モードオン
+                VirtualMode = true;
+                ListViewItems.Clear();
 
                 if (NowViewImages.Images.Count >= 2)
                 {
@@ -59,9 +79,9 @@ namespace VRChatToolBox
                 // フォルダの列挙
                 foreach (DirectoryInfo childDir in ParentDir.EnumerateDirectories())
                 {
-                    string[] items = { childDir.Name, childDir.FullName };
+                    string[] items = { childDir.Name, childDir.FullName, "0" };
                     ListViewItem listViewItem = new ListViewItem(items, 0);
-                    Items.Add(listViewItem);
+                    ListViewItems.Add(listViewItem);
                 }
 
                 // 写真の列挙
@@ -70,16 +90,15 @@ namespace VRChatToolBox
                 {
                     using (FileStream fileStream = File.OpenRead(childFile.FullName))
                     {
-                        using (Image image = Image.FromStream(fileStream, false, false))
-                        {
-                            NowViewImages.Images.Add(image);
-                            ListViewItem listViewItem = new ListViewItem(childFile.Name, j);
-                            listViewItem.SubItems.Add(childFile.FullName);
-                            Items.Add(listViewItem);
-                        }
+                        string[] items = { childFile.Name, childFile.FullName, "1" };
+                        ListViewItem listViewItem = new ListViewItem(items, 0);
+                        ListViewItems.Add(listViewItem);
                     }
                     j += 1;
                 }
+
+                // 仮想モードの設定終了
+                VirtualListSize = ListViewItems.Count;
             }
             finally
             {
@@ -96,16 +115,57 @@ namespace VRChatToolBox
         //    Items.Remove(SelectedItems[0]);
         //}
 
-        // ダブルクリック時
 
+        internal void FilelistView_RetrieveVirtualItem(object sender,RetrieveVirtualItemEventArgs re)
+        {
+            try
+            {
+                // デバッグだと何度もイベントが起きたりしていたので
+                if (re.Item != null) return;
+
+                ListViewItem listViewItem = ListViewItems[re.ItemIndex];
+                
+                // フォルダ or 読み込み済ならそのまま返す
+                if (listViewItem.SubItems[2].Text != "1")
+                {
+                    re.Item = listViewItem;
+                    return;
+                }
+                
+                using (FileStream fileStream = File.OpenRead(listViewItem.SubItems[1].Text))
+                {
+                    using (Image image = Image.FromStream(fileStream, false, false))
+                    {
+                        // サムネイルの追加
+                        NowViewImages.Images.Add(image);
+                        // サムネイルのインデックス
+                        int index = NowViewImages.Images.Count - 1;
+
+                        // サムネイルと紐づけて渡す
+                        listViewItem.ImageIndex = index;
+                        listViewItem.SubItems[2].Text = "2";
+                        re.Item = listViewItem;
+
+                        // キャッシュに更新を反映
+                        ListViewItems[re.ItemIndex] = listViewItem;
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ダブルクリック時
         protected override void OnDoubleClick(EventArgs e)
         {
             try
             {
                 // 何も選択されてなかったら抜ける
-                if (SelectedItems.Count == 0) return;
-
-                string selectedPath = SelectedItems[0].SubItems[1].Text;
+                if (SelectedIndices.Count == 0) return;
+                string selectedPath = ListViewItems[SelectedIndices[0]].SubItems[1].Text;
 
                 // 選択がフォルダなら再設定
                 if (Directory.Exists(selectedPath)) SetListItems(selectedPath);
@@ -124,9 +184,8 @@ namespace VRChatToolBox
             try
             {
                 // 何も選択されてなかったら抜ける
-                if (SelectedItems.Count == 0) return;
-
-                string selectedPath = SelectedItems[0].SubItems[1].Text;
+                if (SelectedIndices.Count == 0) return;
+                string selectedPath = ListViewItems[SelectedIndices[0]].SubItems[1].Text;
 
                 // ファイルが存在しないなら抜ける
                 if (!File.Exists(selectedPath)) return;

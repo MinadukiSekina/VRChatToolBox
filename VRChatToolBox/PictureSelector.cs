@@ -114,7 +114,7 @@ namespace VRChatToolBox
                 LI_WorldList.Items.AddRange(PicturesOrganizer.GetWorldList(pictureDate));
 
                 // 内容の読み込み（あれば）
-                PictureInfo pictureInfo = PictureInfo.LoadInfo(MetaDataFilePath);
+                PictureInfo pictureInfo = XmlContractor.LoadObjectXML<PictureInfo>(MetaDataFilePath);
                 TB_WorldName.Text = pictureInfo.WorldName;
                 TB_WorldAuthorName.Text = pictureInfo.WorldAuthor;
                 TB_AvatarName.Text = pictureInfo.AvatarName;
@@ -190,7 +190,7 @@ namespace VRChatToolBox
 
                 // 写真をコピーして、メタデータを作成
                 PicturesOrganizer.MoveSelectedPicture(PB_Display.ImageLocation);
-                PictureInfo.WriteInfo(metaDataFilePath, pictureInfo);
+                XmlContractor.WriteObjectXML(metaDataFilePath, pictureInfo);
 
                 // 投稿済みボタンを押せるように
                 BT_Move.Enabled = true;

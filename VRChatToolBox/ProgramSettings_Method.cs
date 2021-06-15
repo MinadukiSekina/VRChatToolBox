@@ -13,7 +13,7 @@ namespace VRChatToolBox
 {
     internal partial class ProgramSettings
     {
-        internal ProgramSettings()
+        public ProgramSettings()
         {
             ExeFolderPath = "";
             UserName = "";
@@ -30,39 +30,12 @@ namespace VRChatToolBox
             string settingsFilePath = $"{exeFolderPath}\\{SettingsFileName}";
 
             // 設定ファイルがあれば読み込み
-            if (File.Exists(settingsFilePath)) LoadSettings(settingsFilePath);
+           Settings = XmlContractor.LoadObjectXML<ProgramSettings>(settingsFilePath);
 
             // exeのフォルダパスとユーザー名格納
             Settings.ExeFolderPath = exeFolderPath;
             Settings.UserName = Environment.UserName;
 
-        }
-
-        // 設定の書き込み
-        internal static void WriteSettings(string filePath)
-        {
-            DataContractSerializer serializer = new DataContractSerializer(typeof(ProgramSettings));
-            XmlWriterSettings xmlWriterSettings = new XmlWriterSettings
-            {
-                //BOM無しUTF8、整形アリ
-                Encoding = new UTF8Encoding(false),
-                Indent = true
-            };
-
-            using (XmlWriter xmlWriter = XmlWriter.Create(filePath, xmlWriterSettings))
-            {
-                serializer.WriteObject(xmlWriter, Settings);
-            }
-        }
-
-        // 設定のロード
-        internal static void LoadSettings(string filePath)
-        {
-            DataContractSerializer serializer = new DataContractSerializer(typeof(ProgramSettings));
-            using (XmlReader xmlReader = XmlReader.Create(filePath))
-            {
-                Settings = (ProgramSettings)serializer.ReadObject(xmlReader);
-            }
         }
 
         // AvatarDataの初期化

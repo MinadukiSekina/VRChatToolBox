@@ -15,7 +15,7 @@ namespace VRChatToolBox
         // 上位下位互換保持用
         public ExtensionDataObject ExtensionData { get; set; }
 
-        internal PictureInfo()
+        public PictureInfo()
         {
             WorldName     = "";
             WorldAuthor   = "";
@@ -38,39 +38,6 @@ namespace VRChatToolBox
 
         [DataMember(Name = "投稿内容", Order = 4)]
         internal string[] TweetContents { get; set; }
-
-        // 情報の書き込み
-        internal static void WriteInfo(string filePath, PictureInfo pictureInfo)
-        {
-            string destFolder = Path.GetDirectoryName(filePath);
-            if (!Directory.Exists(destFolder))
-                 Directory.CreateDirectory(destFolder);
-
-            DataContractSerializer serializer = new DataContractSerializer(typeof(PictureInfo));
-            XmlWriterSettings xmlWriterSettings = new XmlWriterSettings
-            {
-                //BOM無しUTF8、整形アリ
-                Encoding = new UTF8Encoding(false),
-                Indent = true
-            };
-
-            using (XmlWriter xmlWriter = XmlWriter.Create(filePath, xmlWriterSettings))
-            {
-                serializer.WriteObject(xmlWriter, pictureInfo);
-            }
-        }
-
-        // 情報の読み込み
-        internal static PictureInfo LoadInfo(string filePath)
-        {
-            if (!File.Exists(filePath)) return new PictureInfo();
-
-            DataContractSerializer serializer = new DataContractSerializer(typeof(PictureInfo));
-            using (XmlReader xmlReader = XmlReader.Create(filePath))
-            {
-                return (PictureInfo)serializer.ReadObject(xmlReader);
-            }
-        }
 
     }
 }

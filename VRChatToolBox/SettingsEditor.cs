@@ -62,7 +62,10 @@ namespace VRChatToolBox
                 DGV_AvatarData.EndEdit();
                 ProgramSettings.Settings.AvataData.AcceptChanges();
 
-                ProgramSettings.WriteSettings($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.SettingsFileName}");
+                XmlContractor.WriteObjectXML($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.SettingsFileName}", ProgramSettings.Settings);
+
+                MessageBox.Show("設定を保存しました。", "設定保存", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch(Exception ex)
             {

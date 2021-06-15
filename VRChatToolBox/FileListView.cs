@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace VRChatToolBox
 {
@@ -107,15 +108,6 @@ namespace VRChatToolBox
             }
         }
 
-        //// 選択した項目の削除
-        //internal void DeleteItemAndImage()
-        //{
-        //    if (Items.Count == 0 || SelectedItems is null) return;
-        //    NowViewImages.Images.RemoveAt(SelectedIndices[0] + 1);
-        //    Items.Remove(SelectedItems[0]);
-        //}
-
-
         internal void FilelistView_RetrieveVirtualItem(object sender,RetrieveVirtualItemEventArgs re)
         {
             try
@@ -131,26 +123,33 @@ namespace VRChatToolBox
                     re.Item = listViewItem;
                     return;
                 }
-                
+
                 using (FileStream fileStream = File.OpenRead(listViewItem.SubItems[1].Text))
                 {
+
                     using (Image image = Image.FromStream(fileStream, false, false))
                     {
-                        // サムネイルの追加
-                        NowViewImages.Images.Add(image);
-                        // サムネイルのインデックス
-                        int index = NowViewImages.Images.Count - 1;
+                        using (Image thumbnail = image.GetThumbnailImage(64, 36, delegate { return false; }, IntPtr.Zero))
+                        {
+                            // サムネイルの追加
+                            NowViewImages.Images.Add(thumbnail);
 
-                        // サムネイルと紐づけて渡す
-                        listViewItem.ImageIndex = index;
-                        listViewItem.SubItems[2].Text = "2";
-                        re.Item = listViewItem;
-
-                        // キャッシュに更新を反映
-                        ListViewItems[re.ItemIndex] = listViewItem;
+                        }
                     }
+
                 }
-                
+
+                // サムネイルのインデックス
+                int index = NowViewImages.Images.Count - 1;
+
+                // サムネイルと紐づけて渡す
+                listViewItem.ImageIndex = index;
+                listViewItem.SubItems[2].Text = "2";
+                re.Item = listViewItem;
+
+                // キャッシュに更新を反映
+                ListViewItems[re.ItemIndex] = listViewItem;
+        
             }
             catch (Exception ex)
             {
@@ -167,8 +166,14 @@ namespace VRChatToolBox
                 if (SelectedIndices.Count == 0) return;
                 string selectedPath = ListViewItems[SelectedIndices[0]].SubItems[1].Text;
 
+                if (!Directory.Exists(selectedPath)) return;
+
                 // 選択がフォルダなら再設定
-                if (Directory.Exists(selectedPath)) SetListItems(selectedPath);
+                SetListItems(selectedPath);
+                // 一応設定
+                StringPath = selectedPath;
+                SelectedItemType = ListSelectedItemType.Folder;
+
             }
             catch (Exception ex)
             {

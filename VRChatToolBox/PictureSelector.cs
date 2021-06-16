@@ -15,16 +15,23 @@ namespace VRChatToolBox
     public partial class PictureSelector : Form
     {
         // メタデータファイルの名称を保持
-        private string MetaDataFileName { get; set; } 
+        private string MetaDataFileName { get; set; }
         // 呼び出しモード
         internal PictureSelectMode ActivateMode { get; set; }
+        // ワールドのデータ保持
+        private Dictionary<string, string> _worldData;
+        internal Dictionary<string, string> WorldData
+        {
+            get => _worldData ?? new Dictionary<string, string> { };
+            set => _worldData = value;
+        }
 
         // デフォルト
         public PictureSelector()
         {
             InitializeComponent();
         }
-        // 起動モード指定のコンストラクト
+        // 起動モード指定
         public PictureSelector(PictureSelectMode activateMode) : this()
         {
             ActivateMode = activateMode;
@@ -44,6 +51,7 @@ namespace VRChatToolBox
             TB_FolderPath.Text = selectFolderPath;
             FV_FileList.SetListItems(selectFolderPath);
             SetAvatarList();
+            WorldData = XmlContractor.LoadObjectXML<Dictionary<string, string>>($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.WorldDataFile}");
             FV_FileList.Select();
         }
 
@@ -111,7 +119,7 @@ namespace VRChatToolBox
 
                 // ワールド候補リストの設定
                 LI_WorldList.Items.Clear();
-                LI_WorldList.Items.AddRange(PicturesOrganizer.GetWorldList(pictureDate));
+                LI_WorldList.Items.AddRange(LogEditor.GetWorldList(pictureDate));
 
                 // 内容の読み込み（あれば）
                 PictureInfo pictureInfo = XmlContractor.LoadObjectXML<PictureInfo>(MetaDataFilePath);
@@ -132,8 +140,12 @@ namespace VRChatToolBox
         private void Li_WorldList_DoubleClick(object sender, EventArgs e)
         {
             if (LI_WorldList.Items.Count == 0 || LI_WorldList.SelectedItem is null) return;
-            TB_WorldName.Text = LI_WorldList.SelectedItem.ToString();
+            string WorldName = LI_WorldList.SelectedItem.ToString().Trim();
+            TB_WorldName.Text = WorldName;
+
+            if (WorldData.Keys.Contains(WorldName)) TB_WorldAuthorName.Text = WorldData[WorldName];
         }
+
         // 閉じる
         private void BT_Close_Click(object sender, EventArgs e)
         {
@@ -179,10 +191,10 @@ namespace VRChatToolBox
                 // インスタンスにメタデータを格納
                 PictureInfo pictureInfo = new PictureInfo
                 {
-                    WorldName = TB_WorldName.Text.Trim(),
-                    WorldAuthor = TB_WorldAuthorName.Text.Trim(),
-                    AvatarName = TB_AvatarName.Text.Trim(),
-                    AvatarAuthor = TB_AvatarAuthor.Text.Trim(),
+                    WorldName     = TB_WorldName.Text.Trim(),
+                    WorldAuthor   = TB_WorldAuthorName.Text.Trim(),
+                    AvatarName    = TB_AvatarName.Text.Trim(),
+                    AvatarAuthor  = TB_AvatarAuthor.Text.Trim(),
                     TweetContents = TB_Sentence.Lines
                 };
 
@@ -191,6 +203,9 @@ namespace VRChatToolBox
                 // 写真をコピーして、メタデータを作成
                 PicturesOrganizer.MoveSelectedPicture(PB_Display.ImageLocation);
                 XmlContractor.WriteObjectXML(metaDataFilePath, pictureInfo);
+
+                // とりあえずワールド情報を保持
+                WorldData[pictureInfo.WorldName] = pictureInfo.WorldAuthor;
 
                 // 投稿済みボタンを押せるように
                 BT_Move.Enabled = true;
@@ -325,6 +340,20 @@ namespace VRChatToolBox
             if (LI_AvatarList.Items.Count == 0 || LI_AvatarList.SelectedItem is null) return;
             TB_AvatarName.Text = ((DataRowView)LI_AvatarList.SelectedItem)[0].ToString();
             TB_AvatarAuthor.Text = LI_AvatarList.SelectedValue.ToString();
+        }
+
+        private void PictureSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                // ワールド情報の保存
+                XmlContractor.WriteObjectXML($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.WorldDataFile}", WorldData);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

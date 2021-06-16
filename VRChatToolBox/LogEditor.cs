@@ -25,7 +25,8 @@ namespace VRChatToolBox
 
             string[] FileContents;
             string CreatePath = "";
-            string SearchStr = "";
+            string SearchStr = "Entering Room|OnPlayerJoined|Unregistering";
+            string rejectStr = "Exception";
             string WriteStr = "";
 
             foreach (string item in Files)
@@ -51,7 +52,6 @@ namespace VRChatToolBox
 
                 // コピーしたログを元に編集
                 CreatePath = $"{DirPath}\\EditedLog_{DateString}_{TimeString}.txt";
-                SearchStr = "Entering Room|OnPlayerJoined|Unregistering";
                 WriteStr = "";
 
                 // 一応存在確認はした方が早いらしい？
@@ -61,8 +61,9 @@ namespace VRChatToolBox
                 {
                     for (int i = 0; i <= FileContents.Length - 1; i++)
                     {
-                        // 空行か、一致しなければ飛ばす
+                        // 空行か、エラー行か、一致しなければ飛ばす
                         if (string.IsNullOrWhiteSpace(FileContents[i])) continue;
+                        if ( Regex.IsMatch(FileContents[i], rejectStr)) continue;
                         if (!Regex.IsMatch(FileContents[i], SearchStr)) continue;
 
                         WriteStr = FileContents[i].Replace("Log        -  [Behaviour] Entering Room", "World");
@@ -96,5 +97,40 @@ namespace VRChatToolBox
             File.Move(filePath, destPath);
 
         }
+
+        // ワールド候補リストの取得
+        internal static string[] GetWorldList(string pictureDate)
+        {
+            // フォルダが無ければすぐに戻す
+            string targetDir = $"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{pictureDate}";
+            if (!Directory.Exists(targetDir)) return new string[0];
+
+            IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{pictureDate}*.txt", SearchOption.TopDirectoryOnly);
+
+            List<string> worldList = new List<string>();
+            string[] contents;
+            string SearchStr = "World";
+            string worldName = "";
+
+            foreach (string editedLogFile in editedLogFileList)
+            {
+                contents = File.ReadAllLines(editedLogFile);
+                foreach (string line in contents)
+                {
+                    // 空行か、一致しなければ飛ばす
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    if (!Regex.IsMatch(line, SearchStr)) continue;
+
+                    // World名を抜き出してAdd
+                    worldName = line.Substring(line.IndexOf("W") + 7);
+                    worldList.Add(worldName);
+                }
+
+            }
+
+            // 重複は除いて配列化
+            return worldList.Distinct().ToArray();
+        }
+
     }
 }

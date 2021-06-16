@@ -35,11 +35,13 @@
             this.PN_Menu1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.PN_Buffer = new System.Windows.Forms.Panel();
+            this.PB_Display = new System.Windows.Forms.PictureBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.PN_Bottom = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.ViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.PN_Menu = new System.Windows.Forms.Panel();
+            this.BT_UP = new System.Windows.Forms.Button();
             this.TB_FolderPath = new System.Windows.Forms.TextBox();
             this.LB_Sentence = new System.Windows.Forms.Label();
             this.TC_Select = new System.Windows.Forms.TabControl();
@@ -64,8 +66,6 @@
             this.BT_OpenVRCHome = new System.Windows.Forms.Button();
             this.BT_OpenTwitter = new System.Windows.Forms.Button();
             this.BT_Close = new System.Windows.Forms.Button();
-            this.PB_Display = new System.Windows.Forms.PictureBox();
-            this.BT_UP = new System.Windows.Forms.Button();
             this.FV_FileList = new VRChatToolBox.FileListView();
             this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
@@ -74,13 +74,13 @@
             this.SpC0.SuspendLayout();
             this.PN_Top.SuspendLayout();
             this.PN_Menu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
             this.PN_Bottom.SuspendLayout();
             this.PN_Menu.SuspendLayout();
             this.TC_Select.SuspendLayout();
             this.WorldTab.SuspendLayout();
             this.AvatarTab.SuspendLayout();
             this.PN_Button.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).BeginInit();
             this.SuspendLayout();
             // 
             // SpC0
@@ -154,6 +154,18 @@
             this.PN_Buffer.Size = new System.Drawing.Size(584, 12);
             this.PN_Buffer.TabIndex = 2;
             // 
+            // PB_Display
+            // 
+            this.PB_Display.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PB_Display.Location = new System.Drawing.Point(0, 0);
+            this.PB_Display.Margin = new System.Windows.Forms.Padding(2);
+            this.PB_Display.Name = "PB_Display";
+            this.PB_Display.Size = new System.Drawing.Size(584, 308);
+            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_Display.TabIndex = 0;
+            this.PB_Display.TabStop = false;
+            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
+            // 
             // splitter1
             // 
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -204,6 +216,19 @@
             this.PN_Menu.Size = new System.Drawing.Size(450, 49);
             this.PN_Menu.TabIndex = 2;
             // 
+            // BT_UP
+            // 
+            this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.BT_UP.Image = global::VRChatToolBox.Properties.Resources.sozai_cman_jp_20210613082324;
+            this.BT_UP.Location = new System.Drawing.Point(9, 8);
+            this.BT_UP.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_UP.Name = "BT_UP";
+            this.BT_UP.Size = new System.Drawing.Size(31, 32);
+            this.BT_UP.TabIndex = 1;
+            this.BT_UP.UseVisualStyleBackColor = true;
+            this.BT_UP.Click += new System.EventHandler(this.BT_UP_Click);
+            // 
             // TB_FolderPath
             // 
             this.TB_FolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -243,7 +268,7 @@
             this.TC_Select.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Select.Name = "TC_Select";
             this.TC_Select.SelectedIndex = 0;
-            this.TC_Select.Size = new System.Drawing.Size(360, 319);
+            this.TC_Select.Size = new System.Drawing.Size(362, 319);
             this.TC_Select.TabIndex = 0;
             this.TC_Select.TabStop = false;
             // 
@@ -260,7 +285,7 @@
             this.WorldTab.Margin = new System.Windows.Forms.Padding(2);
             this.WorldTab.Name = "WorldTab";
             this.WorldTab.Padding = new System.Windows.Forms.Padding(2);
-            this.WorldTab.Size = new System.Drawing.Size(352, 289);
+            this.WorldTab.Size = new System.Drawing.Size(354, 289);
             this.WorldTab.TabIndex = 0;
             this.WorldTab.Text = "ワールド";
             this.WorldTab.UseVisualStyleBackColor = true;
@@ -356,7 +381,7 @@
             this.AvatarTab.Margin = new System.Windows.Forms.Padding(2);
             this.AvatarTab.Name = "AvatarTab";
             this.AvatarTab.Padding = new System.Windows.Forms.Padding(2);
-            this.AvatarTab.Size = new System.Drawing.Size(352, 289);
+            this.AvatarTab.Size = new System.Drawing.Size(354, 289);
             this.AvatarTab.TabIndex = 1;
             this.AvatarTab.Text = "アバター";
             this.AvatarTab.UseVisualStyleBackColor = true;
@@ -445,7 +470,7 @@
             this.TB_Sentence.Multiline = true;
             this.TB_Sentence.Name = "TB_Sentence";
             this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(360, 204);
+            this.TB_Sentence.Size = new System.Drawing.Size(362, 204);
             this.TB_Sentence.TabIndex = 1;
             // 
             // PN_Button
@@ -524,31 +549,6 @@
             this.BT_Close.UseVisualStyleBackColor = true;
             this.BT_Close.Click += new System.EventHandler(this.BT_Close_Click);
             // 
-            // PB_Display
-            // 
-            this.PB_Display.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PB_Display.Location = new System.Drawing.Point(0, 0);
-            this.PB_Display.Margin = new System.Windows.Forms.Padding(2);
-            this.PB_Display.Name = "PB_Display";
-            this.PB_Display.Size = new System.Drawing.Size(584, 308);
-            this.PB_Display.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PB_Display.TabIndex = 0;
-            this.PB_Display.TabStop = false;
-            this.PB_Display.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Display_MouseDown);
-            // 
-            // BT_UP
-            // 
-            this.BT_UP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.BT_UP.Image = global::VRChatToolBox.Properties.Resources.sozai_cman_jp_20210613082324;
-            this.BT_UP.Location = new System.Drawing.Point(9, 8);
-            this.BT_UP.Margin = new System.Windows.Forms.Padding(2);
-            this.BT_UP.Name = "BT_UP";
-            this.BT_UP.Size = new System.Drawing.Size(31, 32);
-            this.BT_UP.TabIndex = 1;
-            this.BT_UP.UseVisualStyleBackColor = true;
-            this.BT_UP.Click += new System.EventHandler(this.BT_UP_Click);
-            // 
             // FV_FileList
             // 
             this.FV_FileList.AutoArrange = false;
@@ -591,6 +591,7 @@
             this.Name = "PictureSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PictureSelector";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PictureSelector_FormClosing);
             this.Load += new System.EventHandler(this.PictureSelector_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PictureSelector_KeyDown);
             this.SpC0.Panel1.ResumeLayout(false);
@@ -600,6 +601,7 @@
             this.SpC0.ResumeLayout(false);
             this.PN_Top.ResumeLayout(false);
             this.PN_Menu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
             this.PN_Bottom.ResumeLayout(false);
             this.PN_Menu.ResumeLayout(false);
             this.PN_Menu.PerformLayout();
@@ -609,7 +611,6 @@
             this.AvatarTab.ResumeLayout(false);
             this.AvatarTab.PerformLayout();
             this.PN_Button.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PB_Display)).EndInit();
             this.ResumeLayout(false);
 
         }

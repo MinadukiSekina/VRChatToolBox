@@ -196,5 +196,11 @@ namespace VRChatToolBox
             set => _tweet = value;
         }
 
+        // ワールドデータの保存ファイル名
+        internal const string WorldDataFile = "WorldData.xml";
+        // キャッシュデータの保存フォルダ
+        internal const string ThumbnailFolderName = "Thumbnail";
+        internal const int ThumbWidth  = 64;
+        internal const int ThumbHeight = 36;
     }
 }

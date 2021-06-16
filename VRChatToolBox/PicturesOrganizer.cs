@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace VRChatToolBox
 {
@@ -19,6 +21,8 @@ namespace VRChatToolBox
             string NewFolderPath = "";
             string pictureName = "";
             string dateString = "";
+            string destPath = "";
+
             IEnumerable<string> pictures = Directory.EnumerateFiles(savedPicturesFolder, "*.png", SearchOption.TopDirectoryOnly);
 
             foreach(string picture in pictures)
@@ -26,45 +30,14 @@ namespace VRChatToolBox
                 dateString = File.GetCreationTime(picture).ToString("yyyyMM");
                 pictureName = Path.GetFileName(picture);
                 NewFolderPath = $"{movedPicturesFolder}\\{dateString}";
+                destPath = $"{NewFolderPath}\\{pictureName}";
                 // 写真の日付のフォルダがあるか
                 if (!Directory.Exists(NewFolderPath)) Directory.CreateDirectory(NewFolderPath);
                 // エラー回避？
-                if (!File.Exists($"{NewFolderPath}\\{pictureName}")) File.Move(picture, $"{NewFolderPath}\\{pictureName}");
+                if (!File.Exists(destPath)) File.Move(picture, destPath);
+                // サムネイル作成
+                CreateThumbNail(destPath, $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}\\{pictureName}");
             }
-        }
-
-        // ワールド候補リストの取得
-        internal static string[] GetWorldList(string pictureDate)
-        {
-            // フォルダが無ければすぐに戻す
-            string targetDir = $"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{pictureDate}";
-            if (!Directory.Exists(targetDir)) return new string[0];
-
-            IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{pictureDate}*.txt", SearchOption.TopDirectoryOnly);
-
-            List<string> worldList = new List<string>();
-            string[] contents;
-            string SearchStr = "World";
-            string worldName = "";
-
-            foreach (string editedLogFile in editedLogFileList)
-            {
-                contents = File.ReadAllLines(editedLogFile);
-                foreach(string line in contents)
-                {
-                    // 空行か、一致しなければ飛ばす
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-                    if (!Regex.IsMatch(line, SearchStr)) continue;
-
-                    // World名を抜き出してAdd
-                    worldName = line.Substring(line.IndexOf("W") + 7);
-                    worldList.Add(worldName);
-                }
-
-            }
-
-            // 重複は除いて配列化
-            return worldList.Distinct().ToArray();
         }
 
         // 選択した写真のコピー
@@ -97,6 +70,43 @@ namespace VRChatToolBox
 
             File.Move(picturePath, destPath);
 
+        }
+
+        // サムネイル画像のキャッシュ
+        internal static void CreateThumbNail(string originalPath, string destPath)
+        {
+            // 既にあるなら作らない
+            if (File.Exists(destPath)) return;
+
+            string thumbNailFolder = Path.GetDirectoryName(destPath);
+            if (!Directory.Exists(thumbNailFolder)) Directory.CreateDirectory(thumbNailFolder);
+
+            // イメージリストのアイコンサイズ
+            int width  = ProgramSettings.ThumbWidth;
+            int height = ProgramSettings.ThumbHeight;
+
+            Bitmap canvas = new Bitmap(width, height);
+
+            using (FileStream fileStream = File.OpenRead(originalPath))
+            {
+                using (Image original = Image.FromStream(fileStream, false, false))
+                {
+                    using (Graphics drawer = Graphics.FromImage(canvas))
+                    {
+                        drawer.FillRectangle(new SolidBrush(Color.FromArgb(0, 0, 0, 0)), 0, 0, width, height);
+
+                        float fWidth = (float)width / (float)original.Width;
+                        float fHeight = (float)height / (float)original.Height;
+
+                        float scale = Math.Min(fWidth, fHeight);
+                        fWidth = original.Width * scale;
+                        fHeight = original.Height * scale;
+
+                        drawer.DrawImage(original, (width - fWidth) / 2, (height - fHeight) / 2, fWidth, fHeight);
+                    }
+                }
+            }
+            canvas.Save(destPath);
         }
     }
 }

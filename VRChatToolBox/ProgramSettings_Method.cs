@@ -30,7 +30,7 @@ namespace VRChatToolBox
             string settingsFilePath = $"{exeFolderPath}\\{SettingsFileName}";
 
             // 設定ファイルがあれば読み込み
-           Settings = XmlContractor.LoadObjectXML<ProgramSettings>(settingsFilePath);
+            Settings = XmlContractor.LoadObjectXML<ProgramSettings>(settingsFilePath);
 
             // exeのフォルダパスとユーザー名格納
             Settings.ExeFolderPath = exeFolderPath;

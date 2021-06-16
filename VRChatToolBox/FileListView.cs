@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using System.Diagnostics;
+using System.Drawing.Imaging;
 
 namespace VRChatToolBox
 {
@@ -17,7 +18,6 @@ namespace VRChatToolBox
         // 何を選んだか
         internal ListSelectedItemType SelectedItemType { get; set; }
 
-        // とりあえず単一ビュー想定なので、使ってるイメージリストを返す
         internal ImageList NowViewImages
         {
             get {
@@ -124,20 +124,8 @@ namespace VRChatToolBox
                     return;
                 }
 
-                using (FileStream fileStream = File.OpenRead(listViewItem.SubItems[1].Text))
-                {
-
-                    using (Image image = Image.FromStream(fileStream, false, false))
-                    {
-                        using (Image thumbnail = image.GetThumbnailImage(64, 36, delegate { return false; }, IntPtr.Zero))
-                        {
-                            // サムネイルの追加
-                            NowViewImages.Images.Add(thumbnail);
-
-                        }
-                    }
-
-                }
+                // サムネイルの追加
+                NowViewImages.Images.Add(GetThumbNail(new string[]{ listViewItem.SubItems[0].Text, listViewItem.SubItems[1].Text }));
 
                 // サムネイルのインデックス
                 int index = NowViewImages.Images.Count - 1;
@@ -209,5 +197,21 @@ namespace VRChatToolBox
             base.OnClick(e);
         }
 
+        private Image GetThumbNail(string[] pictureStr)
+        {
+            string thumbNailFolder = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}";
+            string thumbNailPath = $"{thumbNailFolder}\\{pictureStr[0]}";
+
+            // サムネイルの作成
+            PicturesOrganizer.CreateThumbNail(pictureStr[1], thumbNailPath);
+
+            //　サムネイルの読み込み
+            using (FileStream fileStream = File.OpenRead(thumbNailPath))
+            {
+                Image image = Image.FromStream(fileStream, false, false);
+                return image;
+            }
+
+        }
     }
 }

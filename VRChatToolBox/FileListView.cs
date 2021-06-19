@@ -125,7 +125,7 @@ namespace VRChatToolBox
                 }
 
                 // サムネイルの追加
-                NowViewImages.Images.Add(GetThumbNail(new string[]{ listViewItem.SubItems[0].Text, listViewItem.SubItems[1].Text }));
+                NowViewImages.Images.Add(PicturesOrganizer.GetThumbNail(new string[]{ listViewItem.SubItems[0].Text, listViewItem.SubItems[1].Text }));
 
                 // サムネイルのインデックス
                 int index = NowViewImages.Images.Count - 1;
@@ -197,21 +197,5 @@ namespace VRChatToolBox
             base.OnClick(e);
         }
 
-        private Image GetThumbNail(string[] pictureStr)
-        {
-            string thumbNailFolder = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}";
-            string thumbNailPath = $"{thumbNailFolder}\\{pictureStr[0]}";
-
-            // サムネイルの作成
-            PicturesOrganizer.CreateThumbNail(pictureStr[1], thumbNailPath);
-
-            //　サムネイルの読み込み
-            using (FileStream fileStream = File.OpenRead(thumbNailPath))
-            {
-                Image image = Image.FromStream(fileStream, false, false);
-                return image;
-            }
-
-        }
     }
 }

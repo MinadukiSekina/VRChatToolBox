@@ -14,12 +14,17 @@ namespace VRChatToolBox
     {
         public MainForm()
         {
+            InitializeComponent();
+        }
+
+        // ロード時
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             try
             {
-                InitializeComponent();
                 ProgramSettings.InitializeSettings();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "起動時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
@@ -55,7 +60,7 @@ namespace VRChatToolBox
             {
                 Enabled = false;
                 Cursor.Current = Cursors.WaitCursor;
-
+                
                 PicturesOrganizer.OrganizePictures();
                 MessageBox.Show("写真の整理が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -90,5 +95,6 @@ namespace VRChatToolBox
             PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.UpLoad);
             pictureSelector.ShowDialog();
         }
+
     }
 }

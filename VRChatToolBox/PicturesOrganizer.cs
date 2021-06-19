@@ -72,6 +72,24 @@ namespace VRChatToolBox
 
         }
 
+        // サムネイルの取得
+        internal static Image GetThumbNail(string[] pictureStr)
+        {
+            string thumbNailFolder = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}";
+            string thumbNailPath   = $"{thumbNailFolder}\\{pictureStr[0]}";
+
+            // サムネイルの作成
+            CreateThumbNail(pictureStr[1], thumbNailPath);
+
+            //　サムネイルの読み込み
+            using (FileStream fileStream = File.OpenRead(thumbNailPath))
+            {
+                Image image = Image.FromStream(fileStream, false, false);
+                return image;
+            }
+
+        }
+
         // サムネイル画像のキャッシュ
         internal static void CreateThumbNail(string originalPath, string destPath)
         {

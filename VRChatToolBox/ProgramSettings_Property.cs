@@ -200,6 +200,7 @@ namespace VRChatToolBox
         internal const string WorldDataFile = "WorldData.xml";
         // キャッシュデータの保存フォルダ
         internal const string ThumbnailFolderName = "Thumbnail";
+        // キャッシュのサイズ
         internal const int ThumbWidth  = 64;
         internal const int ThumbHeight = 36;
     }

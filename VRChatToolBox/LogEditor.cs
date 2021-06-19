@@ -59,7 +59,7 @@ namespace VRChatToolBox
 
                 using (StreamWriter SW = new StreamWriter(CreatePath))
                 {
-                    for (int i = 0; i <= FileContents.Length - 1; i++)
+                    for (int i = 0; i < FileContents.Length; i++)
                     {
                         // 空行か、エラー行か、一致しなければ飛ばす
                         if (string.IsNullOrWhiteSpace(FileContents[i])) continue;
@@ -103,7 +103,7 @@ namespace VRChatToolBox
         {
             // フォルダが無ければすぐに戻す
             string targetDir = $"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{pictureDate}";
-            if (!Directory.Exists(targetDir)) return new string[0];
+            if (!Directory.Exists(targetDir)) return new string[] { };
 
             IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{pictureDate}*.txt", SearchOption.TopDirectoryOnly);
 
@@ -115,14 +115,14 @@ namespace VRChatToolBox
             foreach (string editedLogFile in editedLogFileList)
             {
                 contents = File.ReadAllLines(editedLogFile);
-                foreach (string line in contents)
+                for (int i = 0; i < contents.Length; i++)
                 {
                     // 空行か、一致しなければ飛ばす
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-                    if (!Regex.IsMatch(line, SearchStr)) continue;
+                    if (string.IsNullOrWhiteSpace(contents[i])) continue;
+                    if (!Regex.IsMatch(contents[i], SearchStr)) continue;
 
                     // World名を抜き出してAdd
-                    worldName = line.Substring(line.IndexOf("W") + 7);
+                    worldName = contents[i].Substring(contents[i].IndexOf("W") + 7);
                     worldList.Add(worldName);
                 }
 

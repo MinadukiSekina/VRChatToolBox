@@ -39,20 +39,28 @@ namespace VRChatToolBox
 
         private void PictureSelector_Load(object sender, EventArgs e)
         {
-            // 表示するフォルダの設定
-            string selectFolderPath = (ActivateMode == PictureSelectMode.Select)
-                                       ? ProgramSettings.Settings.DesignatedPicturesMovedFolder
-                                       : ProgramSettings.Settings.DesignatedPicturesSelectedFolder;
-            // 無いとエラーになるので
-            if (!Directory.Exists(selectFolderPath)) Directory.CreateDirectory(selectFolderPath);
+            try
+            {
+                // 表示するフォルダの設定
+                string selectFolderPath = (ActivateMode == PictureSelectMode.Select)
+                                           ? ProgramSettings.Settings.DesignatedPicturesMovedFolder
+                                           : ProgramSettings.Settings.DesignatedPicturesSelectedFolder;
+                // 無いとエラーになるので
+                if (!Directory.Exists(selectFolderPath)) Directory.CreateDirectory(selectFolderPath);
 
-            // 初期化
-            DT_DirectoryList.InitList(); 
-            TB_FolderPath.Text = selectFolderPath;
-            FV_FileList.SetListItems(selectFolderPath);
-            SetAvatarList();
-            WorldData = XmlContractor.LoadObjectXML<Dictionary<string, string>>($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.WorldDataFile}");
-            FV_FileList.Select();
+                // 初期化
+                DT_DirectoryList.InitList();
+                TB_FolderPath.Text = selectFolderPath;
+                FV_FileList.SetListItems(selectFolderPath);
+                SetAvatarList();
+                WorldData = XmlContractor.LoadObjectXML<Dictionary<string, string>>($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.WorldDataFile}");
+                FV_FileList.Select();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "起動エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         // アバターリストのセット
@@ -242,10 +250,17 @@ namespace VRChatToolBox
 
         private void TB_FolderPath_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.Enter) return;
-            TB_FolderPath.Text = TB_FolderPath.Text.Trim().TrimEnd('\\');
-            if (!Path_Validation(TB_FolderPath.Text)) return;
-            FV_FileList.SetListItems(TB_FolderPath.Text);
+            try
+            {
+                if (e.KeyCode != Keys.Enter) return;
+                TB_FolderPath.Text = TB_FolderPath.Text.Trim().TrimEnd('\\');
+                if (!Path_Validation(TB_FolderPath.Text)) return;
+                FV_FileList.SetListItems(TB_FolderPath.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void TB_FolderPath_Validating(object sender, CancelEventArgs e)

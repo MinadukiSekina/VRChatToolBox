@@ -79,9 +79,16 @@ namespace VRChatToolBox
         // パスの指定
         private void PathText_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.Enter) return;
-            if (!Path_Validation(PathText.Text)) return;
-            FileListView1.SetListItems(PathText.Text);
+            try
+            {
+                if (e.KeyCode != Keys.Enter) return;
+                if (!Path_Validation(PathText.Text)) return;
+                FileListView1.SetListItems(PathText.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // パスチェック

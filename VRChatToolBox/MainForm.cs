@@ -78,23 +78,57 @@ namespace VRChatToolBox
         // 設定画面のオープン
         private void BT_Settings_Click(object sender, EventArgs e)
         {
-            SettingsEditor settingsEditor = new SettingsEditor();
-            settingsEditor.ShowDialog();
+            try
+            {
+                SettingsEditor settingsEditor = new SettingsEditor();
+                settingsEditor.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         
         // 投稿する写真を選ぶ
         private void BT_Select_Click(object sender, EventArgs e)
         {
-            PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.Select);
-            pictureSelector.ShowDialog();
+            try
+            {
+                PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.Select);
+                pictureSelector.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         
         // 写真を投稿する
         private void BT_UpLoad_Click(object sender, EventArgs e)
         {
-            PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.UpLoad);
-            pictureSelector.ShowDialog();
+            try
+            {
+                PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.UpLoad);
+                pictureSelector.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // ログの閲覧
+        private void BT_BrowseLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LogBrowser logBrowser = new LogBrowser();
+                logBrowser.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

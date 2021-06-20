@@ -132,5 +132,71 @@ namespace VRChatToolBox
             return worldList.Distinct().ToArray();
         }
 
+        // ワールド候補リストの取得
+        internal static void GetListFromEditedLog(string dateString, ref string[] worldArray, ref string[][] joinArray, ref string[][] exitArray)
+        {
+            // フォルダが無ければすぐに戻す
+            string targetDir = $"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{dateString}";
+            if (!Directory.Exists(targetDir)) return;
+
+            IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{dateString}*.txt", SearchOption.TopDirectoryOnly);
+
+            List<string> worldList = new List<string>();
+            List<string[]> joinList  = new List<string[]>();
+            List<string[]> exitList  = new List<string[]>();
+
+            List<string> tmpJoin = new List<string>();
+            List<string> tmpExit = new List<string>();
+
+            int worldCount = 0;
+
+            foreach (string editedLogFile in editedLogFileList)
+            {
+                foreach(string line in File.ReadLines(editedLogFile))
+                { 
+                    // 空行なら飛ばす
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    // ワールド単位で追加
+                    if (Regex.IsMatch(line, "World"))
+                    {
+                        worldList.Add(line);
+                        if (worldCount > 0)
+                        {
+                            joinList.Add(tmpJoin.ToArray());
+                            exitList.Add(tmpExit.ToArray());
+                            tmpJoin = new List<string>();
+                            tmpExit = new List<string>();
+                        }
+                        worldCount++;
+                        continue;
+                    }
+                    // Join履歴の追加
+                    if (Regex.IsMatch(line, "Join"))
+                    {
+                        tmpJoin.Add(line);
+                        continue;
+                    }
+                    // Exit履歴の追加
+                    if (Regex.IsMatch(line, "Exit"))
+                    {
+                        tmpExit.Add(line);
+                        continue;
+                    }
+                }
+                if (worldCount > 0)
+                {
+                    joinList.Add(tmpJoin.ToArray());
+                    exitList.Add(tmpExit.ToArray());
+                    tmpJoin = new List<string>();
+                    tmpExit = new List<string>();
+                    worldCount = 0;
+                }
+            }
+
+            worldArray = worldList.ToArray();
+            joinArray = joinList.ToArray();
+            exitArray = exitList.ToArray();
+        }
+
     }
 }

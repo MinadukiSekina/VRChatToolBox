@@ -16,21 +16,24 @@ namespace VRChatToolBox
         // 写真の移動処理（一括）
         internal static void OrganizePictures()
         {
+            bool makeDayFolder = ProgramSettings.Settings.MakeDayFolder;
             string savedPicturesFolder = ProgramSettings.Settings.DesignatedPicturesSavedFolder;
             string movedPicturesFolder = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
             string NewFolderPath = "";
-            string pictureName = "";
-            string dateString = "";
-            string destPath = "";
+            string pictureName   = "";
+            string monthString   = "";
+            string dateString    = "";
+            string destPath      = "";
 
             IEnumerable<string> pictures = Directory.EnumerateFiles(savedPicturesFolder, "*.png", SearchOption.TopDirectoryOnly);
 
             foreach(string picture in pictures)
             {
-                dateString = File.GetCreationTime(picture).ToString("yyyyMM");
-                pictureName = Path.GetFileName(picture);
-                NewFolderPath = $"{movedPicturesFolder}\\{dateString}";
-                destPath = $"{NewFolderPath}\\{pictureName}";
+                dateString    = File.GetCreationTime(picture).ToString("yyyyMMdd");
+                monthString   = File.GetCreationTime(picture).ToString("yyyyMM");
+                pictureName   = Path.GetFileName(picture);
+                NewFolderPath = $"{movedPicturesFolder}\\{monthString}{(makeDayFolder? $"\\{dateString}":"")}";
+                destPath      = $"{NewFolderPath}\\{pictureName}";
                 // 写真の日付のフォルダがあるか
                 if (!Directory.Exists(NewFolderPath)) Directory.CreateDirectory(NewFolderPath);
                 // エラー回避？
@@ -125,6 +128,47 @@ namespace VRChatToolBox
                 }
             }
             canvas.Save(destPath);
+        }
+
+        // サムネイル画像のキャッシュフォルダサイズを計算
+        internal static string GetThumbNailFolderSize()
+        {
+            string thumbNailFolder = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}";
+            if (!Directory.Exists(thumbNailFolder)) return "0B";
+
+            long folderSize = 0;
+            DirectoryInfo directoryInfo = new DirectoryInfo(thumbNailFolder);
+            foreach(FileInfo pictureInfo in directoryInfo.GetFiles("*.png", SearchOption.AllDirectories))
+            {
+                folderSize += pictureInfo.Length;
+            }
+
+            if(folderSize == 0)
+            {
+                return "0B";
+            }
+            else
+            {
+                // 後で使うので最初に宣言
+                int i;
+
+                // 単位換算
+                for(i = 1; folderSize >= 1024; i++)
+                {
+                    folderSize /= 1024;
+                }
+
+                // 回数で単位を判断して返す
+                switch (i)
+                {
+                    case 1: return $"{folderSize}B";
+                    case 2: return $"{folderSize}KB";
+                    case 3: return $"{folderSize}MB";
+                    case 4: return $"{folderSize}GB";
+                    case 5: return $"{folderSize}TB";
+                    default: return $"{folderSize}TB";
+                }
+            }
         }
     }
 }

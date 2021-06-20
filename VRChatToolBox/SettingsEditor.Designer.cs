@@ -49,7 +49,6 @@
             this.PSC_SelectedPicturesFolder = new VRChatToolBox.PathSetControl();
             this.MetaTab = new System.Windows.Forms.TabPage();
             this.LB_Format = new System.Windows.Forms.Label();
-            this.LB_Notification = new System.Windows.Forms.Label();
             this.BT_RemoveRow = new System.Windows.Forms.Button();
             this.BT_AddRow = new System.Windows.Forms.Button();
             this.DGV_AvatarData = new System.Windows.Forms.DataGridView();
@@ -58,6 +57,8 @@
             this.TweetBox1 = new VRChatToolBox.TweetBox();
             this.PSC_UpLoadedInfoFolder = new VRChatToolBox.PathSetControl();
             this.PSC_SelectedInfoFolder = new VRChatToolBox.PathSetControl();
+            this.LB_CacheSize = new System.Windows.Forms.Label();
+            this.CH_MakeDayFolder = new System.Windows.Forms.CheckBox();
             this.PN_Function.SuspendLayout();
             this.TC_Settings.SuspendLayout();
             this.LogTab.SuspendLayout();
@@ -185,7 +186,7 @@
             this.PN_Function.Controls.Add(this.BT_Return);
             this.PN_Function.Controls.Add(this.BT_Reset);
             this.PN_Function.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PN_Function.Location = new System.Drawing.Point(0, 377);
+            this.PN_Function.Location = new System.Drawing.Point(0, 449);
             this.PN_Function.Margin = new System.Windows.Forms.Padding(2);
             this.PN_Function.Name = "PN_Function";
             this.PN_Function.Size = new System.Drawing.Size(696, 61);
@@ -245,7 +246,7 @@
             this.TC_Settings.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Settings.Name = "TC_Settings";
             this.TC_Settings.SelectedIndex = 0;
-            this.TC_Settings.Size = new System.Drawing.Size(696, 438);
+            this.TC_Settings.Size = new System.Drawing.Size(696, 510);
             this.TC_Settings.TabIndex = 2;
             // 
             // LogTab
@@ -265,6 +266,8 @@
             // 
             // PictureTab
             // 
+            this.PictureTab.Controls.Add(this.CH_MakeDayFolder);
+            this.PictureTab.Controls.Add(this.LB_CacheSize);
             this.PictureTab.Controls.Add(this.PSC_UpLoadedPicturesFolder);
             this.PictureTab.Controls.Add(this.PSC_SelectedPicturesFolder);
             this.PictureTab.Controls.Add(this.PSC_PicturesSavedPath);
@@ -274,7 +277,7 @@
             this.PictureTab.Margin = new System.Windows.Forms.Padding(2);
             this.PictureTab.Name = "PictureTab";
             this.PictureTab.Padding = new System.Windows.Forms.Padding(2);
-            this.PictureTab.Size = new System.Drawing.Size(688, 412);
+            this.PictureTab.Size = new System.Drawing.Size(688, 484);
             this.PictureTab.TabIndex = 1;
             this.PictureTab.Text = "写真";
             this.PictureTab.UseVisualStyleBackColor = true;
@@ -306,7 +309,6 @@
             // MetaTab
             // 
             this.MetaTab.Controls.Add(this.LB_Format);
-            this.MetaTab.Controls.Add(this.LB_Notification);
             this.MetaTab.Controls.Add(this.BT_RemoveRow);
             this.MetaTab.Controls.Add(this.BT_AddRow);
             this.MetaTab.Controls.Add(this.DGV_AvatarData);
@@ -335,19 +337,6 @@
             this.LB_Format.Size = new System.Drawing.Size(107, 16);
             this.LB_Format.TabIndex = 11;
             this.LB_Format.Text = "投稿フォーマット";
-            // 
-            // LB_Notification
-            // 
-            this.LB_Notification.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LB_Notification.AutoSize = true;
-            this.LB_Notification.Font = new System.Drawing.Font("MS UI Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.LB_Notification.Location = new System.Drawing.Point(120, 186);
-            this.LB_Notification.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LB_Notification.Name = "LB_Notification";
-            this.LB_Notification.Size = new System.Drawing.Size(115, 14);
-            this.LB_Notification.TabIndex = 10;
-            this.LB_Notification.Text = "Ctrl + Enterで改行";
             // 
             // BT_RemoveRow
             // 
@@ -396,6 +385,7 @@
             this.DGV_AvatarData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_AvatarData.Size = new System.Drawing.Size(356, 105);
             this.DGV_AvatarData.TabIndex = 3;
+            this.DGV_AvatarData.TabStop = false;
             // 
             // AvatarName
             // 
@@ -423,7 +413,7 @@
             this.TweetBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TweetBox1.Size = new System.Drawing.Size(294, 138);
             this.TweetBox1.TabIndex = 2;
-            this.TweetBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TweetBox1_KeyDown);
+            this.TweetBox1.TabStop = false;
             // 
             // PSC_UpLoadedInfoFolder
             // 
@@ -449,11 +439,30 @@
             this.PSC_SelectedInfoFolder.TabIndex = 0;
             this.PSC_SelectedInfoFolder.Title = "選択した写真のメタデータの保存場所";
             // 
+            // LB_CacheSize
+            // 
+            this.LB_CacheSize.AutoSize = true;
+            this.LB_CacheSize.Location = new System.Drawing.Point(18, 396);
+            this.LB_CacheSize.Name = "LB_CacheSize";
+            this.LB_CacheSize.Size = new System.Drawing.Size(187, 16);
+            this.LB_CacheSize.TabIndex = 4;
+            this.LB_CacheSize.Text = "写真のキャッシュデータ容量：";
+            // 
+            // CH_MakeDayFolder
+            // 
+            this.CH_MakeDayFolder.AutoSize = true;
+            this.CH_MakeDayFolder.Location = new System.Drawing.Point(20, 364);
+            this.CH_MakeDayFolder.Name = "CH_MakeDayFolder";
+            this.CH_MakeDayFolder.Size = new System.Drawing.Size(354, 20);
+            this.CH_MakeDayFolder.TabIndex = 5;
+            this.CH_MakeDayFolder.Text = "写真整理時、月毎の下に日毎のフォルダを作成する";
+            this.CH_MakeDayFolder.UseVisualStyleBackColor = true;
+            // 
             // SettingsEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 438);
+            this.ClientSize = new System.Drawing.Size(696, 510);
             this.Controls.Add(this.PN_Function);
             this.Controls.Add(this.TC_Settings);
             this.KeyPreview = true;
@@ -469,6 +478,7 @@
             this.TC_Settings.ResumeLayout(false);
             this.LogTab.ResumeLayout(false);
             this.PictureTab.ResumeLayout(false);
+            this.PictureTab.PerformLayout();
             this.MetaTab.ResumeLayout(false);
             this.MetaTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_AvatarData)).EndInit();
@@ -505,7 +515,8 @@
         private System.Windows.Forms.Button BT_RemoveRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn AvatarName;
         private System.Windows.Forms.DataGridViewTextBoxColumn AvatarAuthor;
-        private System.Windows.Forms.Label LB_Notification;
         private System.Windows.Forms.Label LB_Format;
+        private System.Windows.Forms.Label LB_CacheSize;
+        private System.Windows.Forms.CheckBox CH_MakeDayFolder;
     }
 }

@@ -148,10 +148,10 @@ namespace VRChatToolBox
         private void Li_WorldList_DoubleClick(object sender, EventArgs e)
         {
             if (LI_WorldList.Items.Count == 0 || LI_WorldList.SelectedItem is null) return;
-            string WorldName = LI_WorldList.SelectedItem.ToString().Trim();
+            string WorldName  = LI_WorldList.SelectedItem.ToString().Trim();
             TB_WorldName.Text = WorldName;
 
-            if (WorldData.Keys.Contains(WorldName)) TB_WorldAuthorName.Text = WorldData[WorldName];
+            TB_WorldAuthorName.Text = WorldData.Keys.Contains(WorldName)? WorldData[WorldName]: "";
         }
 
         // 閉じる

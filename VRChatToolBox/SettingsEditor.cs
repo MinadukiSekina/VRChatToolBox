@@ -23,6 +23,7 @@ namespace VRChatToolBox
         {
             // 現在設定の表示
             SetNowValue();
+            LB_CacheSize.Text =$"サムネイル画像のキャッシュ容量：{PicturesOrganizer.GetThumbNailFolderSize()}";
             PSC_LogSavedPath.Select();
         }
 
@@ -55,6 +56,7 @@ namespace VRChatToolBox
                 ProgramSettings.Settings.DesignatedPicturesMovedFolder = PSC_PicturesMovedPath.SelectedPath.Trim();
                 ProgramSettings.Settings.DesignatedPicturesSelectedFolder = PSC_SelectedPicturesFolder.SelectedPath.Trim();
                 ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder = PSC_UpLoadedPicturesFolder.SelectedPath.Trim();
+                ProgramSettings.Settings.MakeDayFolder = CH_MakeDayFolder.Checked;
                 // メタデータ関連
                 ProgramSettings.Settings.DesignatedPictureInfoPath = PSC_SelectedInfoFolder.SelectedPath.Trim();
                 ProgramSettings.Settings.DesignatedUpLoadedInfoPath = PSC_UpLoadedInfoFolder.SelectedPath.Trim();
@@ -90,6 +92,7 @@ namespace VRChatToolBox
             PSC_PicturesMovedPath.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.PicturesSavedFolder}";
             PSC_SelectedPicturesFolder.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.PicturesSavedFolder}\\{ProgramSettings.PictureSelectedFolder}";
             PSC_UpLoadedPicturesFolder.SelectedPath = $"{ProgramSettings.LogPath1}{ProgramSettings.Settings.UserName}{ProgramSettings.PicturesSavedFolder}\\{ProgramSettings.PictureUpLoadedFolder}";
+            CH_MakeDayFolder.Checked = false;
             // メタデータ関連
             PSC_SelectedInfoFolder.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.PictureInfoPath}";
             PSC_UpLoadedInfoFolder.SelectedPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.UpLoadedInfoPath}";
@@ -119,6 +122,7 @@ namespace VRChatToolBox
             PSC_PicturesMovedPath.SelectedPath = ProgramSettings.Settings.DesignatedPicturesMovedFolder;
             PSC_SelectedPicturesFolder.SelectedPath = ProgramSettings.Settings.DesignatedPicturesSelectedFolder;
             PSC_UpLoadedPicturesFolder.SelectedPath = ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder;
+            CH_MakeDayFolder.Checked = ProgramSettings.Settings.MakeDayFolder;
             // メタデータ関連
             PSC_SelectedInfoFolder.SelectedPath = ProgramSettings.Settings.DesignatedPictureInfoPath;
             PSC_UpLoadedInfoFolder.SelectedPath = ProgramSettings.Settings.DesignatedUpLoadedInfoPath;
@@ -132,8 +136,10 @@ namespace VRChatToolBox
         {
             try
             {
-                ProgramSettings.Settings.AvataData.Rows.Add(new string[] { "", "" });
-
+                DataRow dataRow = ProgramSettings.Settings.AvataData.NewRow();
+                dataRow["AvatarName"]   = "";
+                dataRow["AvatarAuthor"] = "";
+                ProgramSettings.Settings.AvataData.Rows.InsertAt(dataRow, ProgramSettings.Settings.AvataData.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -156,19 +162,6 @@ namespace VRChatToolBox
         private void SettingsEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ProgramSettings.Settings.AvataData.RejectChanges();
-        }
-
-        private void TweetBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode!= Keys.Enter || e.Control == true) return;
-                SelectNextControl(ActiveControl, true, true, true, true);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
     }

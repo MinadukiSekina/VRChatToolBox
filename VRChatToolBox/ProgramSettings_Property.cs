@@ -196,6 +196,10 @@ namespace VRChatToolBox
             set => _tweet = value;
         }
 
+        // 写真整理時のオプション：日毎にフォルダを分けるか
+        [DataMember(Name = "写真整理時に日毎に分ける", Order = 11)]
+        internal bool MakeDayFolder { get; set; }
+
         // ワールドデータの保存ファイル名
         internal const string WorldDataFile = "WorldData.xml";
         // キャッシュデータの保存フォルダ

@@ -33,10 +33,6 @@ namespace VRChatToolBox
                 case Keys.Enter :
                     if (ActiveControl.Name != TweetBox1.Name) SelectNextControl(ActiveControl, true, true, true, true);
                     break;
-                case Keys.Escape : BT_Cancel_Click(BT_Cancel,EventArgs.Empty); break;
-                case Keys.F1 : BT_Return_Click(BT_Cancel,EventArgs.Empty); break;
-                case Keys.F2 : BT_Reset_Click(BT_Cancel,EventArgs.Empty); break;
-                case Keys.F3 : BT_Save_Click(BT_Cancel,EventArgs.Empty); break;
                 default : break;
             }
 

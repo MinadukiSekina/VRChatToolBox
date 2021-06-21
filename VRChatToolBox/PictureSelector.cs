@@ -45,6 +45,9 @@ namespace VRChatToolBox
                 string selectFolderPath = (ActivateMode == PictureSelectMode.Select)
                                            ? ProgramSettings.Settings.DesignatedPicturesMovedFolder
                                            : ProgramSettings.Settings.DesignatedPicturesSelectedFolder;
+
+                Text = $"{(ActivateMode == PictureSelectMode.Select? "写真選択": "写真投稿")}";
+
                 // 無いとエラーになるので
                 if (!Directory.Exists(selectFolderPath)) Directory.CreateDirectory(selectFolderPath);
 
@@ -222,11 +225,6 @@ namespace VRChatToolBox
             {
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void PictureSelector_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         // 上の階層へ

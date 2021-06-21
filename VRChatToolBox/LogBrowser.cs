@@ -87,28 +87,6 @@ namespace VRChatToolBox
             }
         }
 
-        // フォームキーイベント
-        private void LogBrowser_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Escape:
-                        FormClear();
-                        break;
-                    case Keys.F1:
-                        Close();
-                        break;
-                    default: break;                 
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         // 初期化
         private void FormClear()
         {

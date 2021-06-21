@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.BT_EditLog = new System.Windows.Forms.Button();
             this.BT_PicturesMove = new System.Windows.Forms.Button();
             this.BT_Settings = new System.Windows.Forms.Button();
@@ -120,6 +121,7 @@
             this.Controls.Add(this.BT_PicturesMove);
             this.Controls.Add(this.BT_EditLog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";

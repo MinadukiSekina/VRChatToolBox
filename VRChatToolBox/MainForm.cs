@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace VRChatToolBox
 {
@@ -22,7 +23,12 @@ namespace VRChatToolBox
         {
             try
             {
+                // 設定の読み込み
                 ProgramSettings.InitializeSettings();
+                // バージョン表示
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                Version version = assembly.GetName().Version;
+                Text = $"VRChatToolBox {version.ToString()}";
             }
             catch (Exception ex)
             {

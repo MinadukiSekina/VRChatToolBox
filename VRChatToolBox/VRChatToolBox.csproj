@@ -51,6 +51,9 @@
   <PropertyGroup>
     <StartupObject>VRChatToolBox.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>VRChatToolBox_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -178,7 +181,9 @@
     <None Include="Resources\sozai_cman_jp_20210613082324.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Image1.bmp" />
+    <Content Include="Resources\sozai_cman_jp_20210601203235.png" />
+    <Content Include="Resources\VRChatToolBox_Icon.ico" />
+    <Content Include="VRChatToolBox_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

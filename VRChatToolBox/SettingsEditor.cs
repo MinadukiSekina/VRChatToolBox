@@ -29,13 +29,9 @@ namespace VRChatToolBox
 
         private void SettingsEditor_KeyDown(object sender, KeyEventArgs e)
         {
-            switch(e.KeyCode) {
-                case Keys.Enter :
-                    if (ActiveControl.Name != TweetBox1.Name) SelectNextControl(ActiveControl, true, true, true, true);
-                    break;
-                default : break;
-            }
-
+            if (e.KeyCode != Keys.Enter) return;
+            if (ActiveControl.Name != TweetBox1.Name)
+                SelectNextControl(ActiveControl, true, true, true, true);
         }
 
         private void BT_Save_Click(object sender, EventArgs e)

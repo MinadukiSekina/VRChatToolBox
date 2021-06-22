@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Macrohard")]
 [assembly: AssemblyProduct("VRChatToolBox")]
-[assembly: AssemblyCopyright("MInaduki Sekina Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©  2021 Minaduki Sekina")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

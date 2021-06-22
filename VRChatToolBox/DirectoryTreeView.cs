@@ -27,7 +27,7 @@ namespace VRChatToolBox
         protected override void OnBeforeExpand(TreeViewCancelEventArgs e)
         {
             TreeNode node = e.Node;
-            string path = node.FullPath;
+            string path   = node.FullPath;
             node.Nodes.Clear();
 
             try

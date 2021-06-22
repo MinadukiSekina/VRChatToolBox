@@ -19,14 +19,23 @@ namespace VRChatToolBox
             DGV_AvatarData.AutoGenerateColumns = false;
         }
 
+        // フォーム起動時
         private void SettingsEditor_Load(object sender, EventArgs e)
         {
-            // 現在設定の表示
-            SetNowValue();
-            LB_CacheSize.Text =$"サムネイル画像のキャッシュ容量：{PicturesOrganizer.GetThumbNailFolderSize()}";
-            PSC_LogSavedPath.Select();
+            try
+            {
+                // 現在設定の表示
+                SetNowValue();
+                LB_CacheSize.Text = $"サムネイル画像のキャッシュ容量：{PicturesOrganizer.GetThumbNailFolderSize()}";
+                PSC_LogSavedPath.Select();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "起動時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // カーソル遷移
         private void SettingsEditor_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter) return;
@@ -34,6 +43,7 @@ namespace VRChatToolBox
                 SelectNextControl(ActiveControl, true, true, true, true);
         }
 
+        // 保存
         private void BT_Save_Click(object sender, EventArgs e)
         {
             try
@@ -67,11 +77,13 @@ namespace VRChatToolBox
             }
         }
 
+        // フォームを閉じる
         private void BT_Return_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        // 初期化
         private void BT_Reset_Click(object sender, EventArgs e)
         {
             // 設定のリセット
@@ -94,6 +106,7 @@ namespace VRChatToolBox
 
         }
 
+        // 現在値に戻す
         private void BT_Cancel_Click(object sender, EventArgs e)
         {
             DGV_AvatarData.EndEdit();
@@ -102,6 +115,7 @@ namespace VRChatToolBox
             SetNowValue();
         }
 
+        // 現在の設定値をセット
         private void SetNowValue()
         {
             // 設定の表示
@@ -123,7 +137,7 @@ namespace VRChatToolBox
 
         }
 
-        // 行の追加
+        // アバターデータに行を追加
         private void BT_AddRow_Click(object sender, EventArgs e)
         {
             try
@@ -139,6 +153,7 @@ namespace VRChatToolBox
             }
         }
 
+        // アバターデータの行を削除
         private void BT_RemoveRow_Click(object sender, EventArgs e)
         {
             try
@@ -151,6 +166,7 @@ namespace VRChatToolBox
             }
         }
 
+        // フォーム終了時
         private void SettingsEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ProgramSettings.Settings.AvataData.RejectChanges();

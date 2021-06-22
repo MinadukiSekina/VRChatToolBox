@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogBrowser));
             this.DTP_TimePicker = new System.Windows.Forms.DateTimePicker();
             this.LI_WorldList = new System.Windows.Forms.ListBox();
             this.LI_JoinList = new System.Windows.Forms.ListBox();
@@ -160,6 +161,7 @@
             this.Controls.Add(this.LI_JoinList);
             this.Controls.Add(this.LI_WorldList);
             this.Controls.Add(this.DTP_TimePicker);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "LogBrowser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

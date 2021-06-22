@@ -15,33 +15,35 @@ namespace VRChatToolBox
        internal static void CopyAndEdit()
         {
             IEnumerable<string> Files = Directory.EnumerateFiles(ProgramSettings.Settings.DesignatedLogPath, "*.txt", SearchOption.TopDirectoryOnly);
-            string LogMovedPath = ProgramSettings.Settings.DesignatedMovedLogPath;
+
+            string LogMovedPath  = ProgramSettings.Settings.DesignatedMovedLogPath;
             string EditedLogPath = ProgramSettings.Settings.DesignatedEditedLogPath;
-            string DateString = "";
-            string TimeString = "";
-            string DirPath = "";
-            string FilePath = "";
-            string FileName = "";
+            string DateString    = "";
+            string TimeString    = "";
+            string DirPath       = "";
+            string FilePath      = "";
+            string FileName      = "";
 
             string[] FileContents;
             string CreatePath = "";
-            string SearchStr = "Entering Room|OnPlayerJoined|Unregistering";
-            string rejectStr = "Exception";
-            string WriteStr = "";
+            string SearchStr  = "Entering Room|OnPlayerJoined|Unregistering";
+            string rejectStr  = "Exception";
+            string WriteStr   = "";
 
             foreach (string item in Files)
             {
                 // 元のログをexeと同一階層にある保管用フォルダ内にコピーする
-                FileName = Path.GetFileName(item);
+                FileName   = Path.GetFileName(item);
                 DateString = File.GetCreationTime(item).ToString("yyyyMMdd");
                 TimeString = File.GetCreationTime(item).ToString("HHmmss");
-                DirPath = $"{LogMovedPath}\\{DateString}";
-                FilePath = $"{DirPath}\\{FileName}";
+                DirPath    = $"{LogMovedPath}\\{DateString}";
+                FilePath   = $"{DirPath}\\{FileName}";
 
                 // 既にファイルがあれば、処理済みと判断
                 if (File.Exists(FilePath)) continue;
                 // コピー前にフォルダを作る
                 if (!Directory.Exists(DirPath)) Directory.CreateDirectory(DirPath);
+
                 File.Copy(item, FilePath);
 
                 // 移動したログファイルを読み込み
@@ -52,7 +54,7 @@ namespace VRChatToolBox
 
                 // コピーしたログを元に編集
                 CreatePath = $"{DirPath}\\EditedLog_{DateString}_{TimeString}.txt";
-                WriteStr = "";
+                WriteStr   = "";
 
                 // 一応存在確認はした方が早いらしい？
                 if (!Directory.Exists(DirPath))  Directory.CreateDirectory(DirPath); 
@@ -66,6 +68,7 @@ namespace VRChatToolBox
                         if ( Regex.IsMatch(FileContents[i], rejectStr)) continue;
                         if (!Regex.IsMatch(FileContents[i], SearchStr)) continue;
 
+                        // 力技でゴリ押し
                         WriteStr = FileContents[i].Replace("Log        -  [Behaviour] Entering Room", "World");
                         WriteStr = WriteStr.Replace("Log        -  [Behaviour] OnPlayerJoined", "Join :");
                         WriteStr = WriteStr.Replace("Log        -  [Behaviour] Unregistering", "Exit :");
@@ -90,6 +93,7 @@ namespace VRChatToolBox
 
             // 既にあれば移動しない
             if (File.Exists(destPath)) return;
+    
             // なければフォルダを作る
             if (!Directory.Exists(ProgramSettings.Settings.DesignatedUpLoadedInfoPath))
                  Directory.CreateDirectory(ProgramSettings.Settings.DesignatedUpLoadedInfoPath);
@@ -141,10 +145,12 @@ namespace VRChatToolBox
 
             IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{dateString}*.txt", SearchOption.TopDirectoryOnly);
 
-            List<string> worldList = new List<string>();
+            // 戻すリストを準備
+            List<string> worldList   = new List<string>();
             List<string[]> joinList  = new List<string[]>();
             List<string[]> exitList  = new List<string[]>();
 
+            // 一時保存用
             List<string> tmpJoin = new List<string>();
             List<string> tmpExit = new List<string>();
 
@@ -183,6 +189,8 @@ namespace VRChatToolBox
                         continue;
                     }
                 }
+
+                // 最後に忘れず追加と初期化：ワールドとJoin・Exitの履歴がずれるため
                 if (worldCount > 0)
                 {
                     joinList.Add(tmpJoin.ToArray());
@@ -193,9 +201,10 @@ namespace VRChatToolBox
                 }
             }
 
+            // 結果を返す
             worldArray = worldList.ToArray();
-            joinArray = joinList.ToArray();
-            exitArray = exitList.ToArray();
+            joinArray  = joinList.ToArray();
+            exitArray  = exitList.ToArray();
         }
 
     }

@@ -15,12 +15,22 @@ namespace VRChatToolBox
     {
         public ProgramSettings()
         {
+
             ExeFolderPath = "";
             UserName = "";
             DesignatedLogPath = "";
             DesignatedEditedLogPath = "";
             DesignatedMovedLogPath = "";
             DesignatedPicturesSavedFolder = "";
+            DesignatedPicturesMovedFolder = "";
+            DesignatedPicturesSelectedFolder = "";
+            DesignatedPicturesUpLoadedFolder = "";
+            DesignatedPictureInfoPath = "";
+            DesignatedUpLoadedInfoPath = "";
+            AvataData = InitAvatarData();
+            Tweet = new string[] { };
+            MakeDayFolder = false;
+
         }
 
         // 設定の初期処理

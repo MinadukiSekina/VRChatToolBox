@@ -108,6 +108,7 @@ namespace VRChatToolBox
             }
         }
 
+        // アイテムの取得と描画
         internal void FilelistView_RetrieveVirtualItem(object sender,RetrieveVirtualItemEventArgs re)
         {
             try
@@ -145,7 +146,7 @@ namespace VRChatToolBox
             }
         }
 
-        // ダブルクリック時
+        // ダブルクリック時：フォルダなら処理
         protected override void OnDoubleClick(EventArgs e)
         {
             try
@@ -172,6 +173,7 @@ namespace VRChatToolBox
             base.OnDoubleClick(e);
         }
 
+        // クリック時：ファイルなら処理
         protected override void OnClick(EventArgs e)
         {
             try

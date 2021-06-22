@@ -39,20 +39,23 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.PN_Bottom = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
+            this.FV_FileList = new VRChatToolBox.FileListView();
             this.ViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.PN_Menu = new System.Windows.Forms.Panel();
             this.BT_UP = new System.Windows.Forms.Button();
             this.TB_FolderPath = new System.Windows.Forms.TextBox();
-            this.LB_Sentence = new System.Windows.Forms.Label();
+            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             this.TC_Select = new System.Windows.Forms.TabControl();
             this.WorldTab = new System.Windows.Forms.TabPage();
             this.LB_WorldList = new System.Windows.Forms.Label();
             this.LI_WorldList = new System.Windows.Forms.ListBox();
             this.TB_WorldName = new System.Windows.Forms.TextBox();
-            this.LB_WorldName = new System.Windows.Forms.Label();
             this.TB_WorldAuthorName = new System.Windows.Forms.TextBox();
-            this.LB_AuthorName = new System.Windows.Forms.Label();
+            this.BT_WorldName = new System.Windows.Forms.Button();
+            this.BT_WorldAuthor = new System.Windows.Forms.Button();
             this.AvatarTab = new System.Windows.Forms.TabPage();
+            this.BT_AvatarName = new System.Windows.Forms.Button();
+            this.BT_AvatarAuthor = new System.Windows.Forms.Button();
             this.LB_AvatarList = new System.Windows.Forms.Label();
             this.LI_AvatarList = new System.Windows.Forms.ListBox();
             this.TB_AvatarName = new System.Windows.Forms.TextBox();
@@ -66,8 +69,7 @@
             this.BT_OpenVRCHome = new System.Windows.Forms.Button();
             this.BT_OpenTwitter = new System.Windows.Forms.Button();
             this.BT_Close = new System.Windows.Forms.Button();
-            this.FV_FileList = new VRChatToolBox.FileListView();
-            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
+            this.BT_Sentence = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();
@@ -100,10 +102,10 @@
             // 
             // SpC0.Panel2
             // 
-            this.SpC0.Panel2.Controls.Add(this.LB_Sentence);
             this.SpC0.Panel2.Controls.Add(this.TC_Select);
             this.SpC0.Panel2.Controls.Add(this.TB_Sentence);
             this.SpC0.Panel2.Controls.Add(this.PN_Button);
+            this.SpC0.Panel2.Controls.Add(this.BT_Sentence);
             this.SpC0.Size = new System.Drawing.Size(963, 658);
             this.SpC0.SplitterDistance = 586;
             this.SpC0.SplitterWidth = 3;
@@ -199,6 +201,25 @@
             this.splitter2.TabIndex = 4;
             this.splitter2.TabStop = false;
             // 
+            // FV_FileList
+            // 
+            this.FV_FileList.AutoArrange = false;
+            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FV_FileList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.FV_FileList.HideSelection = false;
+            this.FV_FileList.LargeImageList = this.ViewImageList;
+            this.FV_FileList.Location = new System.Drawing.Point(134, 49);
+            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
+            this.FV_FileList.MultiSelect = false;
+            this.FV_FileList.Name = "FV_FileList";
+            this.FV_FileList.Size = new System.Drawing.Size(450, 296);
+            this.FV_FileList.SmallImageList = this.ViewImageList;
+            this.FV_FileList.TabIndex = 3;
+            this.FV_FileList.TabStop = false;
+            this.FV_FileList.UseCompatibleStateImageBehavior = false;
+            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
+            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
+            // 
             // ViewImageList
             // 
             this.ViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ViewImageList.ImageStream")));
@@ -243,19 +264,17 @@
             this.TB_FolderPath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_FolderPath_KeyDown);
             this.TB_FolderPath.Validating += new System.ComponentModel.CancelEventHandler(this.TB_FolderPath_Validating);
             // 
-            // LB_Sentence
+            // DT_DirectoryList
             // 
-            this.LB_Sentence.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LB_Sentence.AutoSize = true;
-            this.LB_Sentence.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.LB_Sentence.Location = new System.Drawing.Point(7, 347);
-            this.LB_Sentence.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LB_Sentence.Name = "LB_Sentence";
-            this.LB_Sentence.Size = new System.Drawing.Size(72, 16);
-            this.LB_Sentence.TabIndex = 13;
-            this.LB_Sentence.Text = "投稿内容";
+            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
+            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
+            this.DT_DirectoryList.Name = "DT_DirectoryList";
+            this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
+            this.DT_DirectoryList.TabIndex = 0;
+            this.DT_DirectoryList.TabStop = false;
+            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
             // 
             // TC_Select
             // 
@@ -268,7 +287,7 @@
             this.TC_Select.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Select.Name = "TC_Select";
             this.TC_Select.SelectedIndex = 0;
-            this.TC_Select.Size = new System.Drawing.Size(363, 319);
+            this.TC_Select.Size = new System.Drawing.Size(365, 319);
             this.TC_Select.TabIndex = 0;
             this.TC_Select.TabStop = false;
             // 
@@ -277,15 +296,15 @@
             this.WorldTab.Controls.Add(this.LB_WorldList);
             this.WorldTab.Controls.Add(this.LI_WorldList);
             this.WorldTab.Controls.Add(this.TB_WorldName);
-            this.WorldTab.Controls.Add(this.LB_WorldName);
             this.WorldTab.Controls.Add(this.TB_WorldAuthorName);
-            this.WorldTab.Controls.Add(this.LB_AuthorName);
+            this.WorldTab.Controls.Add(this.BT_WorldName);
+            this.WorldTab.Controls.Add(this.BT_WorldAuthor);
             this.WorldTab.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.WorldTab.Location = new System.Drawing.Point(4, 26);
             this.WorldTab.Margin = new System.Windows.Forms.Padding(2);
             this.WorldTab.Name = "WorldTab";
             this.WorldTab.Padding = new System.Windows.Forms.Padding(2);
-            this.WorldTab.Size = new System.Drawing.Size(355, 289);
+            this.WorldTab.Size = new System.Drawing.Size(357, 289);
             this.WorldTab.TabIndex = 0;
             this.WorldTab.Text = "ワールド";
             this.WorldTab.UseVisualStyleBackColor = true;
@@ -323,25 +342,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_WorldName.Location = new System.Drawing.Point(68, 228);
+            this.TB_WorldName.Location = new System.Drawing.Point(93, 228);
             this.TB_WorldName.Margin = new System.Windows.Forms.Padding(2);
             this.TB_WorldName.Name = "TB_WorldName";
-            this.TB_WorldName.Size = new System.Drawing.Size(276, 23);
+            this.TB_WorldName.Size = new System.Drawing.Size(251, 23);
             this.TB_WorldName.TabIndex = 0;
             this.TB_WorldName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_WorldName_KeyDown);
-            // 
-            // LB_WorldName
-            // 
-            this.LB_WorldName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.LB_WorldName.AutoSize = true;
-            this.LB_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.LB_WorldName.Location = new System.Drawing.Point(6, 230);
-            this.LB_WorldName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LB_WorldName.Name = "LB_WorldName";
-            this.LB_WorldName.Size = new System.Drawing.Size(66, 16);
-            this.LB_WorldName.TabIndex = 8;
-            this.LB_WorldName.Text = "ワールド：";
             // 
             // TB_WorldAuthorName
             // 
@@ -349,28 +355,41 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_WorldAuthorName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_WorldAuthorName.Location = new System.Drawing.Point(68, 254);
+            this.TB_WorldAuthorName.Location = new System.Drawing.Point(93, 254);
             this.TB_WorldAuthorName.Margin = new System.Windows.Forms.Padding(2);
             this.TB_WorldAuthorName.Name = "TB_WorldAuthorName";
-            this.TB_WorldAuthorName.Size = new System.Drawing.Size(276, 23);
+            this.TB_WorldAuthorName.Size = new System.Drawing.Size(251, 23);
             this.TB_WorldAuthorName.TabIndex = 1;
             this.TB_WorldAuthorName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_WorldAuthorName_KeyDown);
             // 
-            // LB_AuthorName
+            // BT_WorldName
             // 
-            this.LB_AuthorName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.LB_AuthorName.AutoSize = true;
-            this.LB_AuthorName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.LB_AuthorName.Location = new System.Drawing.Point(7, 257);
-            this.LB_AuthorName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LB_AuthorName.Name = "LB_AuthorName";
-            this.LB_AuthorName.Size = new System.Drawing.Size(64, 16);
-            this.LB_AuthorName.TabIndex = 10;
-            this.LB_AuthorName.Text = "製作者：";
+            this.BT_WorldName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_WorldName.Location = new System.Drawing.Point(7, 227);
+            this.BT_WorldName.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_WorldName.Name = "BT_WorldName";
+            this.BT_WorldName.Size = new System.Drawing.Size(82, 25);
+            this.BT_WorldName.TabIndex = 19;
+            this.BT_WorldName.Text = "ワールド：";
+            this.BT_WorldName.UseVisualStyleBackColor = true;
+            this.BT_WorldName.Click += new System.EventHandler(this.BT_WorldName_Click);
+            // 
+            // BT_WorldAuthor
+            // 
+            this.BT_WorldAuthor.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_WorldAuthor.Location = new System.Drawing.Point(7, 253);
+            this.BT_WorldAuthor.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_WorldAuthor.Name = "BT_WorldAuthor";
+            this.BT_WorldAuthor.Size = new System.Drawing.Size(82, 25);
+            this.BT_WorldAuthor.TabIndex = 20;
+            this.BT_WorldAuthor.Text = "製作者：";
+            this.BT_WorldAuthor.UseVisualStyleBackColor = true;
+            this.BT_WorldAuthor.Click += new System.EventHandler(this.BT_WorldAuthor_Click);
             // 
             // AvatarTab
             // 
+            this.AvatarTab.Controls.Add(this.BT_AvatarName);
+            this.AvatarTab.Controls.Add(this.BT_AvatarAuthor);
             this.AvatarTab.Controls.Add(this.LB_AvatarList);
             this.AvatarTab.Controls.Add(this.LI_AvatarList);
             this.AvatarTab.Controls.Add(this.TB_AvatarName);
@@ -381,10 +400,34 @@
             this.AvatarTab.Margin = new System.Windows.Forms.Padding(2);
             this.AvatarTab.Name = "AvatarTab";
             this.AvatarTab.Padding = new System.Windows.Forms.Padding(2);
-            this.AvatarTab.Size = new System.Drawing.Size(355, 289);
+            this.AvatarTab.Size = new System.Drawing.Size(357, 289);
             this.AvatarTab.TabIndex = 1;
             this.AvatarTab.Text = "アバター";
             this.AvatarTab.UseVisualStyleBackColor = true;
+            // 
+            // BT_AvatarName
+            // 
+            this.BT_AvatarName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_AvatarName.Location = new System.Drawing.Point(7, 227);
+            this.BT_AvatarName.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_AvatarName.Name = "BT_AvatarName";
+            this.BT_AvatarName.Size = new System.Drawing.Size(82, 25);
+            this.BT_AvatarName.TabIndex = 20;
+            this.BT_AvatarName.Text = "アバター：";
+            this.BT_AvatarName.UseVisualStyleBackColor = true;
+            this.BT_AvatarName.Click += new System.EventHandler(this.BT_AvatarName_Click);
+            // 
+            // BT_AvatarAuthor
+            // 
+            this.BT_AvatarAuthor.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_AvatarAuthor.Location = new System.Drawing.Point(7, 253);
+            this.BT_AvatarAuthor.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_AvatarAuthor.Name = "BT_AvatarAuthor";
+            this.BT_AvatarAuthor.Size = new System.Drawing.Size(82, 25);
+            this.BT_AvatarAuthor.TabIndex = 19;
+            this.BT_AvatarAuthor.Text = "製作者：";
+            this.BT_AvatarAuthor.UseVisualStyleBackColor = true;
+            this.BT_AvatarAuthor.Click += new System.EventHandler(this.BT_AvatarAuthor_Click);
             // 
             // LB_AvatarList
             // 
@@ -418,10 +461,10 @@
             this.TB_AvatarName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_AvatarName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_AvatarName.Location = new System.Drawing.Point(68, 228);
+            this.TB_AvatarName.Location = new System.Drawing.Point(93, 228);
             this.TB_AvatarName.Margin = new System.Windows.Forms.Padding(2);
             this.TB_AvatarName.Name = "TB_AvatarName";
-            this.TB_AvatarName.Size = new System.Drawing.Size(276, 23);
+            this.TB_AvatarName.Size = new System.Drawing.Size(251, 23);
             this.TB_AvatarName.TabIndex = 0;
             this.TB_AvatarName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_AvatarName_KeyDown);
             // 
@@ -441,10 +484,10 @@
             this.TB_AvatarAuthor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_AvatarAuthor.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_AvatarAuthor.Location = new System.Drawing.Point(68, 254);
+            this.TB_AvatarAuthor.Location = new System.Drawing.Point(93, 254);
             this.TB_AvatarAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.TB_AvatarAuthor.Name = "TB_AvatarAuthor";
-            this.TB_AvatarAuthor.Size = new System.Drawing.Size(276, 23);
+            this.TB_AvatarAuthor.Size = new System.Drawing.Size(251, 23);
             this.TB_AvatarAuthor.TabIndex = 1;
             this.TB_AvatarAuthor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_AvatarAuthor_KeyDown);
             // 
@@ -470,7 +513,7 @@
             this.TB_Sentence.Multiline = true;
             this.TB_Sentence.Name = "TB_Sentence";
             this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(363, 204);
+            this.TB_Sentence.Size = new System.Drawing.Size(365, 204);
             this.TB_Sentence.TabIndex = 1;
             // 
             // PN_Button
@@ -549,36 +592,17 @@
             this.BT_Close.UseVisualStyleBackColor = true;
             this.BT_Close.Click += new System.EventHandler(this.BT_Close_Click);
             // 
-            // FV_FileList
+            // BT_Sentence
             // 
-            this.FV_FileList.AutoArrange = false;
-            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FV_FileList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.FV_FileList.HideSelection = false;
-            this.FV_FileList.LargeImageList = this.ViewImageList;
-            this.FV_FileList.Location = new System.Drawing.Point(134, 49);
-            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
-            this.FV_FileList.MultiSelect = false;
-            this.FV_FileList.Name = "FV_FileList";
-            this.FV_FileList.Size = new System.Drawing.Size(450, 296);
-            this.FV_FileList.SmallImageList = this.ViewImageList;
-            this.FV_FileList.TabIndex = 3;
-            this.FV_FileList.TabStop = false;
-            this.FV_FileList.UseCompatibleStateImageBehavior = false;
-            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
-            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
-            // 
-            // DT_DirectoryList
-            // 
-            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
-            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
-            this.DT_DirectoryList.Name = "DT_DirectoryList";
-            this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
-            this.DT_DirectoryList.TabIndex = 0;
-            this.DT_DirectoryList.TabStop = false;
-            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
+            this.BT_Sentence.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_Sentence.Location = new System.Drawing.Point(7, 338);
+            this.BT_Sentence.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_Sentence.Name = "BT_Sentence";
+            this.BT_Sentence.Size = new System.Drawing.Size(86, 25);
+            this.BT_Sentence.TabIndex = 18;
+            this.BT_Sentence.Text = "投稿内容";
+            this.BT_Sentence.UseVisualStyleBackColor = true;
+            this.BT_Sentence.Click += new System.EventHandler(this.BT_Sentence_Click);
             // 
             // PictureSelector
             // 
@@ -586,6 +610,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 658);
             this.Controls.Add(this.SpC0);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PictureSelector";
@@ -622,9 +647,7 @@
         private System.Windows.Forms.Button BT_Move;
         private System.Windows.Forms.Button BT_Save;
         private System.Windows.Forms.Button BT_Close;
-        private System.Windows.Forms.Label LB_AuthorName;
         private System.Windows.Forms.TextBox TB_WorldAuthorName;
-        private System.Windows.Forms.Label LB_WorldName;
         private System.Windows.Forms.TextBox TB_WorldName;
         private System.Windows.Forms.TextBox TB_Sentence;
         private System.Windows.Forms.Label LB_WorldList;
@@ -649,9 +672,13 @@
         private System.Windows.Forms.TabControl TC_Select;
         private System.Windows.Forms.TabPage WorldTab;
         private System.Windows.Forms.TabPage AvatarTab;
-        private System.Windows.Forms.Label LB_Sentence;
         private System.Windows.Forms.Label LB_AvatarList;
         private System.Windows.Forms.ListBox LI_AvatarList;
         private System.Windows.Forms.Splitter splitter2;
+        private System.Windows.Forms.Button BT_Sentence;
+        private System.Windows.Forms.Button BT_WorldName;
+        private System.Windows.Forms.Button BT_WorldAuthor;
+        private System.Windows.Forms.Button BT_AvatarName;
+        private System.Windows.Forms.Button BT_AvatarAuthor;
     }
 }

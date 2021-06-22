@@ -27,14 +27,17 @@ namespace VRChatToolBox
                 {
                     hasHandle = true;
                 }
+
                 if (!hasHandle)
                 {
                     MessageBox.Show("既に起動しています。");
                     return;
                 }
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
+
             }
             finally
             {

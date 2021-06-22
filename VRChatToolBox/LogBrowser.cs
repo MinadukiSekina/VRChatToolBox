@@ -12,6 +12,7 @@ namespace VRChatToolBox
 {
     public partial class LogBrowser : Form
     {
+        // 呼び出す履歴と日付の保持
         private string[][] JoinList { get; set; }
         private string[][] ExitList { get; set; }
         private DateTime NowDateTime { get; set; }
@@ -21,6 +22,7 @@ namespace VRChatToolBox
             InitializeComponent();
         }
 
+        // フォーム起動時
         private void LogBrowser_Load(object sender, EventArgs e)
         {
             try
@@ -63,6 +65,7 @@ namespace VRChatToolBox
 
                 if (index == -1) return;
 
+                // 履歴の表示
                 LI_JoinList.Items.Clear();
                 LI_ExitList.Items.Clear();
                 LI_JoinList.Items.AddRange(JoinList[index]);
@@ -79,6 +82,7 @@ namespace VRChatToolBox
         {
             try
             {
+                // 初期化
                 FormClear();
             }
             catch (Exception ex)
@@ -97,16 +101,20 @@ namespace VRChatToolBox
         // 指定した日付での読み込み
         private void InitLists(string dateString)
         {
-            string[] worldList = new string[] { };
+            // 受け取り準備
+            string[] worldList  = new string[] { };
             string[][] joinList = new string[][] { };
             string[][] exitList = new string[][] { };
 
+            // 初期化
             LI_WorldList.Items.Clear();
             LI_JoinList.Items.Clear();
             LI_ExitList.Items.Clear();
 
+            // 読み込み
             LogEditor.GetListFromEditedLog(dateString, ref worldList, ref joinList, ref exitList);
 
+            // 格納
             LI_WorldList.Items.AddRange(worldList);
             JoinList = joinList;
             ExitList = exitList;

@@ -37,6 +37,7 @@ namespace VRChatToolBox
             ActivateMode = activateMode;
         }
 
+        // フォーム起動時
         private void PictureSelector_Load(object sender, EventArgs e)
         {
             try
@@ -162,16 +163,19 @@ namespace VRChatToolBox
         {
             Close();
         }
+    
         // Twitterを開く
         private void BT_OpenTwitter_Click(object sender, EventArgs e)
         {
             Process.Start("https://twitter.com/home");
         }
+        
         // VRChatを開く：Home直開きは、何かしらの向こうのチェックが走って嫌な予感がしたのでやめました
         private void BT_OpenVRCHome_Click(object sender, EventArgs e)
         {
             Process.Start("https://hello.vrchat.com");
         }
+        
         // 投稿後の処理
         private void BT_Move_Click(object sender, EventArgs e)
         {
@@ -194,6 +198,7 @@ namespace VRChatToolBox
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
         // 選択した写真をコピー：メタデータも作成
         private void BT_Save_Click(object sender, EventArgs e)
         {
@@ -246,13 +251,17 @@ namespace VRChatToolBox
             }
         }
 
+        // パス指定時
         private void TB_FolderPath_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
+                // エンター時のみ、パスチェックしてリスト設定
                 if (e.KeyCode != Keys.Enter) return;
-                TB_FolderPath.Text = TB_FolderPath.Text.Trim().TrimEnd('\\');
                 if (!Path_Validation(TB_FolderPath.Text)) return;
+
+                // 気持ち的に整形
+                TB_FolderPath.Text = TB_FolderPath.Text.Trim().TrimEnd('\\');
                 FV_FileList.SetListItems(TB_FolderPath.Text);
             }
             catch (Exception ex)
@@ -261,6 +270,7 @@ namespace VRChatToolBox
             }
         }
 
+        // パスチェックするイベント
         private void TB_FolderPath_Validating(object sender, CancelEventArgs e)
         {
             TB_FolderPath.Text = TB_FolderPath.Text.Trim().TrimEnd('\\');
@@ -289,6 +299,7 @@ namespace VRChatToolBox
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+ 
         // ファイルの選択時
         private void FV_FileList_Click(object sender, EventArgs e)
         {
@@ -306,6 +317,7 @@ namespace VRChatToolBox
             }
 
         }
+        
         // ファイル一覧からフォルダを選択時
         private void FV_FileList_DoubleClick(object sender, EventArgs e)
         {
@@ -355,6 +367,7 @@ namespace VRChatToolBox
             TB_AvatarAuthor.Text = LI_AvatarList.SelectedValue.ToString();
         }
 
+        // フォーム終了時
         private void PictureSelector_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -362,6 +375,76 @@ namespace VRChatToolBox
                 // ワールド情報の保存
                 XmlContractor.WriteObjectXML($"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.WorldDataFile}", WorldData);
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // 投稿内容のコピー
+        private void BT_Sentence_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // プログラム終了後は残さない
+                Clipboard.SetDataObject(TB_Sentence.Text, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+       
+        // ワールド名のコピー
+        private void BT_WorldName_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // プログラム終了後は残さない
+                Clipboard.SetDataObject(TB_WorldName.Text, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        // ワールド製作者のコピー
+        private void BT_WorldAuthor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // プログラム終了後は残さない
+                Clipboard.SetDataObject(TB_WorldAuthorName.Text, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        // アバター名のコピー
+        private void BT_AvatarName_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // プログラム終了後は残さない
+                Clipboard.SetDataObject(TB_AvatarName.Text, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        // アバター製作者のコピー
+        private void BT_AvatarAuthor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // プログラム終了後は残さない
+                Clipboard.SetDataObject(TB_AvatarAuthor.Text, false);
             }
             catch (Exception ex)
             {

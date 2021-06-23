@@ -287,7 +287,7 @@
             this.TC_Select.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Select.Name = "TC_Select";
             this.TC_Select.SelectedIndex = 0;
-            this.TC_Select.Size = new System.Drawing.Size(365, 319);
+            this.TC_Select.Size = new System.Drawing.Size(368, 319);
             this.TC_Select.TabIndex = 0;
             this.TC_Select.TabStop = false;
             // 
@@ -304,7 +304,7 @@
             this.WorldTab.Margin = new System.Windows.Forms.Padding(2);
             this.WorldTab.Name = "WorldTab";
             this.WorldTab.Padding = new System.Windows.Forms.Padding(2);
-            this.WorldTab.Size = new System.Drawing.Size(357, 289);
+            this.WorldTab.Size = new System.Drawing.Size(360, 289);
             this.WorldTab.TabIndex = 0;
             this.WorldTab.Text = "ワールド";
             this.WorldTab.UseVisualStyleBackColor = true;
@@ -400,7 +400,7 @@
             this.AvatarTab.Margin = new System.Windows.Forms.Padding(2);
             this.AvatarTab.Name = "AvatarTab";
             this.AvatarTab.Padding = new System.Windows.Forms.Padding(2);
-            this.AvatarTab.Size = new System.Drawing.Size(357, 289);
+            this.AvatarTab.Size = new System.Drawing.Size(360, 289);
             this.AvatarTab.TabIndex = 1;
             this.AvatarTab.Text = "アバター";
             this.AvatarTab.UseVisualStyleBackColor = true;
@@ -513,7 +513,7 @@
             this.TB_Sentence.Multiline = true;
             this.TB_Sentence.Name = "TB_Sentence";
             this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(365, 204);
+            this.TB_Sentence.Size = new System.Drawing.Size(368, 204);
             this.TB_Sentence.TabIndex = 1;
             // 
             // PN_Button

@@ -97,7 +97,7 @@ namespace VRChatToolBox
             {
                 // 写真のファイル名の取得と、メタデータの設定
                 string pictureName = Path.GetFileName(PB_Display.ImageLocation);
-                MetaDataFileName = pictureName.Replace("png", "xml");
+                MetaDataFileName   = pictureName.Replace("png", "xml");
                 string MetaDataFilePath;
 
                 // 選択済みの写真ならメタデータは投稿前にある判断、投稿済みボタンは使用可、保存は可

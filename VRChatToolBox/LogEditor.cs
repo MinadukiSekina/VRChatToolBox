@@ -136,7 +136,7 @@ namespace VRChatToolBox
             return worldList.Distinct().ToArray();
         }
 
-        // ワールド候補リストの取得
+        // ワールド・Join履歴・Exit履歴の取得
         internal static void GetListFromEditedLog(string dateString, ref string[] worldArray, ref string[][] joinArray, ref string[][] exitArray)
         {
             // フォルダが無ければすぐに戻す

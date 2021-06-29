@@ -39,13 +39,15 @@
             this.LB_JoinList = new System.Windows.Forms.Label();
             this.LB_Exit = new System.Windows.Forms.Label();
             this.LB_World = new System.Windows.Forms.Label();
+            this.BT_NextDay = new System.Windows.Forms.Button();
+            this.BT_BeforeDay = new System.Windows.Forms.Button();
             this.PN_Function.SuspendLayout();
             this.SuspendLayout();
             // 
             // DTP_TimePicker
             // 
             this.DTP_TimePicker.Font = new System.Drawing.Font("MS UI Gothic", 16F);
-            this.DTP_TimePicker.Location = new System.Drawing.Point(32, 12);
+            this.DTP_TimePicker.Location = new System.Drawing.Point(81, 12);
             this.DTP_TimePicker.Name = "DTP_TimePicker";
             this.DTP_TimePicker.Size = new System.Drawing.Size(170, 29);
             this.DTP_TimePicker.TabIndex = 0;
@@ -148,11 +150,35 @@
             this.LB_World.TabIndex = 9;
             this.LB_World.Text = "行ったワールド";
             // 
+            // BT_NextDay
+            // 
+            this.BT_NextDay.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_NextDay.Location = new System.Drawing.Point(259, 12);
+            this.BT_NextDay.Name = "BT_NextDay";
+            this.BT_NextDay.Size = new System.Drawing.Size(41, 29);
+            this.BT_NextDay.TabIndex = 10;
+            this.BT_NextDay.Text = "次";
+            this.BT_NextDay.UseVisualStyleBackColor = true;
+            this.BT_NextDay.Click += new System.EventHandler(this.BT_NextDay_Click);
+            // 
+            // BT_BeforeDay
+            // 
+            this.BT_BeforeDay.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BT_BeforeDay.Location = new System.Drawing.Point(32, 12);
+            this.BT_BeforeDay.Name = "BT_BeforeDay";
+            this.BT_BeforeDay.Size = new System.Drawing.Size(41, 29);
+            this.BT_BeforeDay.TabIndex = 11;
+            this.BT_BeforeDay.Text = "前";
+            this.BT_BeforeDay.UseVisualStyleBackColor = true;
+            this.BT_BeforeDay.Click += new System.EventHandler(this.BT_BeforeDay_Click);
+            // 
             // LogBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 573);
+            this.Controls.Add(this.BT_BeforeDay);
+            this.Controls.Add(this.BT_NextDay);
             this.Controls.Add(this.LB_World);
             this.Controls.Add(this.LB_Exit);
             this.Controls.Add(this.LB_JoinList);
@@ -185,5 +211,7 @@
         private System.Windows.Forms.Label LB_JoinList;
         private System.Windows.Forms.Label LB_Exit;
         private System.Windows.Forms.Label LB_World;
+        private System.Windows.Forms.Button BT_NextDay;
+        private System.Windows.Forms.Button BT_BeforeDay;
     }
 }

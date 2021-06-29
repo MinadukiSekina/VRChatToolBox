@@ -120,5 +120,30 @@ namespace VRChatToolBox
             ExitList = exitList;
         }
 
+        // 次の日へ
+        private void BT_NextDay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               DTP_TimePicker.Value = DTP_TimePicker.Value.AddDays(1);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // 前の日へ
+        private void BT_BeforeDay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DTP_TimePicker.Value = DTP_TimePicker.Value.AddDays(-1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

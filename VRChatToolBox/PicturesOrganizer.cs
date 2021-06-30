@@ -24,6 +24,7 @@ namespace VRChatToolBox
             string monthString   = "";
             string dateString    = "";
             string destPath      = "";
+            string ThumbnailPath = "";
 
             IEnumerable<string> pictures = Directory.EnumerateFiles(savedPicturesFolder, "*.png", SearchOption.TopDirectoryOnly);
 
@@ -34,7 +35,7 @@ namespace VRChatToolBox
                 pictureName   = Path.GetFileName(picture);
                 NewFolderPath = $"{movedPicturesFolder}\\{monthString}{(makeDayFolder? $"\\{dateString}":"")}";
                 destPath      = $"{NewFolderPath}\\{pictureName}";
-   
+                ThumbnailPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}\\{pictureName}";
                 // 写真の日付のフォルダがあるか
                 if (!Directory.Exists(NewFolderPath)) Directory.CreateDirectory(NewFolderPath);
                 
@@ -42,7 +43,7 @@ namespace VRChatToolBox
                 if (!File.Exists(destPath)) File.Move(picture, destPath);
                 
                 // サムネイル作成
-                CreateThumbNail(destPath, $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}\\{pictureName}");
+                if(!File.Exists(ThumbnailPath)) CreateThumbNail(destPath, ThumbnailPath);
             }
         }
 
@@ -89,7 +90,7 @@ namespace VRChatToolBox
             string thumbNailPath   = $"{thumbNailFolder}\\{pictureStr[0]}";
 
             // サムネイルの作成
-            CreateThumbNail(pictureStr[1], thumbNailPath);
+            if(!File.Exists(thumbNailPath)) CreateThumbNail(pictureStr[1], thumbNailPath);
 
             //　サムネイルの読み込み
             using (FileStream fileStream = File.OpenRead(thumbNailPath))
@@ -103,8 +104,7 @@ namespace VRChatToolBox
         // サムネイル画像のキャッシュ
         internal static void CreateThumbNail(string originalPath, string destPath)
         {
-            // 既にあるなら作らない
-            if (File.Exists(destPath)) return;
+            // 既にあるかどうかの判断は呼び出しもとで
 
             string thumbNailFolder = Path.GetDirectoryName(destPath);
             if (!Directory.Exists(thumbNailFolder)) Directory.CreateDirectory(thumbNailFolder);

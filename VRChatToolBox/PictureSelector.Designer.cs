@@ -33,18 +33,16 @@
             this.SpC0 = new System.Windows.Forms.SplitContainer();
             this.PN_Top = new System.Windows.Forms.Panel();
             this.PN_Menu1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BT_TurnLeft = new System.Windows.Forms.Button();
             this.PN_Buffer = new System.Windows.Forms.Panel();
             this.PB_Display = new System.Windows.Forms.PictureBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.PN_Bottom = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
-            this.FV_FileList = new VRChatToolBox.FileListView();
             this.ViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.PN_Menu = new System.Windows.Forms.Panel();
             this.BT_UP = new System.Windows.Forms.Button();
             this.TB_FolderPath = new System.Windows.Forms.TextBox();
-            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             this.TC_Select = new System.Windows.Forms.TabControl();
             this.WorldTab = new System.Windows.Forms.TabPage();
             this.LB_WorldList = new System.Windows.Forms.Label();
@@ -70,6 +68,10 @@
             this.BT_OpenTwitter = new System.Windows.Forms.Button();
             this.BT_Close = new System.Windows.Forms.Button();
             this.BT_Sentence = new System.Windows.Forms.Button();
+            this.FV_FileList = new VRChatToolBox.FileListView();
+            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
+            this.BT_SavePicture = new System.Windows.Forms.Button();
+            this.BT_TurnRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();
@@ -126,7 +128,9 @@
             // 
             // PN_Menu1
             // 
-            this.PN_Menu1.Controls.Add(this.button1);
+            this.PN_Menu1.Controls.Add(this.BT_TurnRight);
+            this.PN_Menu1.Controls.Add(this.BT_SavePicture);
+            this.PN_Menu1.Controls.Add(this.BT_TurnLeft);
             this.PN_Menu1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PN_Menu1.Location = new System.Drawing.Point(0, 276);
             this.PN_Menu1.Margin = new System.Windows.Forms.Padding(2);
@@ -134,18 +138,17 @@
             this.PN_Menu1.Size = new System.Drawing.Size(584, 32);
             this.PN_Menu1.TabIndex = 1;
             // 
-            // button1
+            // BT_TurnLeft
             // 
-            this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.button1.Location = new System.Drawing.Point(66, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
+            this.BT_TurnLeft.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.BT_TurnLeft.Location = new System.Drawing.Point(182, 5);
+            this.BT_TurnLeft.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_TurnLeft.Name = "BT_TurnLeft";
+            this.BT_TurnLeft.Size = new System.Drawing.Size(67, 23);
+            this.BT_TurnLeft.TabIndex = 0;
+            this.BT_TurnLeft.Text = "左回転";
+            this.BT_TurnLeft.UseVisualStyleBackColor = true;
+            this.BT_TurnLeft.Click += new System.EventHandler(this.BT_TurnLeft_Click);
             // 
             // PN_Buffer
             // 
@@ -201,25 +204,6 @@
             this.splitter2.TabIndex = 4;
             this.splitter2.TabStop = false;
             // 
-            // FV_FileList
-            // 
-            this.FV_FileList.AutoArrange = false;
-            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FV_FileList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.FV_FileList.HideSelection = false;
-            this.FV_FileList.LargeImageList = this.ViewImageList;
-            this.FV_FileList.Location = new System.Drawing.Point(134, 49);
-            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
-            this.FV_FileList.MultiSelect = false;
-            this.FV_FileList.Name = "FV_FileList";
-            this.FV_FileList.Size = new System.Drawing.Size(450, 296);
-            this.FV_FileList.SmallImageList = this.ViewImageList;
-            this.FV_FileList.TabIndex = 3;
-            this.FV_FileList.TabStop = false;
-            this.FV_FileList.UseCompatibleStateImageBehavior = false;
-            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
-            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
-            // 
             // ViewImageList
             // 
             this.ViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ViewImageList.ImageStream")));
@@ -264,18 +248,6 @@
             this.TB_FolderPath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_FolderPath_KeyDown);
             this.TB_FolderPath.Validating += new System.ComponentModel.CancelEventHandler(this.TB_FolderPath_Validating);
             // 
-            // DT_DirectoryList
-            // 
-            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
-            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
-            this.DT_DirectoryList.Name = "DT_DirectoryList";
-            this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
-            this.DT_DirectoryList.TabIndex = 0;
-            this.DT_DirectoryList.TabStop = false;
-            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
-            // 
             // TC_Select
             // 
             this.TC_Select.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -287,7 +259,7 @@
             this.TC_Select.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Select.Name = "TC_Select";
             this.TC_Select.SelectedIndex = 0;
-            this.TC_Select.Size = new System.Drawing.Size(368, 319);
+            this.TC_Select.Size = new System.Drawing.Size(369, 319);
             this.TC_Select.TabIndex = 0;
             this.TC_Select.TabStop = false;
             // 
@@ -304,7 +276,7 @@
             this.WorldTab.Margin = new System.Windows.Forms.Padding(2);
             this.WorldTab.Name = "WorldTab";
             this.WorldTab.Padding = new System.Windows.Forms.Padding(2);
-            this.WorldTab.Size = new System.Drawing.Size(360, 289);
+            this.WorldTab.Size = new System.Drawing.Size(361, 289);
             this.WorldTab.TabIndex = 0;
             this.WorldTab.Text = "ワールド";
             this.WorldTab.UseVisualStyleBackColor = true;
@@ -400,7 +372,7 @@
             this.AvatarTab.Margin = new System.Windows.Forms.Padding(2);
             this.AvatarTab.Name = "AvatarTab";
             this.AvatarTab.Padding = new System.Windows.Forms.Padding(2);
-            this.AvatarTab.Size = new System.Drawing.Size(360, 289);
+            this.AvatarTab.Size = new System.Drawing.Size(361, 289);
             this.AvatarTab.TabIndex = 1;
             this.AvatarTab.Text = "アバター";
             this.AvatarTab.UseVisualStyleBackColor = true;
@@ -513,7 +485,7 @@
             this.TB_Sentence.Multiline = true;
             this.TB_Sentence.Name = "TB_Sentence";
             this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(368, 204);
+            this.TB_Sentence.Size = new System.Drawing.Size(369, 204);
             this.TB_Sentence.TabIndex = 1;
             // 
             // PN_Button
@@ -604,6 +576,61 @@
             this.BT_Sentence.UseVisualStyleBackColor = true;
             this.BT_Sentence.Click += new System.EventHandler(this.BT_Sentence_Click);
             // 
+            // FV_FileList
+            // 
+            this.FV_FileList.AutoArrange = false;
+            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FV_FileList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.FV_FileList.HideSelection = false;
+            this.FV_FileList.LargeImageList = this.ViewImageList;
+            this.FV_FileList.Location = new System.Drawing.Point(134, 49);
+            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
+            this.FV_FileList.MultiSelect = false;
+            this.FV_FileList.Name = "FV_FileList";
+            this.FV_FileList.Size = new System.Drawing.Size(450, 296);
+            this.FV_FileList.SmallImageList = this.ViewImageList;
+            this.FV_FileList.TabIndex = 3;
+            this.FV_FileList.TabStop = false;
+            this.FV_FileList.UseCompatibleStateImageBehavior = false;
+            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
+            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
+            // 
+            // DT_DirectoryList
+            // 
+            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
+            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
+            this.DT_DirectoryList.Name = "DT_DirectoryList";
+            this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
+            this.DT_DirectoryList.TabIndex = 0;
+            this.DT_DirectoryList.TabStop = false;
+            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
+            // 
+            // BT_SavePicture
+            // 
+            this.BT_SavePicture.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.BT_SavePicture.Location = new System.Drawing.Point(253, 5);
+            this.BT_SavePicture.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_SavePicture.Name = "BT_SavePicture";
+            this.BT_SavePicture.Size = new System.Drawing.Size(67, 23);
+            this.BT_SavePicture.TabIndex = 1;
+            this.BT_SavePicture.Text = "保存";
+            this.BT_SavePicture.UseVisualStyleBackColor = true;
+            this.BT_SavePicture.Click += new System.EventHandler(this.BT_SavePicture_Click);
+            // 
+            // BT_TurnRight
+            // 
+            this.BT_TurnRight.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.BT_TurnRight.Location = new System.Drawing.Point(324, 5);
+            this.BT_TurnRight.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_TurnRight.Name = "BT_TurnRight";
+            this.BT_TurnRight.Size = new System.Drawing.Size(67, 23);
+            this.BT_TurnRight.TabIndex = 2;
+            this.BT_TurnRight.Text = "右回転";
+            this.BT_TurnRight.UseVisualStyleBackColor = true;
+            this.BT_TurnRight.Click += new System.EventHandler(this.BT_TurnRight_Click);
+            // 
             // PictureSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -666,7 +693,7 @@
         private System.Windows.Forms.PictureBox PB_Display;
         private System.Windows.Forms.Panel PN_Buffer;
         private System.Windows.Forms.Panel PN_Menu1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BT_TurnLeft;
         private System.Windows.Forms.Panel PN_Bottom;
         private System.Windows.Forms.Panel PN_Top;
         private System.Windows.Forms.TabControl TC_Select;
@@ -680,5 +707,7 @@
         private System.Windows.Forms.Button BT_WorldAuthor;
         private System.Windows.Forms.Button BT_AvatarName;
         private System.Windows.Forms.Button BT_AvatarAuthor;
+        private System.Windows.Forms.Button BT_SavePicture;
+        private System.Windows.Forms.Button BT_TurnRight;
     }
 }

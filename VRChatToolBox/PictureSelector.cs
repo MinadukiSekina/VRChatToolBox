@@ -451,5 +451,56 @@ namespace VRChatToolBox
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // 左回転
+        private void BT_TurnLeft_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PB_Display.Image is null) return;
+                PB_Display.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                PB_Display.Refresh();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // 変更の上書き保存
+        private void BT_SavePicture_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 変更を上書き保存
+                if (PB_Display.Image is null) return;
+                PB_Display.Image.Save(PB_Display.ImageLocation);
+
+                // サムネイルの更新
+                string destPath = $"{ProgramSettings.Settings.ExeFolderPath}\\{ProgramSettings.ThumbnailFolderName}\\{Path.GetFileName(PB_Display.ImageLocation)}";
+                PicturesOrganizer.CreateThumbNail(PB_Display.ImageLocation, destPath);
+
+                // ファイル一覧の更新
+                if (TB_FolderPath.Text.Trim() == Path.GetDirectoryName(PB_Display.ImageLocation)) FV_FileList.SetListItems(TB_FolderPath.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BT_TurnRight_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PB_Display.Image is null) return;
+                PB_Display.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                PB_Display.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

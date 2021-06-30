@@ -28,7 +28,7 @@ namespace VRChatToolBox
                 // バージョン表示
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 Version version   = assembly.GetName().Version;
-                Text = $"VRChatToolBox {version.ToString()}";
+                Text = $"VRChatToolBox {version.Major.ToString()}.{version.Minor.ToString()}.{version.Build.ToString()}";
             }
             catch (Exception ex)
             {

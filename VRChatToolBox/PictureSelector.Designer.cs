@@ -33,6 +33,8 @@
             this.SpC0 = new System.Windows.Forms.SplitContainer();
             this.PN_Top = new System.Windows.Forms.Panel();
             this.PN_Menu1 = new System.Windows.Forms.Panel();
+            this.BT_TurnRight = new System.Windows.Forms.Button();
+            this.BT_SavePicture = new System.Windows.Forms.Button();
             this.BT_TurnLeft = new System.Windows.Forms.Button();
             this.PN_Buffer = new System.Windows.Forms.Panel();
             this.PB_Display = new System.Windows.Forms.PictureBox();
@@ -70,8 +72,6 @@
             this.BT_Sentence = new System.Windows.Forms.Button();
             this.FV_FileList = new VRChatToolBox.FileListView();
             this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
-            this.BT_SavePicture = new System.Windows.Forms.Button();
-            this.BT_TurnRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();
@@ -138,8 +138,35 @@
             this.PN_Menu1.Size = new System.Drawing.Size(584, 32);
             this.PN_Menu1.TabIndex = 1;
             // 
+            // BT_TurnRight
+            // 
+            this.BT_TurnRight.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BT_TurnRight.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.BT_TurnRight.Location = new System.Drawing.Point(324, 5);
+            this.BT_TurnRight.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_TurnRight.Name = "BT_TurnRight";
+            this.BT_TurnRight.Size = new System.Drawing.Size(67, 23);
+            this.BT_TurnRight.TabIndex = 2;
+            this.BT_TurnRight.Text = "右回転";
+            this.BT_TurnRight.UseVisualStyleBackColor = true;
+            this.BT_TurnRight.Click += new System.EventHandler(this.BT_TurnRight_Click);
+            // 
+            // BT_SavePicture
+            // 
+            this.BT_SavePicture.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BT_SavePicture.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.BT_SavePicture.Location = new System.Drawing.Point(253, 5);
+            this.BT_SavePicture.Margin = new System.Windows.Forms.Padding(2);
+            this.BT_SavePicture.Name = "BT_SavePicture";
+            this.BT_SavePicture.Size = new System.Drawing.Size(67, 23);
+            this.BT_SavePicture.TabIndex = 1;
+            this.BT_SavePicture.Text = "保存";
+            this.BT_SavePicture.UseVisualStyleBackColor = true;
+            this.BT_SavePicture.Click += new System.EventHandler(this.BT_SavePicture_Click);
+            // 
             // BT_TurnLeft
             // 
+            this.BT_TurnLeft.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BT_TurnLeft.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.BT_TurnLeft.Location = new System.Drawing.Point(182, 5);
             this.BT_TurnLeft.Margin = new System.Windows.Forms.Padding(2);
@@ -259,7 +286,7 @@
             this.TC_Select.Margin = new System.Windows.Forms.Padding(2);
             this.TC_Select.Name = "TC_Select";
             this.TC_Select.SelectedIndex = 0;
-            this.TC_Select.Size = new System.Drawing.Size(369, 319);
+            this.TC_Select.Size = new System.Drawing.Size(370, 319);
             this.TC_Select.TabIndex = 0;
             this.TC_Select.TabStop = false;
             // 
@@ -276,7 +303,7 @@
             this.WorldTab.Margin = new System.Windows.Forms.Padding(2);
             this.WorldTab.Name = "WorldTab";
             this.WorldTab.Padding = new System.Windows.Forms.Padding(2);
-            this.WorldTab.Size = new System.Drawing.Size(361, 289);
+            this.WorldTab.Size = new System.Drawing.Size(362, 289);
             this.WorldTab.TabIndex = 0;
             this.WorldTab.Text = "ワールド";
             this.WorldTab.UseVisualStyleBackColor = true;
@@ -372,7 +399,7 @@
             this.AvatarTab.Margin = new System.Windows.Forms.Padding(2);
             this.AvatarTab.Name = "AvatarTab";
             this.AvatarTab.Padding = new System.Windows.Forms.Padding(2);
-            this.AvatarTab.Size = new System.Drawing.Size(361, 289);
+            this.AvatarTab.Size = new System.Drawing.Size(362, 289);
             this.AvatarTab.TabIndex = 1;
             this.AvatarTab.Text = "アバター";
             this.AvatarTab.UseVisualStyleBackColor = true;
@@ -485,7 +512,7 @@
             this.TB_Sentence.Multiline = true;
             this.TB_Sentence.Name = "TB_Sentence";
             this.TB_Sentence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TB_Sentence.Size = new System.Drawing.Size(369, 204);
+            this.TB_Sentence.Size = new System.Drawing.Size(370, 204);
             this.TB_Sentence.TabIndex = 1;
             // 
             // PN_Button
@@ -606,30 +633,6 @@
             this.DT_DirectoryList.TabIndex = 0;
             this.DT_DirectoryList.TabStop = false;
             this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
-            // 
-            // BT_SavePicture
-            // 
-            this.BT_SavePicture.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.BT_SavePicture.Location = new System.Drawing.Point(253, 5);
-            this.BT_SavePicture.Margin = new System.Windows.Forms.Padding(2);
-            this.BT_SavePicture.Name = "BT_SavePicture";
-            this.BT_SavePicture.Size = new System.Drawing.Size(67, 23);
-            this.BT_SavePicture.TabIndex = 1;
-            this.BT_SavePicture.Text = "保存";
-            this.BT_SavePicture.UseVisualStyleBackColor = true;
-            this.BT_SavePicture.Click += new System.EventHandler(this.BT_SavePicture_Click);
-            // 
-            // BT_TurnRight
-            // 
-            this.BT_TurnRight.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.BT_TurnRight.Location = new System.Drawing.Point(324, 5);
-            this.BT_TurnRight.Margin = new System.Windows.Forms.Padding(2);
-            this.BT_TurnRight.Name = "BT_TurnRight";
-            this.BT_TurnRight.Size = new System.Drawing.Size(67, 23);
-            this.BT_TurnRight.TabIndex = 2;
-            this.BT_TurnRight.Text = "右回転";
-            this.BT_TurnRight.UseVisualStyleBackColor = true;
-            this.BT_TurnRight.Click += new System.EventHandler(this.BT_TurnRight_Click);
             // 
             // PictureSelector
             // 

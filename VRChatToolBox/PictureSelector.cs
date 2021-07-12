@@ -489,6 +489,7 @@ namespace VRChatToolBox
             }
         }
 
+        // 右回転
         private void BT_TurnRight_Click(object sender, EventArgs e)
         {
             try

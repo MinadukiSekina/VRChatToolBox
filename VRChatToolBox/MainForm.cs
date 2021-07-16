@@ -38,14 +38,13 @@ namespace VRChatToolBox
         }
 
         // ログのコピーと編集
-        private void BT_EditLog_Click(object sender, EventArgs e)
+        private async void BT_EditLog_Click(object sender, EventArgs e)
         {
             try
             {
-                Enabled = false;
-                Cursor.Current = Cursors.WaitCursor;
-
-                LogEditor.CopyAndEdit();
+                BT_EditLog.Enabled = false;
+                // 非同期で実行
+                await Task.Run(() => LogEditor.CopyAndEdit());
                 MessageBox.Show("ログのコピーと編集が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -54,20 +53,18 @@ namespace VRChatToolBox
             }
             finally
             {
-                Cursor.Current = Cursors.Default;
-                Enabled = true;
+                BT_EditLog.Enabled = true;
             }
         }
         
         // 写真の整理と移動
-        private void BT_PicturesMove_Click(object sender, EventArgs e)
+        private async void BT_PicturesMove_Click(object sender, EventArgs e)
         {
             try
             {
-                Enabled = false;
-                Cursor.Current = Cursors.WaitCursor;
-                
-                PicturesOrganizer.OrganizePictures();
+                BT_PicturesMove.Enabled = false;
+                // 非同期で実行
+                await Task.Run( () => PicturesOrganizer.OrganizePictures());
                 MessageBox.Show("写真の整理が終わりました。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -76,8 +73,7 @@ namespace VRChatToolBox
             }
             finally
             {
-                Cursor.Current = Cursors.Default;
-                Enabled = true;
+                BT_PicturesMove.Enabled = true;
             }
         }
         
@@ -86,6 +82,9 @@ namespace VRChatToolBox
         {
             try
             {
+                // 念のため、ログ移動などをしている時は止める。
+                if (Check_Enabled() == false) return;
+
                 SettingsEditor settingsEditor = new SettingsEditor();
                 settingsEditor.ShowDialog();
             }
@@ -100,6 +99,9 @@ namespace VRChatToolBox
         {
             try
             {
+                // 念のため、ログ移動などをしている時は止める。
+                if (Check_Enabled() == false) return;
+
                 PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.Select);
                 pictureSelector.ShowDialog();
             }
@@ -114,6 +116,9 @@ namespace VRChatToolBox
         {
             try
             {
+                // 念のため、ログ移動などをしている時は止める。
+                if (Check_Enabled() == false) return;
+
                 PictureSelector pictureSelector = new PictureSelector(PictureSelectMode.UpLoad);
                 pictureSelector.ShowDialog();
             }
@@ -128,6 +133,9 @@ namespace VRChatToolBox
         {
             try
             {
+                // 念のため、ログ移動などをしている時は止める。
+                if (Check_Enabled() == false) return;
+
                 LogBrowser logBrowser = new LogBrowser();
                 logBrowser.ShowDialog();
             }
@@ -135,6 +143,22 @@ namespace VRChatToolBox
             {
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // フォームのクローズ中
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // ログの移動中などは閉じさせない。
+            e.Cancel = !Check_Enabled();
+        }
+
+        // 各フォームの起動・メイン画面の終了可否判断
+        private bool Check_Enabled()
+        {
+            // ログの移動・写真の移動のどちらもしてなければ許可する。
+            if (BT_EditLog.Enabled == true && BT_PicturesMove.Enabled == true) return true;
+            MessageBox.Show("他の処理を実行中です。\r\nしばらくお待ちください。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
         }
     }
 }

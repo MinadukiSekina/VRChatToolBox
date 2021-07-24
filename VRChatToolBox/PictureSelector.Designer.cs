@@ -41,10 +41,12 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.PN_Bottom = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
+            this.FV_FileList = new VRChatToolBox.FileListView();
             this.ViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.PN_Menu = new System.Windows.Forms.Panel();
             this.BT_UP = new System.Windows.Forms.Button();
             this.TB_FolderPath = new System.Windows.Forms.TextBox();
+            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             this.TC_Select = new System.Windows.Forms.TabControl();
             this.WorldTab = new System.Windows.Forms.TabPage();
             this.LB_WorldList = new System.Windows.Forms.Label();
@@ -231,6 +233,25 @@
             this.splitter2.TabIndex = 4;
             this.splitter2.TabStop = false;
             // 
+            // FV_FileList
+            // 
+            this.FV_FileList.AutoArrange = false;
+            this.FV_FileList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FV_FileList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.FV_FileList.HideSelection = false;
+            this.FV_FileList.LargeImageList = this.ViewImageList;
+            this.FV_FileList.Location = new System.Drawing.Point(134, 49);
+            this.FV_FileList.Margin = new System.Windows.Forms.Padding(2);
+            this.FV_FileList.MultiSelect = false;
+            this.FV_FileList.Name = "FV_FileList";
+            this.FV_FileList.Size = new System.Drawing.Size(450, 296);
+            this.FV_FileList.SmallImageList = this.ViewImageList;
+            this.FV_FileList.TabIndex = 3;
+            this.FV_FileList.TabStop = false;
+            this.FV_FileList.UseCompatibleStateImageBehavior = false;
+            this.FV_FileList.Click += new System.EventHandler(this.FV_FileList_Click);
+            this.FV_FileList.DoubleClick += new System.EventHandler(this.FV_FileList_DoubleClick);
+            // 
             // ViewImageList
             // 
             this.ViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ViewImageList.ImageStream")));
@@ -274,6 +295,18 @@
             this.TB_FolderPath.TabIndex = 0;
             this.TB_FolderPath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_FolderPath_KeyDown);
             this.TB_FolderPath.Validating += new System.ComponentModel.CancelEventHandler(this.TB_FolderPath_Validating);
+            // 
+            // DT_DirectoryList
+            // 
+            this.DT_DirectoryList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DT_DirectoryList.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.DT_DirectoryList.Location = new System.Drawing.Point(0, 0);
+            this.DT_DirectoryList.Margin = new System.Windows.Forms.Padding(2);
+            this.DT_DirectoryList.Name = "DT_DirectoryList";
+            this.DT_DirectoryList.Size = new System.Drawing.Size(134, 345);
+            this.DT_DirectoryList.TabIndex = 0;
+            this.DT_DirectoryList.TabStop = false;
+            this.DT_DirectoryList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.DT_DirectoryList_AfterSelect);
             // 
             // TC_Select
             // 
@@ -333,7 +366,7 @@
             this.LI_WorldList.Size = new System.Drawing.Size(336, 180);
             this.LI_WorldList.TabIndex = 5;
             this.LI_WorldList.TabStop = false;
-            this.LI_WorldList.DoubleClick += new System.EventHandler(this.Li_WorldList_DoubleClick);
+            this.LI_WorldList.Click += new System.EventHandler(this.LI_WorldList_Click);
             // 
             // TB_WorldName
             // 
@@ -453,7 +486,7 @@
             this.LI_AvatarList.Size = new System.Drawing.Size(336, 180);
             this.LI_AvatarList.TabIndex = 13;
             this.LI_AvatarList.TabStop = false;
-            this.LI_AvatarList.DoubleClick += new System.EventHandler(this.LI_AvatarList_DoubleClick);
+            this.LI_AvatarList.Click += new System.EventHandler(this.LI_AvatarList_Click);
             // 
             // TB_AvatarName
             // 

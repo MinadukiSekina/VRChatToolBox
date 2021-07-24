@@ -97,7 +97,7 @@ namespace VRChatToolBox
             {
                 // 写真のファイル名の取得と、メタデータの設定
                 string pictureName = Path.GetFileName(PB_Display.ImageLocation);
-                MetaDataFileName   = pictureName.Replace("png", "xml");
+                MetaDataFileName = pictureName.Replace("png", "xml");
                 string MetaDataFilePath;
 
                 // 選択済みの写真ならメタデータは投稿前にある判断、投稿済みボタンは使用可、保存は可
@@ -106,37 +106,48 @@ namespace VRChatToolBox
                 if (File.Exists($"{ProgramSettings.Settings.DesignatedPicturesSelectedFolder}\\{pictureName}"))
                 {
                     MetaDataFilePath = $"{ProgramSettings.Settings.DesignatedPictureInfoPath}\\{MetaDataFileName}";
-                    BT_Move.Enabled  = true;
-                    BT_Save.Enabled  = true;
+                    BT_Move.Enabled = true;
+                    BT_Save.Enabled = true;
                 }
                 else if (File.Exists($"{ProgramSettings.Settings.DesignatedPicturesUpLoadedFolder}\\{pictureName}"))
                 {
                     MetaDataFilePath = $"{ProgramSettings.Settings.DesignatedUpLoadedInfoPath}\\{MetaDataFileName}";
-                    BT_Move.Enabled  = false;
-                    BT_Save.Enabled  = false;
+                    BT_Move.Enabled = false;
+                    BT_Save.Enabled = false;
                 }
                 else
                 {
                     MetaDataFilePath = "";
-                    BT_Move.Enabled  = false;
-                    BT_Save.Enabled  = true;
+                    BT_Move.Enabled = false;
+                    BT_Save.Enabled = true;
                 }
 
                 // 年月日の取得
                 for (int i = 0; i <= 2; i++)
                 {
-                    pictureName = i == 2 ? pictureName.Remove(pictureName.IndexOf("_")) : pictureName.Substring(pictureName.IndexOf("_") + 1);
+                    pictureName = i == 2 ? pictureName.Remove(pictureName.IndexOf(".")) : pictureName.Substring(pictureName.IndexOf("_") + 1);
                 }
-                string pictureDate = pictureName.Replace("-", "");
+                string worldName = "";
+                string[] dateAndTime = pictureName.Split('_');
+                dateAndTime[0] = dateAndTime[0].Replace("-", "");
+                dateAndTime[1] = dateAndTime[1].Replace("-", "");
 
                 // ワールド候補リストの設定
                 LI_WorldList.Items.Clear();
-                LI_WorldList.Items.AddRange(LogEditor.GetWorldList(pictureDate));
+                LI_WorldList.Items.AddRange(LogEditor.GetWorldList(dateAndTime, ref worldName));
 
                 // 内容の読み込み（あれば）
                 PictureInfo pictureInfo = XmlContractor.LoadObjectXML<PictureInfo>(MetaDataFilePath);
-                TB_WorldName.Text = pictureInfo.WorldName;
-                TB_WorldAuthorName.Text = pictureInfo.WorldAuthor;
+                if (string.IsNullOrWhiteSpace(pictureInfo.WorldName))
+                {
+                    TB_WorldName.Text = worldName;
+                    TB_WorldAuthorName.Text = WorldData.Keys.Contains(worldName) ? WorldData[worldName] : "";
+                }
+                else
+                {
+                    TB_WorldName.Text = pictureInfo.WorldName;
+                    TB_WorldAuthorName.Text = pictureInfo.WorldAuthor;
+                }
                 TB_AvatarName.Text = pictureInfo.AvatarName;
                 TB_AvatarAuthor.Text = pictureInfo.AvatarAuthor;
                 TB_Sentence.Lines = pictureInfo.TweetContents;

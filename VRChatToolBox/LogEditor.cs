@@ -103,13 +103,13 @@ namespace VRChatToolBox
         }
 
         // ワールド候補リストの取得
-        internal static string[] GetWorldList(string pictureDate)
+        internal static string[] GetWorldList(string[] dateAndTime, ref string resultName)
         {
             // フォルダが無ければすぐに戻す
-            string targetDir = $"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{pictureDate}";
+            string targetDir = $"{ProgramSettings.Settings.DesignatedEditedLogPath}\\{dateAndTime[0]}";
             if (!Directory.Exists(targetDir)) return new string[] { };
 
-            IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{pictureDate}*.txt", SearchOption.TopDirectoryOnly);
+            IEnumerable<string> editedLogFileList = Directory.EnumerateFiles(targetDir, $"*{dateAndTime[0]}*.txt", SearchOption.TopDirectoryOnly);
 
             List<string> worldList = new List<string>();
             string[] contents;
@@ -126,8 +126,16 @@ namespace VRChatToolBox
                     if (!Regex.IsMatch(contents[i], SearchStr)) continue;
 
                     // World名を抜き出してAdd
-                    worldName = contents[i].Substring(contents[i].IndexOf("W") + 7);
+                    worldName = contents[i].Substring(contents[i].IndexOf('W') + 7);
                     worldList.Add(worldName);
+
+                    // 時刻の指定があれば、撮影時間からワールドを推測
+                    if (string.IsNullOrWhiteSpace(dateAndTime[1])) continue;
+
+                    string[] line = contents[i].Split(' ');
+                    long worldDateTime = long.Parse(line[0].Replace(".", "") + line[1].Replace(":", ""));
+                    long photoDateTime = long.Parse(dateAndTime[0] + dateAndTime[1]);
+                    if (worldDateTime <= photoDateTime) resultName = worldName;
                 }
 
             }

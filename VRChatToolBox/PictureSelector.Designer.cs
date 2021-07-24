@@ -72,8 +72,6 @@
             this.BT_OpenTwitter = new System.Windows.Forms.Button();
             this.BT_Close = new System.Windows.Forms.Button();
             this.BT_Sentence = new System.Windows.Forms.Button();
-            this.FV_FileList = new VRChatToolBox.FileListView();
-            this.DT_DirectoryList = new VRChatToolBox.DirectoryTreeView();
             this.BT_SavePicture = new System.Windows.Forms.Button();
             this.BT_TurnRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();

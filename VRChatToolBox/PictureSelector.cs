@@ -149,7 +149,7 @@ namespace VRChatToolBox
         }
 
         // ワールド名選択
-        private void Li_WorldList_DoubleClick(object sender, EventArgs e)
+        private void LI_WorldList_Click(object sender, EventArgs e)
         {
             if (LI_WorldList.Items.Count == 0 || LI_WorldList.SelectedItem is null) return;
             string WorldName  = LI_WorldList.SelectedItem.ToString().Trim();
@@ -360,7 +360,7 @@ namespace VRChatToolBox
         #endregion
 
         // アバター選択時
-        private void LI_AvatarList_DoubleClick(object sender, EventArgs e)
+        private void LI_AvatarList_Click(object sender, EventArgs e)
         {
             if (LI_AvatarList.Items.Count == 0 || LI_AvatarList.SelectedItem is null) return;
             TB_AvatarName.Text = ((DataRowView)LI_AvatarList.SelectedItem)[0].ToString();
@@ -503,5 +503,6 @@ namespace VRChatToolBox
                 MessageBox.Show(ex.Message, "処理エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

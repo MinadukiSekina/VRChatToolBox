@@ -72,8 +72,6 @@
             this.BT_OpenTwitter = new System.Windows.Forms.Button();
             this.BT_Close = new System.Windows.Forms.Button();
             this.BT_Sentence = new System.Windows.Forms.Button();
-            this.BT_SavePicture = new System.Windows.Forms.Button();
-            this.BT_TurnRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpC0)).BeginInit();
             this.SpC0.Panel1.SuspendLayout();
             this.SpC0.Panel2.SuspendLayout();

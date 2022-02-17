@@ -26,7 +26,7 @@ namespace VRChatToolBox
             string destPath      = "";
             string ThumbnailPath = "";
 
-            IEnumerable<string> pictures = Directory.EnumerateFiles(savedPicturesFolder, "*.png", SearchOption.TopDirectoryOnly);
+            IEnumerable<string> pictures = Directory.EnumerateFiles(savedPicturesFolder, "*.png", SearchOption.AllDirectories);
 
             foreach(string picture in pictures)
             {
